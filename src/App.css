@@ -52,7 +52,7 @@ button.navbar-toggler:focus{box-shadow: none !important;}
   background: rgba(171, 225, 247, 0.85);
   backdrop-filter: blur(10px);
   z-index: 99999;
-  padding: 18px 12px;
+  padding: 14px 12px;
   display: flex;
   flex-direction: column;
   width: 100%;

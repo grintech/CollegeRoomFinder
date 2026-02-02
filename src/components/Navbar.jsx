@@ -14,6 +14,9 @@ import { Link } from "react-router-dom";
 const Navbar = () => {
   const [open, setOpen] = useState(false);
 
+  const closeMenu = () => setOpen(false);
+
+
   return (
     <>
       {/* Navbar */}
@@ -55,7 +58,7 @@ const Navbar = () => {
       {open && (
         <div className="mobile-menu">
           <div className="menu-header">
-             <Link className="navbar-brand d-flex align-items-center gap-2" to="/">
+             <Link className="navbar-brand d-flex align-items-center gap-2" to="/"  onClick={closeMenu} >
             <img src="/images/logo_new.png" alt="logo" width={200} />
           </Link>
             <button onClick={() => setOpen(false)}>
@@ -64,13 +67,13 @@ const Navbar = () => {
           </div>
 
           <ul className="menu-links">
-            <li><Link to="/"><Home size={18} /> About </Link></li>
-            <li><Link to="/"><GraduationCap size={18} /> For Universities</Link></li>
-            <li><Link to="/"><Building2 size={18} /> For Landlords & Property Managers</Link></li>
-            <li><Link to="/"><Home size={18} /> For Rent</Link></li>
+            <li><Link to="/" onClick={closeMenu}><Home size={18} /> About </Link></li>
+            <li><Link to="/" onClick={closeMenu}><GraduationCap size={18} /> For Universities</Link></li>
+            <li><Link to="/" onClick={closeMenu}><Building2 size={18} /> For Landlords & Property Managers</Link></li>
+            <li><Link to="/" onClick={closeMenu}><Home size={18} /> For Rent</Link></li>
           </ul>
 
-        <Link to="/login">
+        <Link to="/login"  onClick={closeMenu}>
           <button className="blue_btn mt-auto d-flex align-items-center justify-content-center gap-2">
            Login
             <LogIn size={18} />

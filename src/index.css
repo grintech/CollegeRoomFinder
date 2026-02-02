@@ -53,6 +53,7 @@ body{
   border-radius: 16px;
   padding: 28px;
   box-shadow: 0 20px 40px rgba(10,57,86,0.08);
+  margin: 0 10px;
 }
 
 .signup_page .auth-card{max-width: 600px;}
@@ -330,4 +331,28 @@ body{
   justify-content: center !important;
   gap: 12px;
   margin-top: 20px;
+}
+
+
+@media (max-width:600){
+  .select-input span {font-size: 15px;}
+}
+
+@media (max-width:425px){
+  .auth-page {padding: 25px 0;}
+  .role-switch button{font-size: 14px;}
+  .auth-card .logo { width: 150px;}
+  .auth-card h1 {font-size: 24px;}
+  .auth-card form label { font-size: 14px;}
+  .auth-card form .form-control{font-size: 14px;}
+  .auth-card form select{font-size: 14px;}
+  .auth-card form textarea{font-size: 14px;}
+  .select-input span {font-size: 14px;}
+}
+@media (max-width:375px){
+  .auth-card{padding: 25px 18px;}
+  .role-switch button{font-size: 13px; padding: 10px 0px;}
+  .auth-card .logo { width: 140px;}
+  .auth-card h1 {font-size: 22px;}
+
 }
