@@ -1,0 +1,333 @@
+*{margin: 0; padding: 0; box-sizing: border-box;}
+
+:root{
+  --primary: #cba33a;
+  --blue: #1a5985;
+  --dark: #0a3956;
+  --light : #fffcf4;
+  --light_blue: #def1ff;
+}
+
+.text_blue{color: var(--blue) !important;}
+.text_lblue{color: var(--light_blue) !important;}
+.text_theme{color: var(--primary) !important;}
+.text_dark{color: var(--dark) !important;}
+
+a {
+  font-weight: 500;
+  color: var(--dark);
+  text-decoration: none !important;
+}
+a:hover {
+  color: var(--blue);
+}
+
+body{
+  font-family: "Poppins", sans-serif;
+  background-color: var(--light);
+  overflow-x: hidden; 
+}
+
+
+
+/* ------ Auth -------------*/
+
+:root{
+  --primary: #cba33a;
+  --blue: #1a5985;
+  --dark: #0a3956;
+  --light: #fffcf4;
+  --light_blue: #def1ff;
+}
+
+.auth-page{
+  min-height: 100vh;
+  background: var(--light);
+  padding: 50px 0;
+}
+
+.auth-card{
+  width: 100%;
+  max-width: 520px;
+  background: #fff;
+  border-radius: 16px;
+  padding: 28px;
+  box-shadow: 0 20px 40px rgba(10,57,86,0.08);
+}
+
+.signup_page .auth-card{max-width: 600px;}
+
+.auth-card .logo{
+  width: 170px;
+}
+.auth-card form label{font-size: 15px; font-weight: 500; margin-bottom: 5px;}
+.auth-card h1{font-size: 27px; font-weight: 600;}
+.auth_header p{font-size: 16px;}
+.mode-switch{
+  display: flex;
+  background: #f3f5f7;
+  border-radius: 12px;
+  padding: 6px;
+}
+
+.auth-card a:hover{color: var(--primary) !important;}
+
+.mode-switch button{
+  flex: 1;
+  border: none;
+  background: transparent;
+  padding: 10px;
+  border-radius: 10px;
+  font-weight: 500;
+  color: var(--dark);
+}
+
+.mode-switch button.active{
+  background: #fff;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  color: var(--blue);
+}
+
+.role-switch{
+  display: flex;
+  gap: 10px;
+}
+
+.role-switch button{
+  flex: 1;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid #e5e7eb;
+  background: #fff;
+}
+
+.role-switch button.active{
+  background: var(--blue);
+  color: #fff;
+  border-color: var(--blue);
+  font-weight: 600;
+}
+
+.btn-primary{
+  background: var(--blue);
+  border-color: var(--blue);
+}
+
+.btn-primary:hover{
+  background: var(--dark);
+  border-color: var(--dark);
+}
+
+.form-control,
+.form-select{
+  border-radius: 50px !important;
+  height: 45px;
+}
+
+.auth-card input::placeholder{color: #9ca3af;}
+.auth-card select{color: #9ca3af;}
+.auth-card select::placeholder{color: #9ca3af;}
+
+.terms a{
+  color: var(--blue);
+  text-decoration: none;
+}
+
+
+.input-icon{
+  position: relative;
+}
+
+.input-icon svg{
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #9ca3af;
+}
+
+.input-icon .form-control,
+.input-icon .form-select{
+  padding-left: 42px;
+}
+
+
+
+.password-field {
+  position: relative;
+}
+
+.password-field .eye {
+  position: absolute;
+  right: 45px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: #9ca3af;
+}
+
+.password-field .form-control {
+  padding-left: 42px;
+  padding-right: 42px;
+}
+
+
+.custom-select {
+  position: relative;
+}
+
+.select-input {
+  height: 48px;
+  border: 1px solid #dee2e6;
+  border-radius: 50px;
+  padding: 0 14px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  background: #fff;
+}
+
+.select-input span {
+  flex: 1;
+  font-size: 16px;
+}
+.select-input svg{ color: #9ca3af;;}
+
+.select-input .placeholder {
+  /* color: #9ca3af; */
+  background-color: #fff;
+}
+
+.select-input .arrow {
+  color: #6b7280;
+}
+
+.select-input.open {
+  border-color: var(--blue);
+  /* box-shadow: 0 0 0 2px rgba(26, 89, 133, 0.15); */
+}
+
+.select-dropdown {
+  position: absolute;
+  width: 100%;
+  top: calc(100% + 6px);
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  max-height: 250px;
+  overflow-y: auto;
+  z-index: 10;
+}
+
+.select-option {
+  padding: 10px 14px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.select-option:hover {
+  background: var(--light_blue);
+}
+
+
+/*---- Forgot Password -----*/
+
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--blue);
+  font-size: 16px;
+}
+
+.back-link:hover {
+  text-decoration: underline;
+}
+
+
+.scroll-top-btn {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  border: none;
+  background: var(--blue);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  z-index: 999;
+}
+
+.scroll-top-btn:hover {
+  background: var(--dark);
+}
+
+/*--------- WaitList Modal -----*/
+
+.modal-backdrop-custom {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 99999;
+}
+
+.waitlist-modal {
+  background: #fff;
+  width: 100%;
+  max-width: 520px;
+  border-radius: 14px;
+  padding: 24px;
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.25);
+}
+.waitlist-modal label{font-size: 15px; font-weight: 500; margin-bottom: 5px;}
+
+.waitlist-modal button.close-btn {
+    height: 40px;
+    width: 40px;
+    background: var(--blue);
+    border-radius: 50%;
+    text-align: center;
+}
+.waitlist-modal button.close-btn svg{color: #fff;}
+
+.waitlist-modal textarea.form-control{border-radius: 20px !important; min-height: 90px; padding: 15px auto !important;}
+
+.waitlist-modal svg{color: var(--blue);}
+
+.waitlist-modal input::placeholder{font-size: 14px;}
+.waitlist-modal textarea::placeholder{font-size: 14px;}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.modal-header h5 {
+  margin: 0;
+  font-weight: 600;
+  font-size: 25px;
+}
+
+.close-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.modal-footer {
+  display: flex;
+  justify-content: center !important;
+  gap: 12px;
+  margin-top: 20px;
+}
