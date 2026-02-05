@@ -45,16 +45,17 @@ const WaitlistSection = () => {
               <h5 className="fw-bold mb-4">Join the Waitlist</h5>
 
               <form>
-                <div className="mb-3">
-                  <label className="form-label">Full Name</label>
+                <div className="row">
+                  <div className="col-12 mb-3">
+                  <label className="form-label">University Name</label>
                   <input
                     type="text"
                     className="form-control"
-                    placeholder="Your name"
+                    placeholder="e.g. Stanford University"
                   />
                 </div>
 
-                <div className="mb-3">
+                <div className="col-12 mb-3">
                   <label className="form-label">Email Address</label>
                   <input
                     type="email"
@@ -63,24 +64,47 @@ const WaitlistSection = () => {
                   />
                 </div>
 
-                <div className="mb-4">
-                  <label className="form-label">University / College</label>
-                  <select className="form-select">
-                    <option>Select your university</option>
-                    <option>Towson University</option>
-                    <option>Morgan State University</option>
-                    <option>John Hawkins University</option>
-                    <option>Other</option>
-                  </select>
+                <div className="col-md-6 mb-3">
+                  <label className="form-label">City</label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    placeholder="e.g. Palo Alto"
+                  />
                 </div>
 
-                <button type="button" className="blue_btn w-100">
+                <div className="col-md-6 mb-3">
+                  <label className="form-label">State</label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    placeholder="e.g. CA"
+                  />
+                </div>
+
+                <div className="co-12 mb-3">
+                  <label className="form-label">Additional Information (Optional)</label>
+                  <textarea
+                    rows="3"
+                    className="form-control"
+                    placeholder="Any specific requirements or preferences..."
+                  />
+                </div>
+
+                
+               <div className="col-12">
+                 <button type="button" className="blue_btn w-100">
                   Join Waitlist
                 </button>
+               </div>
 
-                <p className="small text-muted mt-3 mb-0">
+               <div className="col-12 mt-3">
+                 <p className="small text-muted  mb-0">
                   No spam. We’ll only notify you when we launch near your campus.
                 </p>
+               </div>
+
+                </div>
               </form>
             </div>
           </div>

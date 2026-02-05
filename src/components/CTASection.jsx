@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const CTASection = () => {
   return (
     <section className="cta-section">
@@ -20,9 +22,10 @@ const CTASection = () => {
                 <button  className="theme_outline_btn ">
                   Find a Room
                 </button>
-                <button  className="light_btn">
-                  List Your Property
-                </button>
+
+                <Link to="/login">
+                <button  className="light_btn"> List Your Property </button>
+                </Link>
               </div>
             </div>
           </div>

@@ -6,12 +6,14 @@
   --dark: #0a3956;
   --light : #fffcf4;
   --light_blue: #def1ff;
+  --orange: #b45309;
 }
 
 .text_blue{color: var(--blue) !important;}
 .text_lblue{color: var(--light_blue) !important;}
 .text_theme{color: var(--primary) !important;}
 .text_dark{color: var(--dark) !important;}
+.text_orange {color: var(--orange) !important;}
 
 a {
   font-weight: 500;
@@ -281,7 +283,7 @@ body{
   z-index: 99999;
 }
 
-.waitlist-modal {
+.waitlist-modal, .contact-modal {
   background: #fff;
   width: 100%;
   max-width: 520px;
@@ -289,44 +291,47 @@ body{
   padding: 24px;
   box-shadow: 0 30px 60px rgba(0, 0, 0, 0.25);
 }
-.waitlist-modal label{font-size: 15px; font-weight: 500; margin-bottom: 5px;}
+.modal-backdrop-custom label{font-size: 15px; font-weight: 500; margin-bottom: 5px;}
 
-.waitlist-modal button.close-btn {
+.modal-backdrop-custom button.close-btn {
     height: 40px;
     width: 40px;
     background: var(--blue);
     border-radius: 50%;
     text-align: center;
 }
-.waitlist-modal button.close-btn svg{color: #fff;}
+.modal-backdrop-custom button.close-btn svg{color: #fff;}
 
-.waitlist-modal textarea.form-control{border-radius: 20px !important; min-height: 90px; padding: 15px auto !important;}
+.modal-backdrop-custom textarea.form-control{border-radius: 20px !important; min-height: 90px; 
+  padding: 15px 15px !important; font-size: 14px;
+}
 
-.waitlist-modal svg{color: var(--blue);}
+.modal-backdrop-custom svg{color: var(--blue);}
 
-.waitlist-modal input::placeholder{font-size: 14px;}
-.waitlist-modal textarea::placeholder{font-size: 14px;}
+.modal-backdrop-custom input::placeholder{font-size: 14px;}
 
-.modal-header {
+.modal-backdrop-custom textarea::placeholder{font-size: 14px; color: #6b7280;}
+
+.modal-backdrop-custom .modal-header {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: baseline;
   margin-bottom: 12px;
 }
 
-.modal-header h5 {
+.modal-backdrop-custom .modal-header h5 {
   margin: 0;
   font-weight: 600;
   font-size: 25px;
 }
 
-.close-btn {
+.modal-backdrop-custom .close-btn {
   background: transparent;
   border: none;
   cursor: pointer;
 }
 
-.modal-footer {
+.modal-backdrop-custom .modal-footer {
   display: flex;
   justify-content: center !important;
   gap: 12px;
@@ -334,8 +339,285 @@ body{
 }
 
 
-@media (max-width:600){
+/*---- Book Tour Modal -----*/
+
+.booktour-modal {
+  background: #fff;
+  width: 100%;
+  max-width: 600px;
+  border-radius: 16px;
+  padding: 20px;
+}
+
+.tour_room, .reserve_room{
+  max-height: 600px;
+  overflow-y: auto;
+}
+
+.tour-tabs {
+  display: flex;
+  /* background: #f4f6f8; */
+  border-radius: 10px;
+  margin-bottom: 16px;
+  gap:8px
+}
+
+.tour-tabs button {
+  flex: 1;
+  border: none;
+  padding: 10px;
+  font-weight: 500;
+  background: var(--light_blue);
+  border-radius: 10px;
+  color: var(--blue);
+}
+
+.tour-tabs .active {
+  background: var(--blue);
+  box-shadow: 0 0 0 1px #e5e7eb;
+  color: #fff;
+}
+.tour-tabs .active svg {color: #fff;}
+
+.tour-type label{display: inline-flex;align-items: center; margin-right: 30px;  flex-wrap: wrap;}
+
+.tour-type label input{margin-right: 15px;}
+.tour-type label svg{margin-right: 5px;}
+
+.date-btn {
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid #e5e7eb;
+  background: #fff;
+}
+
+.date-btn.active {
+  background: var(--blue);
+  color: #fff;
+  border-color: var(--blue);
+}
+
+.date-btn.disabled {
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+.time-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+.time-btn {
+  padding: 8px;
+  border-radius: 10px;
+  border: 1px solid #e5e7eb;
+}
+.time-btn:hover{background-color: var(--primary); color: #fff;}
+
+.time-btn.active {
+  background: var(--primary);
+  color: #fff;
+}
+
+.tour-box{
+  border: 1px solid #e5e5e5;
+    padding: 14px;
+    border-radius: 15px;
+    background: #fff;
+}
+
+
+
+/* react-calendar custom UI */
+.react-calendar {
+  width: 100%;
+  border: none;
+  font-family: inherit;
+}
+
+.react-calendar__navigation {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  gap: 10px;
+}
+
+.react-calendar__navigation button {
+  background: var(--light_blue);
+  border-radius: 6px;
+  border: 1px solid #e5e7eb;
+  width: 34px;
+  height: 34px;
+  font-weight: 600;
+}
+
+.react-calendar__month-view__weekdays abbr[title]{
+  text-decoration: underline !important;
+}
+.react-calendar__month-view__weekdays {
+  text-transform: capitalize;
+  font-size: 13px;
+  font-weight: 500;
+  /* color: #6b7280; */
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.react-calendar__tile .react-calendar__tile--now{
+  background: var(--blue) !important;
+}
+.react-calendar__tile {
+  height: 40px;
+  margin-bottom: 5px;
+  margin-right: 2px;
+  border: 0;
+  background-color: #fff;
+  font-size: 14px;
+}
+.react-calendar__tile:hover{background-color: var(--light_blue); color: var(--blue);}
+
+.react-calendar__tile--active {
+  background: var(--primary) !important;
+  border: 1px solid var(--primary);
+  color: #fff;
+}
+.react-calendar__tile--active:hover {
+  background: var(--primary) !important;
+  border: 1px solid var(--primary);
+  color: #fff;
+}
+
+.react-calendar__tile--now {
+  background: var(--light_blue);
+}
+
+.react-calendar__tile:disabled {
+  /* background: #f5f5f5; */
+  color: #bbb;
+  cursor: not-allowed;
+}
+
+.react-calendar__navigation button:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+/*----- Reserve room tab -------*/
+
+.reserve-card {
+  border: 1px solid #e6e8ec;
+  border-radius: 12px;
+  padding: 16px;
+  background: #fff;
+}
+
+.reserve-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+
+.badge-limited {
+  background: var(--primary);
+  color:var(--light);
+  font-size: 12px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.reserve-meta {
+  display: flex;
+  gap: 16px;
+  margin-top: 10px;
+  font-size: 14px;
+  color: #6b7280;
+}
+
+.reserve-meta span {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.waitlist-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.info-dot {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: #fff4e5;
+  color: #f59e0b;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.waitlist-box {
+  background: #f9fafb;
+  border-radius: 10px;
+  padding: 12px;
+  margin-top: 8px;
+}
+
+.waitlist-list {
+  padding-left: 18px;
+  margin: 0;
+  font-size: 13px;
+  color: #6b7280;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: start;
+}
+
+.waitlist-list li {
+  margin-bottom: 6px;
+}
+
+.reserve-tip {
+  background: #f8fafc;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  padding: 12px;
+  font-size: 14px;
+  color: #6b7280;
+}
+
+.reserve_room h6{font-size: 18px; font-weight:600; margin: 0 !important;}
+.tour_room h6{margin-bottom: 8px;}
+
+
+
+
+
+
+
+
+
+@media (max-width:1399px){
+.tour_room, .reserve_room{
+  max-height: 550px;
+  overflow-y: auto;
+ }
+}
+
+
+@media (max-width:767px){
+  .tour_room, .reserve_room{ max-height: 500px;}
+}
+@media (max-width:600px){
   .select-input span {font-size: 15px;}
+  .tour_room, .reserve_room{ max-height: 450px;}
 }
 
 @media (max-width:425px){
@@ -348,11 +630,16 @@ body{
   .auth-card form select{font-size: 14px;}
   .auth-card form textarea{font-size: 14px;}
   .select-input span {font-size: 14px;}
+
+  .tour_room, .reserve_room{ max-height: 400px;}
+  .time-btn{font-size: 14px;}
+  .modal-backdrop-custom .modal-header h5{font-size: 20px;}
 }
 @media (max-width:375px){
   .auth-card{padding: 25px 18px;}
   .role-switch button{font-size: 13px; padding: 10px 0px;}
   .auth-card .logo { width: 140px;}
   .auth-card h1 {font-size: 22px;}
-
+  .time-btn{font-size: 13px;}
+  .tour-tabs button{font-size: 14px;}
 }

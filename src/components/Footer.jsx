@@ -52,7 +52,7 @@ const Footer = () => {
             <ul className="list-unstyled">
               <li><a href="#" className="footer-link">Contact Us</a></li>
               <li><a href="#" className="footer-link">Privacy Policy</a></li>
-              <li><a href="#" className="footer-link">Terms</a></li>
+              <li><a href="#" className="footer-link">Terms & Conditions</a></li>
             </ul>
           </div>
 

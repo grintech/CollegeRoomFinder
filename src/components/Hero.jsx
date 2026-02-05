@@ -1,6 +1,7 @@
 import { Users, MessageCircle, Home, Search, Building, GraduationCap } from "lucide-react";
 import { useState } from "react";
 import WaitlistModal from "./WaitlistModal";
+import { Link } from "react-router-dom";
 
 const Hero = () => {
    const [showWaitlist, setShowWaitlist] = useState(false);
@@ -23,10 +24,10 @@ const Hero = () => {
 
               <div className="hero-buttons ">
               
-                <button className="light_btn d-flex align-items-center gap-2">
+                <Link to="/login" className="light_btn d-flex align-items-center gap-2">
                   <Home size={18} />
                   List Your Property
-                </button>
+                </Link>
                 <button
                   className="theme_outline_btn d-flex align-items-center gap-2"
                   onClick={() => setShowWaitlist(true)}

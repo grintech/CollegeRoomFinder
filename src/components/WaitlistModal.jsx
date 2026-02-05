@@ -73,13 +73,7 @@ const WaitlistModal = ({ show, onClose }) => {
 
           {/* Footer */}
           <div className="modal-footer">
-            {/* <button
-              type="button"
-              className="theme_btn"
-              onClick={onClose}
-            >
-              Cancel
-            </button> */}
+            
             <button type="submit" className="blue_btn">
               Join Waitlist
             </button>

@@ -1,5 +1,6 @@
 import React from "react";
 import { UserCheck, Users, CheckCircle, Search, Home } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const stepsData = [
   {
@@ -80,10 +81,10 @@ const Steps = () => {
                 Search Listings
               </button>
 
-              <button className="dark_btn d-flex align-items-center gap-2">
+              <Link to="/login" className="dark_btn d-flex align-items-center gap-2">
                 <Home size={18} />
                 List Your Property
-              </button>
+              </Link>
         </div>
       </div>
     </section>
