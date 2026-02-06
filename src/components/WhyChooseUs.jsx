@@ -2,15 +2,16 @@ import React from "react";
 
 const WhyChooseUs = () => {
   return (
-    <section className="why-choose-us">
+    <section  id="about" className="why-choose-us">
       <div className="container">
         <div className="text-center mb-5">
           <h2 className="heading ">
             Why use <span className="text_theme fw-bold">CollegeRoomFinder?</span>
           </h2>
+          <p>College Room Finder makes off-campus housing simple.</p>
         </div>
 
-        <div className="row justify-content-center text-center g-4">
+        <div className="row justify-content-center text-center g-4 mb-4">
           {/* Item 1 */}
           <div className="col-md-6 col-lg-4">
             <div className="why-card">
@@ -53,9 +54,16 @@ const WhyChooseUs = () => {
             </div>
           </div>
         </div>
-        <div className="text-center mt-5">
-            <button className="theme_outline_btn">See All Features</button>
+        <div className="col-lg-10 text-center mx-auto text_blue">
+          <h6 className="text-center">
+          We connect college students with quality rooms and homes near campus—while helping property owners reach the right student renters, faster.
+        </h6>
+        <h6>Built specifically for student housing, our platform focuses on location, clarity, and trust—so students avoid the chaos, parents gain peace of mind, and hosts get reliable demand.</h6>
+        <h6 className="text_theme">One platform. One purpose. Better college housing.</h6>
         </div>
+        {/* <div className="text-center mt-5">
+            <button className="theme_outline_btn">See All Features</button>
+        </div> */}
       </div>
     </section>
   );

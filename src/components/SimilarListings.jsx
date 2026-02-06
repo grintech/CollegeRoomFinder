@@ -41,7 +41,7 @@ const listingsData = [
     availabilityTill: new Date(2026, 5, 10),
     totalBeds: 2,
     waitTime: "~1 week avg. wait",
-    featured: true,
+    featured: false,
   },
   {
     id: 3,
@@ -75,7 +75,7 @@ const listingsData = [
   },
 ];
 
-const FeaturedListings = () => {
+const SimilarListings = () => {
   const [showContact, setShowContact] = useState(false);
   const [showTour, setShowTour] = useState(false);
   const [activeListing, setActiveListing] = useState(null);
@@ -99,23 +99,21 @@ const FeaturedListings = () => {
 
   return (
     <>
-      <section className="featured-listings">
+      <section className="featured-listings p-0 mt-5">
         <div className="container">
           {/* Heading */}
           <div className="d-flex justify-content-between flex-wrap align-items-center mb-4">
             <div>
               <h2 className="heading text_blue">
-               Paid Featured{" "}
-                <span className="text_theme fw-bold">Listings</span> By host
+               Similar{" "}<span className="text_theme fw-bold">Listings</span> 
               </h2>
               <p className="text-muted">
                 Handpicked student housing near approved campuses
               </p>
             </div>
-            <button className="theme_outline_btn">View All</button>
+            {/* <button className="theme_outline_btn">View All</button> */}
           </div>
 
-          {/* Listings */}
           <div className="row justify-content-center g-4">
             {listingsData.map((listing) => (
               <div
@@ -187,7 +185,7 @@ const FeaturedListings = () => {
                     </div>
 
                     {/* Actions */}
-                    <div className="listing-actions">
+                    {/* <div className="listing-actions">
                       <button
                         className="book-btn"
                         onClick={() => {
@@ -207,7 +205,7 @@ const FeaturedListings = () => {
                       >
                         <MessageCircle size={16} /> Contact
                       </button>
-                    </div>
+                    </div> */}
                   </div>
                 </div>
               </div>
@@ -232,4 +230,4 @@ const FeaturedListings = () => {
   );
 };
 
-export default FeaturedListings;
+export default SimilarListings;

@@ -10,11 +10,18 @@ const Hero = () => {
     <>
       <section className="hero-section">
         <div className="container">
-          <div className="row align-items-center">
-            <div className="col-xl-6 col-xxl-5">
+          <div className="row align-items-center px-md-3">
+             <div className="col-xl-6 col-xxl-6  text-center  overflow-hidden">
+              {/* <img src="/images/hero.jpg" alt="students" className="hero-img  rounded-top-4" /> */}
+              {/* <img src="/images/hero2.png" alt="students" className="hero-img  rounded-top-4" /> */}
+              {/* <img src="/images/image.png" alt="students" className="hero-img  " /> */}
+              {/* <img src="/images/about3.png" alt="students" className="hero-img  " /> */}
+              <img src="/images/about4.png" alt="students" className="hero-img  " />
+            </div>
+            <div className="col-xl-6 col-xxl-5 offset-xxl-1">
               <div className="hero_left">
                 <h1>
-              Campus-Approved <span>Rooms & Units,</span> <br />
+              Find <span>Rooms & Units,</span> <br />
               All in One Place
               </h1>
 
@@ -40,10 +47,7 @@ const Hero = () => {
               </div>
             </div>
 
-            <div className="col-xl-6 col-xxl-7 text-center bg-white rounded-circle">
-              {/* <img src="/images/hero.jpg" alt="students" className="hero-img  rounded-top-4" /> */}
-              <img src="/images/hero2.png" alt="students" className="hero-img  rounded-top-4" />
-            </div>
+           
           </div>
         </div>
       </section>

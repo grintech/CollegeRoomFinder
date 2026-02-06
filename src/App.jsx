@@ -2,7 +2,9 @@ import Footer from './components/Footer'
 import Navbar from './components/Navbar'
 import ScrollToTop from './components/ScrollToTop'
 import ScrollTopArrow from './components/ScrollTopArrow'
+import Aboutpage from './pages/Aboutpage'
 import Homepage from './pages/Homepage'
+import HostPage from './pages/HostPage'
 import PropertySinglePage from './pages/PropertySinglePage'
 import ForgotPassword from './pages/auth/ForgotPassword'
 import Login from './pages/auth/Login'
@@ -25,6 +27,9 @@ const App = () => {
         <Route path='/reset-password' element={<ResetPassword />} />
 
         <Route path='/property/:slug' element={<PropertySinglePage /> } />
+
+        <Route path='/hosts' element={<HostPage /> } />
+        {/* <Route path='/about' element={<Aboutpage /> } /> */}
       </Routes>
 
       <Footer />

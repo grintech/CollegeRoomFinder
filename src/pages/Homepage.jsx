@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Hero from '../components/Hero'
 import Steps from '../components/Steps'
 import StudentCommunity from '../components/StudentCommunity'
@@ -12,10 +12,27 @@ import Pricing from '../components/Pricing'
 import CTASection from '../components/CTASection'
 import FeaturedListings from '../components/FeaturedListings'
 import ListingsGrid from '../components/ListingsGrid'
+import { useLocation } from 'react-router-dom'
 
 const Homepage = () => {
 
   const [filters, setFilters] = useState(null);
+
+   const location = useLocation();
+
+  useEffect(() => {
+    const params = new URLSearchParams(location.search);
+    const scrollTo = params.get("scroll");
+
+    if (scrollTo) {
+      const el = document.getElementById(scrollTo);
+      if (el) {
+        setTimeout(() => {
+          el.scrollIntoView({ behavior: "smooth" });
+        }, 100);
+      }
+    }
+  }, [location]);
 
   return (
     <>
@@ -24,8 +41,8 @@ const Homepage = () => {
         <ListingsGrid filters={filters} />
         <Steps />
         <WhyChooseUs />
-        <FeaturedListings />
         <PropertyByArea />
+        {/* <FeaturedListings /> */}
         <StudentCommunity />
         <Pricing />
         <CTASection />

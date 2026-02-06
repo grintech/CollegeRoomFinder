@@ -1,8 +1,7 @@
-import { useState } from "react";
+import {  useState } from "react";
 import {
   Menu,
   X,
-  GraduationCap,
   Building2,
   Home,
   LogIn
@@ -23,8 +22,9 @@ const Navbar = () => {
       <nav className="navbar navbar-expand-xl custom-navbar">
         <div className="container">
           <Link to="/" className="navbar-brand d-flex align-items-center gap-2" >
-            <img src="/images/logo_new.png" alt="logo" width={200} />
-            {/* <h3 className="mb-0 fw-bold">CollegeRoomFinder</h3> */}
+            {/* <img src="/images/logo_new.png" alt="logo" width={200} /> */}
+            <img src="/images/logo_new1.png" alt="logo" width={220}  />
+          
           </Link>
 
           {/* Toggle */}
@@ -38,10 +38,9 @@ const Navbar = () => {
           {/* Desktop Menu */}
           <div className="collapse navbar-collapse d-none d-xl-flex">
             <ul className="navbar-nav ms-auto gap-4">
-              <li><Link to="#about">About</Link></li>
-              <li><Link to="#universities">For Universities</Link></li>
-              <li><Link to="#landlords">For Landlords & Property Managers</Link></li>
+              <li> <Link to="/hosts" > For Hosts </Link></li>
               <li><Link to="#rent">For Rent</Link></li>
+              <li><Link to="/?scroll=about" > About </Link></li>
             </ul>
 
            <Link to="/login">
@@ -67,15 +66,18 @@ const Navbar = () => {
           </div>
 
           <ul className="menu-links">
-            <li><Link to="/" onClick={closeMenu}><Home size={18} /> About </Link></li>
-            <li><Link to="/" onClick={closeMenu}><GraduationCap size={18} /> For Universities</Link></li>
-            <li><Link to="/" onClick={closeMenu}><Building2 size={18} /> For Landlords & Property Managers</Link></li>
-            <li><Link to="/" onClick={closeMenu}><Home size={18} /> For Rent</Link></li>
+            <li><Link to="/hosts" onClick={closeMenu}><Building2 size={18} /> For Hosts</Link></li>
+            <li><Link to="#rent" onClick={closeMenu}><Home size={18} /> For Rent</Link></li>
+            <li>
+              <Link to="/?scroll=about" onClick={closeMenu}>
+                <Home size={18} /> About
+              </Link>
+              </li>
           </ul>
 
         <Link to="/login"  onClick={closeMenu}>
-          <button className="blue_btn mt-auto d-flex align-items-center justify-content-center gap-2">
-           Login
+          <button className="blue_btn mt-auto ms-3 d-flex align-items-center justify-content-center gap-2">
+            Login
             <LogIn size={18} />
           </button>
         </Link>

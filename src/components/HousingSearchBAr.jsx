@@ -88,19 +88,20 @@ const HousingSearchBar = ({ onSearch }) => {
          
         </div>
 
-        {/* Min Bedrooms */}
-        {/* <div className="search-field">
-          <label>Min Bedrooms</label>
-         <select value={minBeds} onChange={(e) => setMinBeds(e.target.value)}>
-          <option value="Any">Any</option>
-          <option value="1">1 Bed</option>
-          <option value="2">2 Beds</option>
-          <option value="3">3 Beds</option>
-          <option value="4">4 Beds</option>
-          <option value="5">5 Beds</option>
+        {/* Select Seasom */}
+        <div className="search-field">
+          <label>Lease Duration</label>
+         {/* <select value={minBeds} onChange={(e) => setMinBeds(e.target.value)}> */}
+         <select >
+          <option >Select</option>
+          <option value="academic-year">Academic Year</option>
+          <option value="fall-semester">Fall Semester</option>
+          <option value="spring-semester">Spring Semester</option>
+          <option value="summer-semester">Summer Semester</option>
+          <option value="winter-semester">Winter Semester</option>
         </select>
 
-        </div> */}
+        </div>
 
         {/* Price Slider */}
         <div className="search-field price_wrapper">

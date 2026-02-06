@@ -129,6 +129,11 @@ button.navbar-toggler:focus{box-shadow: none !important;}
 
 .hero-img {
   max-width: 100%;
+  border-top-left-radius: 20px; 
+  border-top-right-radius: 20px;
+   /* width: 600px; height: 600px; */
+   border: 4px solid var(--light); 
+  object-fit: cover;
   animation: heroFloat 3s ease-in-out infinite;
 }
 
@@ -816,7 +821,11 @@ border-radius: 14px !important;
 /*----- Property by Area --------*/
 .property_by_area{
   padding:100px 0;
-  background-color: var(--light_blue);
+  background-color: var(--light);
+}
+.property_by_area .listing-card{
+  box-shadow: unset !important;
+  border: 1px solid #ddd;
 }
 
 .property_by_area .nav-tabs .nav-link.active {
@@ -833,10 +842,12 @@ border-radius: 14px !important;
     font-weight: 600;
     color: #000;
     font-size: 15px;
+    border-bottom: 1px solid #ddd !important;
 }
 .property_by_area .nav-tabs {
     width: fit-content;
-    border-bottom: 1px solid #ddd;
+    /* border-bottom: 1px solid #ddd; */
+    border: 0;
     border-radius: 12px 12px 0 0;
     padding: 0 12px !important;
     justify-content: center;
@@ -1063,7 +1074,8 @@ border-radius: 14px !important;
   background: var(--light_blue);
   padding: 100px 0;
 }
-
+.why-choose-us h6{font-size: 17px; 
+  line-height: 1.5;}
 
 .why-card {
   position: relative;
@@ -1342,8 +1354,8 @@ border-radius: 14px !important;
 
 .listing-card:hover {
   transform: translateY(-10px);
-   border-color: rgba(26, 88, 133, 0.904); 
-  box-shadow: 0 4px 10px rgba(26, 89, 133, 0.12);
+   /* border-color: rgba(26, 88, 133, 0.904);  */
+   box-shadow: 0 4px 10px rgba(26, 89, 133, 0.12);
 }
 .listing-card h5:hover{color: var(--primary);}
 
@@ -1526,6 +1538,8 @@ border-radius: 14px !important;
   .owner_img img{border-radius: 50%; object-fit: cover;}
   .owner_name{font-size: 22px; font-weight: 700;}
  .property_single h6{font-size: 18px;}
+
+
 
 
  /* ---------- Gallery Wrapper ---------- */
@@ -1978,7 +1992,7 @@ border-radius: 14px !important;
 .heading {font-size: 1.75rem !important;}
 .heading span { font-size: 1.75rem !important;}
  .community-content h2 span { font-size: 1.75rem !important; }
-.navbar-brand img{width: 150px !important;}
+.navbar-brand img{width: 180px !important;}
 .navbar-toggler svg{height: 24px; width: 24px;}
 .finding_steps {
  padding-top: 40px;padding-bottom: 50px; }

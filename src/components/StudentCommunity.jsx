@@ -8,8 +8,8 @@ const StudentCommunity = () => {
         {/* LEFT CONTENT */}
         <div className="community-content">
           <h2 className="heading">
-            Not just matches, a real <br />
-            <span>Student <br /> Community</span>
+            Not just search results, but a real 
+            <span> College Room Finder  </span>Community
           </h2>
 
           <p>

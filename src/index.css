@@ -29,7 +29,12 @@ body{
   background-color: var(--light);
   overflow-x: hidden; 
 }
+.min_height{min-height: 80vh;}
 
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px;
+}
 
 
 /* ------ Auth -------------*/
@@ -349,10 +354,6 @@ body{
   padding: 20px;
 }
 
-.tour_room, .reserve_room{
-  max-height: 600px;
-  overflow-y: auto;
-}
 
 .tour-tabs {
   display: flex;
@@ -598,26 +599,52 @@ body{
 
 
 
+/*----- Host page ---*/
 
 
+.host_page .host-section{background: var(--light_blue); padding: 60px;}
+.host_page .host-section img{
+  border-radius: 20px;
+}
+.host_page  h1 { font-size: 3.5rem;}
+
+.host_page .finding_steps{padding: 100px 0;}
 
 
+@media (min-width:1920px){
+  .tour_room, .reserve_room {
+    max-height: 550px;
+    overflow-y: auto;
+  }
+}
+@media (max-width:1919px){
+.tour_room, .reserve_room{
+  max-height: 530px;
+  overflow-y: auto;
+ }
+}
+@media (max-width:1600px){
+.tour_room, .reserve_room{
+  max-height: 470px;
+  overflow-y: auto;
+}
+}
 
 
 @media (max-width:1399px){
 .tour_room, .reserve_room{
-  max-height: 550px;
+  max-height: 450px;
   overflow-y: auto;
  }
 }
 
 
 @media (max-width:767px){
-  .tour_room, .reserve_room{ max-height: 500px;}
+  .tour_room, .reserve_room{ max-height: 450px;}
 }
 @media (max-width:600px){
   .select-input span {font-size: 15px;}
-  .tour_room, .reserve_room{ max-height: 450px;}
+  .tour_room, .reserve_room{ max-height: 400px;}
 }
 
 @media (max-width:425px){
@@ -635,6 +662,7 @@ body{
   .time-btn{font-size: 14px;}
   .modal-backdrop-custom .modal-header h5{font-size: 20px;}
 }
+
 @media (max-width:375px){
   .auth-card{padding: 25px 18px;}
   .role-switch button{font-size: 13px; padding: 10px 0px;}
