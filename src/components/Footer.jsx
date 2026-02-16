@@ -50,9 +50,9 @@ const Footer = () => {
           <div className="col-xxl-2 col-xl-4 col-lg-4 col-md-6 col-sm-6 col-6 text-start">
             <h6 className="footer-title">Support</h6>
             <ul className="list-unstyled">
-              <li><a href="#" className="footer-link">Contact Us</a></li>
               <li><a href="#" className="footer-link">Privacy Policy</a></li>
               <li><a href="#" className="footer-link">Terms & Conditions</a></li>
+              <li><a href="#" className="footer-link">Community Rules</a></li>
             </ul>
           </div>
 
@@ -72,12 +72,12 @@ const Footer = () => {
         <hr className="footer-divider my-4" />
 
         {/* BOTTOM */}
-        <div className="d-flex flex-column flex-md-row justify-content-between align-items-center small footer-bottom mb-4">
-          <span>© 2026 CollegeRoomFinder. All rights reserved.</span>
-          <div className="mt-2 mt-md-0">
+        <div className="d-flex flex-column flex-md-row justify-content-center align-items-center small footer-bottom mb-3 mb-md-4">
+          <span className="text-center">© 2026 CollegeRoomFinder. All rights reserved.</span>
+          {/* <div className="mt-2 mt-md-0">
             <a href="#" className="footer-link me-3">Privacy</a>
             <a href="#" className="footer-link">Community Rules</a>
-          </div>
+          </div> */}
         </div>
 
       </div>

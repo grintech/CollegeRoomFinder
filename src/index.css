@@ -602,7 +602,9 @@ html {
 /*----- Host page ---*/
 
 
-.host_page .host-section{background: var(--light_blue); padding: 60px;}
+.host_page .host-section{background: var(--light_blue);
+   padding: 60px 0;
+  }
 .host_page .host-section img{
   border-radius: 20px;
 }

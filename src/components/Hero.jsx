@@ -11,14 +11,14 @@ const Hero = () => {
       <section className="hero-section">
         <div className="container">
           <div className="row align-items-center px-md-3">
-             <div className="col-xl-6 col-xxl-6  text-center  overflow-hidden">
+             <div className="col-xl-6 col-xxl-6 order-2 order-xl-1 text-center  overflow-hidden">
               {/* <img src="/images/hero.jpg" alt="students" className="hero-img  rounded-top-4" /> */}
               {/* <img src="/images/hero2.png" alt="students" className="hero-img  rounded-top-4" /> */}
               {/* <img src="/images/image.png" alt="students" className="hero-img  " /> */}
               {/* <img src="/images/about3.png" alt="students" className="hero-img  " /> */}
               <img src="/images/about4.png" alt="students" className="hero-img  " />
             </div>
-            <div className="col-xl-6 col-xxl-5 offset-xxl-1">
+            <div className="col-xl-6 col-xxl-5 offset-xxl-1 order-1 order-xl-2">
               <div className="hero_left">
                 <h1>
               Find <span>Rooms & Units,</span> <br />

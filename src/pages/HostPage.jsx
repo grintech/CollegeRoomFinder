@@ -3,6 +3,8 @@ import React from 'react'
 import { Home, Mail } from 'lucide-react'
 import StepHosts from '../components/StepHosts'
 import Pricing from '../components/Pricing'
+import HostFaq from '../components/HostFaq'
+import HostContact from '../components/HostContact'
 
 const HostPage = () => {
   return (
@@ -35,9 +37,9 @@ const HostPage = () => {
                            <Home className='me-1' size={20} /> <span>Start Listing</span>
                         </Link>
 
-                        <Link to="#" className="d-flex align-items-center theme_outline_btn">
+                        <a href='#portfolio_demo' className="d-flex align-items-center theme_outline_btn">
                           <Mail className='me-1' size={20}  /> Book a Demo
-                        </Link>
+                        </a>
                         </div>
                     </div>
 
@@ -96,6 +98,8 @@ const HostPage = () => {
             </section>
 
             <Pricing />
+            <HostContact/>
+            <HostFaq/>
 
 
         </div>

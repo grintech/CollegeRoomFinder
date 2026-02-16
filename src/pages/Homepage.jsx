@@ -44,7 +44,7 @@ const Homepage = () => {
         <PropertyByArea />
         {/* <FeaturedListings /> */}
         <StudentCommunity />
-        <Pricing />
+        {/* <Pricing /> */}
         <CTASection />
         <Testimonials />
         <FAQ />
