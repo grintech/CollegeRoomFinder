@@ -166,9 +166,16 @@ const PropertySinglePage = () => {
                             <div className="d-flex justify-content-between flex-wrap mt-4">
                             <div>
                                 <h1 className="fw-bold mb-2">Near UMBC! Female only!</h1>
-                                <p className="text-muted d-flex align-items-center gap-1">
+                               <div className="d-flex align-items-center">
+                                 <p className="text-muted d-flex align-items-center gap-1 m-0">
                                     <MapPin size={16} /> 4207 Maryland Pl, Baltimore, MD 21229
                                 </p>
+                                 <span className="badge bg-success-subtle small text-success fw-semibold d-flex align-items-center gap-1 ms-2">
+                                    <Bus size={14} />
+                                    Shuttle Route
+                                    </span>
+
+                               </div>
                             </div>
                             <div className="text-start text-md-end">
                                 <h2 className="mb-2">$1000.00</h2>
