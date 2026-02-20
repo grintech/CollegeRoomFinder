@@ -1820,6 +1820,36 @@ border-radius: 14px !important;
 }
 
 
+/*---- Not Found ----------*/
+
+.notfound-section {
+  min-height: 80vh;
+  background: var(--light_blue);
+  padding: 80px 0;
+}
+
+.notfound-box {
+  max-width: 600px;
+}
+
+.notfound-code {
+  font-size: 130px;
+  font-weight: 800;
+  color: #0a3956;
+  letter-spacing: 5px;
+  margin-bottom: 10px;
+}
+
+.notfound-section p {
+  font-size: 16px;
+}
+
+@media (max-width: 768px) {
+  .notfound-code {
+    font-size: 80px;
+  }
+}
+
 
 
 

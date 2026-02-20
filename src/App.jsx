@@ -1,5 +1,6 @@
 import Footer from './components/Footer'
 import Navbar from './components/Navbar'
+import NotFound from './components/NotFound'
 import ScrollToTop from './components/ScrollToTop'
 import ScrollTopArrow from './components/ScrollTopArrow'
 import Aboutpage from './pages/Aboutpage'
@@ -20,6 +21,7 @@ const App = () => {
       <ScrollTopArrow />
       
        <Routes>
+        <Route path="*" element={<NotFound />} />
         <Route path="/" element={<Homepage />} />
         <Route path='/login' element={<Login />} />
         <Route path='/signup' element={<Signup />} />
