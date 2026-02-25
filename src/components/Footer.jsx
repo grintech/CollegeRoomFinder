@@ -73,7 +73,7 @@ const Footer = () => {
 
         {/* BOTTOM */}
         <div className="d-flex flex-column flex-md-row justify-content-center align-items-center small footer-bottom mb-3 mb-md-4">
-          <span className="text-center">© 2026 CollegeRoomFinder. All rights reserved.</span>
+          <span className="text-center">© 2026 CollegeRoomFinder. All Rights Reserved.</span>
           {/* <div className="mt-2 mt-md-0">
             <a href="#" className="footer-link me-3">Privacy</a>
             <a href="#" className="footer-link">Community Rules</a>
