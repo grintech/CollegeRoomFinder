@@ -4,17 +4,43 @@ import {
   X,
   Building2,
   Home,
-  LogIn
+  LogIn,
+  LogOut,
+  User
 } from "lucide-react";
 
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
-
+  const { user, isAuthenticated, logout } = useAuth();
+   const navigate = useNavigate()
   const closeMenu = () => setOpen(false);
 
+  const isStudent = user?.role === "student"
+  const isDashboardRole = ["host", "admin"].includes(user?.role);
+
+
+   const handleLogout = async () => {
+    await logout()
+    closeMenu();
+    toast.success("Logged out successfully!")
+    navigate("/", { replace: true })
+  }
+
+ 
+  const handleDashboardRedirect = () => {
+  const token = localStorage.getItem("token")
+
+  if (token) {
+    window.location.replace(
+      // `https://roomfinder.grincloudhost.com/session-login?token=${token}`
+      `https://roomfinder.grincloudhost.com/host/dashboard`
+    )
+  }
+}
 
   return (
     <>
@@ -43,12 +69,54 @@ const Navbar = () => {
               <li><Link to="/?scroll=about" > About </Link></li>
             </ul>
 
-           <Link to="/login">
-            <button className="blue_btn ms-4 d-flex align-items-center gap-1">
-               Login
-              <LogIn size={16} />
-            </button>
-           </Link>
+           {/*  If NOT Logged In */}
+            {!isAuthenticated  && (
+              <Link to="/login">
+                <button className="blue_btn ms-4 d-flex align-items-center gap-1">
+                  Login
+                  <LogIn size={16} />
+                </button>
+              </Link>
+            )}
+
+           {/*  If Logged In */}
+            {isAuthenticated && isStudent && (
+              <div className="dropdown ms-4">
+                <button
+                  className=" theme_btn dropdown-toggle "
+                  data-bs-toggle="dropdown"
+                >
+                   {user?.name?.split(" ")[0] || "User"}
+                </button>
+
+                <ul className="dropdown-menu">
+                  <li>
+                    <Link className="dropdown-item" to="/my-account">
+                     <User size={16} /> My Account
+                    </Link>
+                  </li>
+                  <li>
+                    <button
+                      className="dropdown-item text-danger"
+                      onClick={handleLogout}
+                    >
+                     <LogOut size={16}/> Logout
+                    </button>
+                  </li>
+                </ul>
+              </div>
+            )}
+
+            {/* Host/Admin Dashboard Button */}
+            {isAuthenticated && isDashboardRole && (
+              <button
+                onClick={handleDashboardRedirect}
+                className="blue_btn ms-4 d-flex align-items-center gap-1"
+              >
+                Dashboard
+              </button>
+            )}
+
           </div>
         </div>
       </nav>
@@ -75,12 +143,47 @@ const Navbar = () => {
               </li>
           </ul>
 
-        <Link to="/login"  onClick={closeMenu}>
-          <button className="blue_btn mt-auto ms-3 d-flex align-items-center justify-content-center gap-2">
-            Login
-            <LogIn size={18} />
-          </button>
-        </Link>
+          {/*  Mobile Login */}
+          {!isAuthenticated && (
+            <Link to="/login" onClick={closeMenu}>
+              <button className="blue_btn mt-auto ms-3 d-flex align-items-center justify-content-center gap-2">
+                Login
+                <LogIn size={18} />
+              </button>
+            </Link>
+          )}
+
+          {/*  Mobile Logged In */}
+          {isAuthenticated && isStudent && (
+            <div className="mt-auto ms-3 d-flex flex-column gap-2">
+              <Link to="/my-account" onClick={closeMenu}>
+                <button className="blue_btn w-100">
+                 <User /> My Account
+                </button>
+              </Link>
+              <Link onClick={handleLogout}>
+                <button className="blue_btn w-100">
+                  <LogOut/> Logout
+                </button>
+              </Link>
+            </div>
+          )}
+
+          {/* Mobile Host/Admin */}
+          {isAuthenticated && isDashboardRole && (
+            <div className="mt-auto ms-3">
+              <button
+                onClick={() => {
+                  closeMenu()
+                  handleDashboardRedirect()
+                }}
+                className="blue_btn w-100"
+              >
+                Dashboard
+              </button>
+            </div>
+          )}
+          
         </div>
       )}
     </>

@@ -15,6 +15,9 @@
 .text_dark{color: var(--dark) !important;}
 .text_orange {color: var(--orange) !important;}
 
+.text-capitalize{text-transform: capitalize;}
+.text-uppercase{text-transform: uppercase;}
+
 a {
   font-weight: 500;
   color: var(--dark);
@@ -117,13 +120,13 @@ html {
 }
 
 .btn-primary{
-  background: var(--blue);
-  border-color: var(--blue);
+  background: var(--blue) !important;
+  border-color: var(--blue) !important;
 }
 
 .btn-primary:hover{
-  background: var(--dark);
-  border-color: var(--dark);
+  background: var(--dark) !important;
+  border-color: var(--dark) !important;
 }
 
 .form-control,
@@ -663,6 +666,8 @@ html {
   .tour_room, .reserve_room{ max-height: 400px;}
   .time-btn{font-size: 14px;}
   .modal-backdrop-custom .modal-header h5{font-size: 20px;}
+  .waitlist-modal {padding: 20px;}
+  .waitlist-modal form {padding: 0 15px; height: 450px; overflow-y: scroll;}
 }
 
 @media (max-width:375px){
@@ -672,4 +677,9 @@ html {
   .auth-card h1 {font-size: 22px;}
   .time-btn{font-size: 13px;}
   .tour-tabs button{font-size: 14px;}
+  .waitlist-modal form {height: 400px; overflow-y: scroll;}
+}
+
+@media (max-width:350px){
+  .waitlist-modal form {height: 320px; overflow-y: scroll;}
 }

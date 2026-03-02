@@ -21,7 +21,7 @@ const Hero = () => {
             <div className="col-xl-6 col-xxl-5 offset-xxl-1 order-1 order-xl-2">
               <div className="hero_left">
                 <h1>
-              Find <span>Rooms & Units,</span> <br />
+              Find <span>Rooms & Units,</span> {''}
               All in One Place
               </h1>
 

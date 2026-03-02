@@ -1,3 +1,16 @@
+[data-rht-toaster] {
+  z-index: 99999 !important;
+}
+
+.navbar .dropdown .dropdown-menu[data-bs-popper] {
+    top: 105% !important;
+    left: unset !important;
+    right: 0 !important;
+}
+.navbar .dropdown-item.active, .navbar .dropdown-item:active {
+  background-color: #f7f7f7 !important;
+}
+
 button.navbar-toggler {
     background: var(--primary);
     color: #fff;
@@ -2052,5 +2065,6 @@ border-radius: 14px !important;
  .heading span { font-size: 1.5rem !important;}
  .community-content h2 span { font-size: 1.5rem !important; }
 .plan-price { font-size: 2rem;}
+.navbar-brand img{width: 150px !important;}
 
 }
