@@ -25,10 +25,10 @@ const NotFound = () => {
               Go to Homepage
             </Link>
 
-            <Link to="/search" className="theme_outline_btn d-flex align-items-center gap-2">
+            {/* <Link to="/search" className="theme_outline_btn d-flex align-items-center gap-2">
               <Search size={18} />
               Browse Listings
-            </Link>
+            </Link> */}
           </div>
         </div>
 

@@ -13,7 +13,20 @@ const WaitlistModal = ({ show, onClose }) => {
   const [description, setDescription] = useState("")
   const [loading, setLoading] = useState(false)
 
+  const [message, setMessage] = useState("")
+  const [messageType, setMessageType] = useState("") // "success" | "error"
+
   if (!show) return null
+
+  const showMessage = (msg, type = "error") => {
+  setMessage(msg)
+  setMessageType(type)
+
+  setTimeout(() => {
+    setMessage("")
+    setMessageType("")
+  }, 3000)
+}
 
   const handleAlphabetOnly = (value, setter) => {
   const regex = /^[A-Za-z\s]*$/  // only letters + space
@@ -26,12 +39,12 @@ const WaitlistModal = ({ show, onClose }) => {
     e.preventDefault()
 
     if (!name || !email) {
-      toast.error("University name and email are required")
+      showMessage("University name and email are required", "error")
       return
     }
 
     if (!city || !state || !country) {
-      toast.error("Please fill all the fields!")
+      showMessage("Please fill all the fields!", "error")
       return
     }
 
@@ -48,7 +61,7 @@ const WaitlistModal = ({ show, onClose }) => {
       })
 
       if (response?.data?.status === true) {
-        toast.success(response?.data?.message || "Request submitted successfully")
+        showMessage(response?.data?.message || "Request submitted successfully!", "success")
 
         // Reset form
         setName("")
@@ -58,7 +71,9 @@ const WaitlistModal = ({ show, onClose }) => {
         setCountry("")
         setDescription("")
 
-        onClose()
+       setTimeout(() => {
+         onClose()
+       }, 2000);
       } else {
         toast.error(response?.data?.message || "Something went wrong")
       }
@@ -71,13 +86,14 @@ const WaitlistModal = ({ show, onClose }) => {
 
         // If name OR email validation error exists
         if (errors?.name || errors?.email) {
-          toast.error("Request already submitted for this university.")
+          showMessage("Request already submitted for this university.", "error")
         } else {
-          toast.error("Validation error")
+           showMessage("Validation error", "error")
         }
       } else {
-        toast.error(
-          error?.response?.data?.message || "Server error. Please try again."
+        showMessage(
+          error?.response?.data?.message || "Server error. Please try again.",
+          "error"
         )
       }
 
@@ -171,7 +187,7 @@ const WaitlistModal = ({ show, onClose }) => {
               </div>
             </div>
 
-            <div className="col-12 mb-3">
+            <div className="col-12 ">
               <label>Additional Information (Optional)</label>
               <textarea
                 rows="3"
@@ -183,7 +199,18 @@ const WaitlistModal = ({ show, onClose }) => {
             </div>
 
             {/* Footer */}
-            <div className="modal-footer">
+            <div className="modal-footer d-flex flex-column align-items-center justify-content-center">
+              {message && (
+                <div
+                  className={` text-center fw-semibold ${
+                    messageType === "success"
+                      ? "text-success"
+                      : "text-danger"
+                  }`}
+                >
+                  {message}
+                </div>
+              )}
               
               <button type="submit" 
                className="blue_btn"

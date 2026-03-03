@@ -13,7 +13,7 @@ createRoot(document.getElementById('root')).render(
     <AuthProvider>
       <App />
       <Toaster 
-        position="top-right"
+        position="top-center"
         // toastOptions={{ style: { zIndex: 99999 } }}
        />
     </AuthProvider>

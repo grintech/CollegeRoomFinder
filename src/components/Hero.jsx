@@ -31,7 +31,7 @@ const Hero = () => {
 
               <div className="hero-buttons ">
               
-                <Link to="/login" className="light_btn d-flex align-items-center gap-2">
+                <Link to="#" className="light_btn d-flex align-items-center gap-2">
                   <Home size={18} />
                   List Your Property
                 </Link>
@@ -44,6 +44,7 @@ const Hero = () => {
                 </button>
 
               </div>
+
               </div>
             </div>
 

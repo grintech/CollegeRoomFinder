@@ -23,7 +23,7 @@ const CTASection = () => {
                   Find a Room
                 </button>
 
-                <Link to="/login">
+                <Link to="#">
                 <button  className="light_btn"> List Your Property </button>
                 </Link>
               </div>

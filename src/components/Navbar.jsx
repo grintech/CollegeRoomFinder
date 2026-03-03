@@ -18,6 +18,7 @@ const Navbar = () => {
   const { user, isAuthenticated, logout } = useAuth();
    const navigate = useNavigate()
   const closeMenu = () => setOpen(false);
+  const WEBSITE_URL = import.meta.env.VITE_WEBSITE_URL;
 
   const isStudent = user?.role === "student"
   const isDashboardRole = ["host", "admin"].includes(user?.role);
@@ -34,11 +35,15 @@ const Navbar = () => {
   const handleDashboardRedirect = () => {
   const token = localStorage.getItem("token")
 
-  if (token) {
-    window.location.replace(
-      // `https://roomfinder.grincloudhost.com/session-login?token=${token}`
-      `https://roomfinder.grincloudhost.com/host/dashboard`
-    )
+
+  if(user?.role === "host"){
+    window.location.replace( `${WEBSITE_URL}/host/dashboard`  )
+  }
+  else if(user?.role === "admin"){
+    window.location.replace( `${WEBSITE_URL}/admin/dashboard`  )
+  }
+  else{
+    navigate("/", { replace: true })
   }
 }
 
@@ -83,7 +88,7 @@ const Navbar = () => {
             {isAuthenticated && isStudent && (
               <div className="dropdown ms-4">
                 <button
-                  className=" theme_btn dropdown-toggle "
+                  className=" theme_outline_btn dropdown-toggle "
                   data-bs-toggle="dropdown"
                 >
                    {user?.name?.split(" ")[0] || "User"}
@@ -162,7 +167,7 @@ const Navbar = () => {
                 </button>
               </Link>
               <Link onClick={handleLogout}>
-                <button className="blue_btn w-100">
+                <button className="blue_btn text-danger w-100">
                   <LogOut/> Logout
                 </button>
               </Link>

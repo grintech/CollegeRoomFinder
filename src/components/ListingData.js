@@ -8,6 +8,7 @@
     baths: 1,
     distance: 0.8,
     image: "https://images.unsplash.com/photo-1568605114967-8130f3a36994",
+    isSaved: true,
   },
   {
     id: 2,
@@ -18,6 +19,7 @@
     baths: 1,
     distance: 0.5,
     image: "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688",
+    isSaved: false,
   },
   {
     id: 3,
@@ -28,6 +30,7 @@
     baths: 2,
     distance: 0.3,
     image: "https://images.unsplash.com/photo-1493809842364-78817add7ffb",
+    isSaved: true,
   },
   {
     id: 4,
@@ -38,6 +41,7 @@
     baths: 1,
     distance: 0.6,
     image: "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267",
+    isSaved: false,
   },
   {
     id: 5,
@@ -48,6 +52,7 @@
     baths: 2,
     distance: 0.7,
     image: "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85",
+    isSaved: true,
   },
   {
     id: 6,
@@ -58,6 +63,7 @@
     baths: 2,
     distance: 0.4,
     image: "https://images.unsplash.com/photo-1484154218962-a197022b5858",
+    isSaved: false,
   },
   {
     id: 7,
@@ -68,6 +74,7 @@
     baths: 1,
     distance: 0.9,
     image: "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2",
+    isSaved: true,
   },
   {
     id: 8,
@@ -78,6 +85,7 @@
     baths: 1,
     distance: 0.6,
     image: "https://images.unsplash.com/photo-1554995207-c18c203602cb",
+    isSaved: false,
   },
   {
     id: 9,
@@ -88,6 +96,7 @@
     baths: 1,
     distance: 0.7,
     image: "https://images.unsplash.com/photo-1527030280862-64139fba04ca",
+    isSaved: true,
   },
   {
     id: 10,
@@ -98,6 +107,7 @@
     baths: 2,
     distance: 0.5,
     image: "https://images.unsplash.com/photo-1507089947368-19c1da9775ae",
+    isSaved: true,
   },
   {
     id: 11,
@@ -108,6 +118,7 @@
     baths: 2,
     distance: 0.4,
     image: "https://images.unsplash.com/photo-1505691938895-1758d7feb511",
+    isSaved: false,
   },
   {
     id: 12,
@@ -118,6 +129,7 @@
     baths: 1,
     distance: 0.6,
     image: "https://images.unsplash.com/photo-1527030280862-64139fba04ca",
+    isSaved: true,
   },
   {
     id: 13,
@@ -128,6 +140,7 @@
     baths: 1,
     distance: 0.8,
     image: "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688",
+    isSaved: true,
   },
   {
     id: 14,
@@ -138,6 +151,7 @@
     baths: 1,
     distance: 0.9,
     image: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750",
+    isSaved: false,
   },
   {
     id: 15,
@@ -148,5 +162,6 @@
     baths: 1,
     distance: 0.7,
     image: "https://images.unsplash.com/photo-1505691938895-1758d7feb511",
+    isSaved: true,
   },
 ];

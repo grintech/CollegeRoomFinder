@@ -7,8 +7,9 @@ const PublicRoute = ({ children }) => {
   if (loading) return null
 
   if (isAuthenticated && user) {
-    if (user.role === "host") {
-      return <Navigate to="/host-redirect" replace />
+    const role = user.role?.toLowerCase()
+    if (role === "host" || role === "admin") {
+      return <Navigate to="/redirect-dashboard" replace />
     }
 
     return <Navigate to="/my-account" replace />

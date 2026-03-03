@@ -15,7 +15,7 @@ const WaitlistSection = () => {
 
             <h2 className="fw-bold display-6 mt-3">
               Get Notified When <br />
-              <span className="text-warning">CollegeRoomFinder</span> Launches Near You
+              <span className="text-warning">College Room Finder</span> Launches Near You
             </h2>
 
             <p className="mt-3 opacity-75">
@@ -80,6 +80,12 @@ const WaitlistSection = () => {
                     className="form-control"
                     placeholder="e.g. CA"
                   />
+                </div>
+                <div className="col-12 mb-3">
+                  <label className="form-label">Country</label>
+                    <input className="form-control"
+                     placeholder="e.g. USA" 
+                    />
                 </div>
 
                 <div className="co-12 mb-3">

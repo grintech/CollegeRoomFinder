@@ -15,11 +15,14 @@ import Myaccount from './pages/dashboard/Myaccount'
 import ProtectedRoute from './components/ProtectedRoute'
 import PublicRoute from './components/PublicRoute'
 import HostRedirect from './pages/auth/components/HostRedirect'
+import SavedListings from './pages/dashboard/SavedListings'
+import Profile from './pages/dashboard/Profile'
+import ContactedHosts from './pages/dashboard/ContactedHosts'
 
 const App = () => {
   const location = useLocation()
 
-  const hideLayoutRoutes = ["/host-redirect"]
+  const hideLayoutRoutes = ["/redirect-dashboard"]
   const shouldHideLayout = hideLayoutRoutes.includes(location.pathname);
   
   return (
@@ -39,9 +42,14 @@ const App = () => {
 
         <Route path='/hosts' element={<HostPage /> } />
 
-        <Route path="/host-redirect" element={<HostRedirect />} />
+        <Route path="/redirect-dashboard" element={<HostRedirect />} />
+
+        {/* Dashboard Pages  */}
 
         <Route path='/my-account' element={ <ProtectedRoute allowedRole="student" > <Myaccount /> </ProtectedRoute>} />
+        <Route path='/profile' element={ <ProtectedRoute allowedRole="student" > <Profile /> </ProtectedRoute>} />
+        <Route path='/saved-listings' element={ <ProtectedRoute allowedRole="student" > <SavedListings /> </ProtectedRoute>} />
+        {/* <Route path='/contacted-hosts' element={ <ProtectedRoute allowedRole="student" > <ContactedHosts /> </ProtectedRoute>} /> */}
 
         <Route path="*" element={<NotFound />} />
         

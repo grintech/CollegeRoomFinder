@@ -18,6 +18,7 @@
 .text-capitalize{text-transform: capitalize;}
 .text-uppercase{text-transform: uppercase;}
 
+
 a {
   font-weight: 500;
   color: var(--dark);
@@ -42,13 +43,13 @@ html {
 
 /* ------ Auth -------------*/
 
-:root{
+/* :root{
   --primary: #cba33a;
   --blue: #1a5985;
   --dark: #0a3956;
   --light: #fffcf4;
   --light_blue: #def1ff;
-}
+} */
 
 .auth-page{
   min-height: 100vh;

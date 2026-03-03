@@ -81,7 +81,7 @@ const Steps = () => {
                 Search Listings
               </button>
 
-              <Link to="/login" className="dark_btn d-flex align-items-center gap-2">
+              <Link to="#" className="dark_btn d-flex align-items-center gap-2">
                 <Home size={18} />
                 List Your Property
               </Link>

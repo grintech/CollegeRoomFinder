@@ -40,7 +40,7 @@ const Login = () => {
 
         toast.success(response.data.message || "Login successful")
        if (["host", "admin"].includes(userData.role)) {
-          navigate("/host-redirect", { replace: true })
+          navigate("/redirect-dashboard", { replace: true })
         } else {
           navigate("/my-account")
        }

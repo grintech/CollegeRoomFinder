@@ -1,0 +1,330 @@
+.menu_items{height: 100%;}
+.my_account{background-color: var(--light_blue);}
+.dash_sidebar{
+    background: var(--blue);
+    padding: 30px 20px;
+    border-radius: 10px;
+    position: sticky;
+    top: 135px;
+}
+.dash_sidebar ul li{list-style: none;}
+.dash_sidebar ul a {
+    padding: 13px 15px;
+    background: #f7f7f7;
+    color: #000;
+    border-radius: 12px;
+    font-size: 15px;
+    font-weight: 600;
+}
+.dash_sidebar ul a.active {
+    background: var(--primary);
+    color: #fff;
+}
+.dashboard_counts a{color: #000;}
+
+.modal-footer .btn-secondary{padding: 8px 12px;}
+.modal .btn-close {
+  background: var(--blue);
+  opacity: 1;
+  color: #fff;
+  border-radius: 50%;
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23fff'%3e%3cpath d='M.293.293a1 1 0 0 1 1.414 0L8 6.586 14.293.293a1 1 0 1 1 1.414 1.414L9.414 8l6.293 6.293a1 1 0 0 1-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 0 1-1.414-1.414L6.586 8 .293 1.707a1 1 0 0 1 0-1.414'/%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: 50%;
+  background-size: 12px 12px;
+  height: 20px;
+  width: 20px;
+  padding: 5px;
+  border: none;
+  cursor: pointer;
+}
+.modal-backdrop { --bs-backdrop-opacity: 0.6 !important; z-index: 99999 !important;}
+.modal.show{z-index: 100000 !important;}
+.modal .btn-close:focus{box-shadow: none !important; border-color: var(--blue) !important;}
+
+
+
+.statistics_funfact {
+    background-color: #fff;
+    border-radius: 16px;
+    padding: 25px 20px;
+    position: relative;
+    box-shadow: 0 1px 4px rgba(24, 26, 32, 0.158);
+    transition: all .3s;
+}
+.statistics_funfact:hover{
+    background-color: #f3f5f6;
+}
+.statistics_funfact:hover .icon{background-color: #fff;}
+.statistics_funfact:hover i{color: var(--primary); transition: all .3s;}
+.statistics_funfact:hover .title{color: var(--primary); transition: all .3s;}
+.statistics_funfact:hover .text{color: var(--blue);  transition: all .3s;}
+.statistics_funfact .text {
+    color: var(--headings-color);
+    font-weight: 400;
+    transition: all .3s; 
+    font-weight: 600;
+}
+.statistics_funfact .title {
+    color: var(--headings-color);
+    font-weight: 600;
+    font-size: 30px;
+    line-height: 54px;
+    transition: all .3s;
+    
+}
+.statistics_funfact .icon {
+    background-color: #f3f5f6;
+    border-radius: 50%;
+    color: var(--headings-color);
+    font-size: 20px;
+    height: 55px;
+    line-height: 55px;
+    position: relative;
+    width: 55px;
+}
+
+.modal input{height: 47px; border-radius: 8px; font-size: 14px;}
+.modal input::placeholder{font-size: 14px;}
+.modal textarea{ border-radius: 8px; font-size: 14px;}
+.modal textarea::placeholder{ font-size: 14px;}
+.modal select{height: 45px; border-radius: 8px; font-size: 14px; color: #707275 !important;}
+.modal input:focus{box-shadow: none; border-color: var(--blue);}
+.modal select:focus{box-shadow: none; border-color: var(--blue);}
+.modal textarea:focus{box-shadow: none; border-color: var(--blue);}
+.modal .react-tel-input .form-control {font-size: 14px;}
+.btn-outline-green {
+    background: transparent;
+    border: 1px solid var(--blue);
+    color: var(--blue);
+}
+.btn-outline-green:hover{
+  background: var(--blue);
+    color: #fff;
+
+}
+
+.watchlist_cards .border{transition: all .3s;}
+.watchlist_cards .border:hover{border-color: var(--blue) !important;transition: all .3s;}
+
+/*------- Profile  Page ------*/
+
+.profile_page .card{
+    box-shadow: 0 1px 26px rgba(24, 26, 32, .07);
+    padding: 30px;
+    border: 1px solid rgba(37, 39, 40, 0.1) !important;
+}
+
+.profile_image{
+    height: 120px;
+    width: 120px;
+    border-radius: 10px;
+}
+.profile_image img{
+    border-radius: 10px;
+    object-fit: cover;
+    border: 1px solid #ccc;
+}
+.profile_image .remove_profile{
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background-color: #e5e5e5;
+    border-radius: 4px;
+    height: 25px;
+    width: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.profile_image .remove_profile i{font-size: 12px;}
+.profile_image .remove_profile:hover i{color: rgb(241, 66, 66);}
+.profile_image_wrapper .search_home_btn{
+    font-size: 14px;
+    
+}
+.profile_image_wrapper .search_home_btn i{
+  transform: rotate(0deg) !important;
+}
+
+.profile_page input{font-size: 15px; height: 45px;}
+.profile_page input::placeholder{font-size: 15px; }
+.profile_page select{font-size: 15px; }
+.profile_page input:focus{box-shadow: unset !important; border-color: var(--primary) !important;}
+.profile_page select:focus{box-shadow: unset !important; border-color: var(--primary) !important;}
+
+.profile_page textarea{font-size: 15px; padding: 12px 10px;}
+.profile_page textarea:focus{box-shadow: unset !important; border-color: var(--primary) !important;}
+.profile_page textarea::placeholder{font-size: 15px;}
+
+.profile_page .react-tel-input .form-control {height: 45px !important; width: 100%;}
+
+.profile_page .card h5{font-size: 18px}
+.profile_page .card .theme_btn{font-size: 15px !important}
+
+
+.profile_page .card label{font-size: 15px; font-weight: 600; }
+.profile_page .password_card input{padding-right: 35px;}
+.profile_page .password_card i{
+    right: 20px;
+    top: 60%;
+    font-size: 14px;
+}
+
+.profile_page .form-control, .profile_page .form-select{border-radius: 6px !important;}
+.profile_page textarea.form-control{min-height: 80px;}
+
+/* ---- Contact Agent ------*/
+
+.contact_agents_page .btn-theme{padding: 5px 8px}
+.contact_agents_page .btn-dark{padding: 5px 8px}
+.contact_agents_page .card .btn-green{padding: 5px 8px}
+
+.contact_agents_page .card{
+    box-shadow: 0 1px 26px rgba(24, 26, 32, .07);
+    border: 1px solid rgba(37, 39, 40, 0.1) !important;
+    border-radius: 6px;
+    border: 0;
+    overflow: hidden;
+    transition: all .3s ease;
+}
+
+.contact_agents_page .card:hover img{
+    transform: scale(1.05);
+    transition: all .3s ease;
+}
+.my_inspections .card:hover img{
+    transform: scale(1) !important;
+    transition: all .3s ease;
+}
+
+.contact_agents_page .card img{height: 250px; width: 100%; object-fit: cover; 
+     transition: all .3s ease;
+    }
+
+
+/*------- Saved Searches --------*/
+.saved_searches .card, .alert_card{
+  padding: 25px;
+  box-shadow: 0 1px 4px rgba(24, 26, 32, .07);
+  border: 1px solid rgba(37, 39, 40, 0.1) !important;
+  border-radius: 12px;
+}
+.saved_searches table th, .alert_card th{padding: 20px 10px; font-size: 16px; vertical-align: baseline;}
+.saved_searches table td{padding: 16px 10px}
+.saved_searches table .listing_name{font-size: 15px; font-weight: 500;}
+.saved_searches table i{font-size: 13px;}
+
+.saved_searches .form-switch .form-check-input{
+    width: 3em !important;
+    height: 1.5em !important;
+}
+.saved_searches .form-switch .form-check-input:focus{
+    box-shadow: none !important;
+    border: 1px solid #dee2e6  !important;
+}
+
+
+
+.alert_card .listing_name{font-weight: 600; min-width: 150px;}
+
+
+.buyer-inspections .card h5{font-size: 18px;}
+
+.buyer-inspections .modal-footer .btn-secondary {
+    padding: 5px 10px !important;
+}
+
+.buyer-inspections .calendar_btn{font-size: 14px;}
+
+
+.contact_agents_page .card{overflow: visible;}
+
+
+
+.theme_btn_small {
+  padding: 6px 14px;
+  font-size: 14px;
+  background: var(--blue);
+  color: #fff;
+  border-radius: 6px;
+  text-decoration: none;
+  display: inline-block;
+}
+.theme_btn_small:hover{color: #fff;}
+
+
+
+/*-------- Media Queries --------*/
+
+@media screen and (min-width:1400px) {
+    .contact_agents_page .card img{height: 260px; }
+}
+
+@media screen and (max-width:1200px) {
+ .contact_agents_page .card img{ 
+    height: 260px; border-top-left-radius: 6px; border-top-right-radius: 6px; border-bottom-left-radius: 0px;
+  }
+}
+
+@media screen and (max-width:992px) {
+ .dash_sidebar {
+    padding: 15px 10px;
+    border-radius: 6px;
+    position: sticky;
+    top: 110px;
+ } 
+
+ .dash_sidebar ul{
+    overflow-x: scroll; padding-bottom: 7px !important;
+      scrollbar-width: thin; /* Firefox */
+     scrollbar-color: #e7e7e7 transparent; 
+     /* scrollbar-color: var(--primary) transparent;  */
+ }
+
+ /* For WebKit-based browsers (Chrome, Edge, Safari) */
+    .dash_sidebar ul::-webkit-scrollbar {
+        height: 6px; /* For horizontal scrollbars */
+    }
+
+    .dash_sidebar ul::-webkit-scrollbar-track {
+        background: #e7e7e7;
+    }
+
+    .dash_sidebar ul::-webkit-scrollbar-thumb {
+        background-color: var(--primary);
+        border-radius: 4px;
+    }
+
+
+ .dash_sidebar ul a{min-width: fit-content !important; font-size: 13px; padding: 12px 14px;}
+ 
+
+ }
+
+@media screen and (max-width:991px) {
+   .profile_page .card_height{height: 100%;} 
+}
+
+@media screen and (max-width:768px) {
+    .saved_searches .card{ padding: 20px;}
+    .saved_searches table th{padding: 15px 10px; font-size: 14px;}
+    .contact_agents_page button{font-size: 11px;}
+    .contact_agents_page .card img{ height: 250px;}
+}
+
+
+@media screen and (max-width:576px) {
+    .profile_image_wrapper{flex-direction: column; align-items: start !important;}
+    .profile_image_wrapper .profile_image {margin-bottom: 15px;}
+    .saved_searches table .listing_name {font-size: 14px;}
+    .contact_agents_page .card img{ height: 280px;}
+}
+
+
+@media screen and (max-width:375px) {
+    .contact_agents_page .card img{ height: 260px;}
+}
+
+
+

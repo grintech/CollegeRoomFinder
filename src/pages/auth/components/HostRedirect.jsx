@@ -2,12 +2,14 @@ import { useEffect } from "react"
 import { useAuth } from "../../../context/AuthContext"
 
 const HostRedirect = () => {
-  const { token } = useAuth()
+  const { token } = useAuth();
+  const WEBSITE_URL = import.meta.env.VITE_WEBSITE_URL;
 
   useEffect(() => {
   if (token) {
+    // console.log("hello",{token})
     window.location.replace(
-      `https://roomfinder.grincloudhost.com/session-login?token=${token}`
+      `${WEBSITE_URL}/session-login?token=${token}`
     )
   }
 }, [token])
@@ -21,8 +23,8 @@ const HostRedirect = () => {
       flexDirection: "column",
       background: "#f8f9fa"
     }}>
-      <div className="spinner-border text-primary mb-3" />
-      <h4>Redirecting to Host Panel...</h4>
+      <div className="spinner-border text_blue mb-3" />
+      <h4>Redirecting to the dashboard...</h4>
       <p>Please wait a moment</p>
     </div>
   )

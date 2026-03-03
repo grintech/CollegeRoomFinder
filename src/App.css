@@ -56,6 +56,9 @@ button.navbar-toggler:focus{box-shadow: none !important;}
 .blue_btn{background-color: var(--blue); color: #fff; transition: all .3s; padding: 10px 20px; border: 1px solid var(--blue); border-radius: 50px; font-weight: 500; }
 .blue_btn:hover{background-color: transparent; color: var(--blue); transition: all .3s;}
 
+.blue_outline_btn{background-color: transparent; color:var(--blue); transition: all .3s; padding: 10px 20px; border: 1px solid var(--blue); border-radius: 50px; font-weight: 500; }
+.blue_outline_btn:hover{background-color:var(--blue); color: #fff; transition: all .3s;}
+
 .light_btn{background-color: #fff; color: var(--blue); padding: 10px 20px; border: 1px solid var(--dark); border-radius: 50px; font-weight: 500; transition: all .3s;}
 .light_btn:hover{background-color: transparent; color: #fff; border: 1px solid #fff; transition: all .3s;}
 /* Mobile menu overlay */
@@ -105,6 +108,14 @@ button.navbar-toggler:focus{box-shadow: none !important;}
   cursor: pointer;
 }
 .menu-links li a{color: var(--blue);}
+
+.sec-title {
+  text-transform: capitalize;
+  font-size: 30px;
+  line-height: 1.5;
+  font-weight: 600;
+}
+
 
 /* --------Hero Section -----*/
 
@@ -1917,6 +1928,9 @@ border-radius: 14px !important;
     grid-column: span 2;
   } */
    .suggestion-wrapper{grid-column: unset;}
+   .sec-title {
+    font-size: 25px !important;
+  }
 }
 
 @media (max-width:991px){
@@ -1983,6 +1997,9 @@ border-radius: 14px !important;
  .heading span { font-size: 2rem !important;}
  .community-content h2 span { font-size: 2rem !important; }
  .main-swiper img {height: 350px;}
+ .sec-title {
+    font-size: 22px !important;
+  }
 }
 
 @media (max-width: 576px) {
