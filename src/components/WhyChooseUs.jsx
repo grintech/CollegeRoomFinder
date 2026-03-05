@@ -1,5 +1,3 @@
-import React from "react";
-
 const WhyChooseUs = () => {
   return (
     <section  id="about" className="why-choose-us">

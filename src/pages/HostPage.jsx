@@ -1,5 +1,5 @@
-import { Link } from 'react-router-dom'
-import React from 'react'
+import { Link, useLocation } from 'react-router-dom'
+import React, { useEffect } from 'react'
 import { Home, Mail } from 'lucide-react'
 import StepHosts from '../components/StepHosts'
 import Pricing from '../components/Pricing'
@@ -7,6 +7,23 @@ import HostFaq from '../components/HostFaq'
 import HostContact from '../components/HostContact'
 
 const HostPage = () => {
+  
+    const location = useLocation();
+
+     useEffect(() => {
+        const params = new URLSearchParams(location.search);
+        const scrollTo = params.get("scroll");
+    
+        if (scrollTo) {
+          const el = document.getElementById(scrollTo);
+          if (el) {
+            setTimeout(() => {
+              el.scrollIntoView({ behavior: "smooth" });
+            }, 100);
+          }
+        }
+      }, [location]);
+
   return (
     <>
         <div className="host_page">
@@ -49,7 +66,7 @@ const HostPage = () => {
                         <img
                             src="/images/host.avif" 
                             alt="Student moving in"
-                            className="hero-image w-100  "
+                            className="hero-image w-100 "
                         />
                         </div>
                     </div>
@@ -84,11 +101,6 @@ const HostPage = () => {
                             </button>
                             </Link>
 
-                            {/* <Link to="/contact">
-                            <button className="theme_outline_btn">
-                                Book a Free Demo
-                            </button>
-                            </Link> */}
                         </div>
 
                         </div>

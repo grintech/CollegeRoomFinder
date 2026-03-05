@@ -617,6 +617,73 @@ html {
 .host_page .finding_steps{padding: 100px 0;}
 
 
+
+/*--------- ListingsPage -----------*/
+
+.map-wrapper{
+height:calc(100vh - 120px);
+}
+
+.leaflet-container{
+height:100%;
+width:100%;
+}
+
+.listing-page {
+background:#f8f9fa;
+}
+
+.filter-bar {
+background:white;
+padding:12px 0;
+position:sticky;
+top:0;
+z-index:1000;
+}
+
+.map-section {
+height:90vh;
+}
+
+.listings-panel {
+height:90vh;
+overflow-y:auto;
+background:white;
+padding:20px;
+border-left:1px solid #eee;
+}
+
+.listing-card {
+border-radius:12px;
+}
+
+.listing-img {
+height:140px;
+background:#eaeaea;
+border-radius:8px;
+margin-bottom:10px;
+}
+
+
+
+/*------ Terms , Privacy , Community Rules ---------*/
+
+.terms_page h1, .privacy_page h1 , .community_rules_page h1 {
+  font-weight: 700;
+}
+
+.terms_page h4, .privacy_page h4 , .community_rules_page h4 {
+  font-weight: 600;
+}
+
+.terms_page p , .privacy_page p , .community_rules_page p{
+  line-height: 1.7;
+  color: #555;
+}
+
+
+/*---------- MEDIA QUERIES ------------------*/
+
 @media (min-width:1920px){
   .tour_room, .reserve_room {
     max-height: 550px;

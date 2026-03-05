@@ -48,7 +48,7 @@ const Profile = () => {
     <div className="my_account profile_page py-4">
       <div className="container">
         <div className="row">
-          <h1 className="mb-2 sec-title text-center">My Profile</h1>
+          <h1 className="mb-3 sec-title text-center">My Profile</h1>
           <div className="col-lg-4 col-xl-3 mb-4 mb-lg-0">
             <DashSidebar />
           </div>
@@ -60,7 +60,7 @@ const Profile = () => {
                 <div className="card border-0 h-100">
                   <h5 className="fw-semibold text_blue">Personal Details</h5>
 
-                  <div className="d-flex align-items-end mt-3 profile_image_wrapper border-bottom pb-3">
+                  <div className="d-flex align-items-sm-end mt-3 profile_image_wrapper border-bottom pb-3">
                     <div className="profile_image position-relative me-4">
                       <img
                         src={profileImage}

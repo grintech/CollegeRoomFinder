@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
@@ -42,7 +43,7 @@ const Footer = () => {
             <ul className="list-unstyled">
               <li><a href="#" className="footer-link">List Property</a></li>
               <li><a href="#" className="footer-link">My Listings</a></li>
-              <li><a href="#" className="footer-link">Pricing Plans</a></li>
+              <li><Link to="/hosts?scroll=pricing" className="footer-link">Pricing Plans</Link></li>
             </ul>
           </div>
 

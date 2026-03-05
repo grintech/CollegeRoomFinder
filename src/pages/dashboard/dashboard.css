@@ -60,13 +60,11 @@
 .statistics_funfact:hover .title{color: var(--primary); transition: all .3s;}
 .statistics_funfact:hover .text{color: var(--blue);  transition: all .3s;}
 .statistics_funfact .text {
-    color: var(--headings-color);
     font-weight: 400;
     transition: all .3s; 
     font-weight: 600;
 }
 .statistics_funfact .title {
-    color: var(--headings-color);
     font-weight: 600;
     font-size: 30px;
     line-height: 54px;
@@ -76,7 +74,6 @@
 .statistics_funfact .icon {
     background-color: #f3f5f6;
     border-radius: 50%;
-    color: var(--headings-color);
     font-size: 20px;
     height: 55px;
     line-height: 55px;
@@ -174,72 +171,171 @@
 .profile_page .form-control, .profile_page .form-select{border-radius: 6px !important;}
 .profile_page textarea.form-control{min-height: 80px;}
 
-/* ---- Contact Agent ------*/
+/* ---- Booked Tours ------*/
 
-.contact_agents_page .btn-theme{padding: 5px 8px}
-.contact_agents_page .btn-dark{padding: 5px 8px}
-.contact_agents_page .card .btn-green{padding: 5px 8px}
-
-.contact_agents_page .card{
-    box-shadow: 0 1px 26px rgba(24, 26, 32, .07);
-    border: 1px solid rgba(37, 39, 40, 0.1) !important;
-    border-radius: 6px;
-    border: 0;
-    overflow: hidden;
-    transition: all .3s ease;
+.tour_card_v2 {
+  display: flex;
+  gap: 20px;
+  background: white;
+  border-radius: 14px;
+  padding: 18px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+  transition: 0.25s;
 }
 
-.contact_agents_page .card:hover img{
-    transform: scale(1.05);
-    transition: all .3s ease;
-}
-.my_inspections .card:hover img{
-    transform: scale(1) !important;
-    transition: all .3s ease;
+.tour_card_v2:hover{
+  transform: translateY(-3px);
+  box-shadow: 0 12px 28px rgba(0,0,0,0.08);
 }
 
-.contact_agents_page .card img{height: 250px; width: 100%; object-fit: cover; 
-     transition: all .3s ease;
-    }
+.tour_image{
+  position: relative;
+  width: 200px;
+  flex-shrink: 0;
+}
+
+.tour_image img{
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.tour_badge{
+  position:absolute;
+  top:10px;
+  left:10px;
+  background:#000;
+  color:white;
+  font-size:12px;
+  padding:4px 8px;
+  border-radius:6px;
+}
+
+
+.tour_content{
+  flex:1;
+}
+
+.tour_header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap: 10px;
+}
+.tour_header h5{
+  margin-bottom:4px;
+  font-weight:500;
+}
+
+.tour_location{
+  font-size:13px;
+  color:#666;
+}
+
+.tour_price{
+  font-weight:600;
+  color:var(--blue);
+}
+
+.tour_features{
+  margin:8px 0;
+  font-size:14px;
+  color:#555;
+}
+
+.tour_meta{
+  display:flex;
+  gap:20px;
+  font-size:13px;
+  color:#555;
+  margin-bottom:12px;
+}
+
+.tour_meta div{
+  display:flex;
+  align-items:center;
+  gap:6px;
+}
+
+.tour_footer{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.status{
+  font-size:12px;
+  padding:5px 10px;
+  border-radius:6px;
+}
+
+.status.confirmed{
+  background:#e6f7ed;
+  color:#1a7f37;
+  text-transform: capitalize;
+}
+
+.status.completed{
+  background:#eef1f5;
+  color:#555;
+  text-transform: capitalize;
+}
+
+.tour_actions{
+  display:flex;
+  gap:8px;
+}
+.tour_actions .btn-primary{color: var(--blue) !important; border-color: var(--blue) !important; color: #fff !important;}
+.tour_actions .btn-primary:hover{background-color: var(--blue) !important; border-color: var(--blue) !important; color: #fff !important;}
+.tour_actions .btn-primary:active{background-color: var(--blue) !important; border-color: var(--blue) !important; color: #fff;}
+
+.tour_actions .btn-warning{background-color: var(--primary);  border-color: var(--primary) !important; color: #fff !important;}
+.tour_actions .btn-warning:hover{background-color: var(--primary) !important; border-color: var(--primary) !important; color:#fff !important;}
+.tour_actions .btn-warning:active{background-color: var(--primary) !important; border-color: var(--primary) !important; color:#fff !important;}
+
+.tour_tabs .nav-tabs{border: 0;}
+.tour_tabs .nav-tabs .nav-link{border: 0 !important; border-bottom: 1px solid #ccc !important; color: var(--blue); font-weight: 500;}
+
+.tour_tabs .nav-tabs .nav-link.active{background-color: var(--primary); color: #fff; border: 0 !important; border-bottom: 1px solid #ccc !important;}
+
+
+.tour_tabs .nav-tabs .nav-link:focus, .tour_tabs .nav-tabs .nav-link:hover{border: 0 !important; border-bottom: 1px solid #ccc !important;}
+
 
 
 /*------- Saved Searches --------*/
-.saved_searches .card, .alert_card{
-  padding: 25px;
-  box-shadow: 0 1px 4px rgba(24, 26, 32, .07);
-  border: 1px solid rgba(37, 39, 40, 0.1) !important;
-  border-radius: 12px;
-}
-.saved_searches table th, .alert_card th{padding: 20px 10px; font-size: 16px; vertical-align: baseline;}
-.saved_searches table td{padding: 16px 10px}
-.saved_searches table .listing_name{font-size: 15px; font-weight: 500;}
-.saved_searches table i{font-size: 13px;}
 
-.saved_searches .form-switch .form-check-input{
-    width: 3em !important;
-    height: 1.5em !important;
-}
-.saved_searches .form-switch .form-check-input:focus{
-    box-shadow: none !important;
-    border: 1px solid #dee2e6  !important;
+.saved-search-card{
+border:1px solid #e8e8e8;
+border-radius:12px;
+padding:20px;
+background:#fff;
+transition:all .25s ease;
+height:100%;
 }
 
-
-
-.alert_card .listing_name{font-weight: 600; min-width: 150px;}
-
-
-.buyer-inspections .card h5{font-size: 18px;}
-
-.buyer-inspections .modal-footer .btn-secondary {
-    padding: 5px 10px !important;
+.saved-search-card:hover{
+box-shadow:0 10px 25px rgba(0,0,0,0.08);
+transform:translateY(-3px);
 }
 
-.buyer-inspections .calendar_btn{font-size: 14px;}
+.uni-name{
+font-weight:600;
+margin-bottom:10px;
+}
 
+.search-meta p{
+margin:0;
+font-size:14px;
+color:#666;
+}
 
-.contact_agents_page .card{overflow: visible;}
-
+.search-actions{
+display:flex;
+gap:10px;
+margin-top:15px;
+}
 
 
 .theme_btn_small {
@@ -304,27 +400,37 @@
 
 @media screen and (max-width:991px) {
    .profile_page .card_height{height: 100%;} 
+   .dash_sidebar ul a{border-radius: 6px;}
 }
 
 @media screen and (max-width:768px) {
-    .saved_searches .card{ padding: 20px;}
-    .saved_searches table th{padding: 15px 10px; font-size: 14px;}
+   
     .contact_agents_page button{font-size: 11px;}
     .contact_agents_page .card img{ height: 250px;}
+}
+
+@media screen and (max-width:767px) {
+    .tour_card_v2 {flex-direction: column;}
+    .tour_card_v2 .tour_image {width: 100%;}
+    .tour_card_v2 .tour_image img {height: 220px;}
+    .contact-card img {height: 220px !important;}
+    .tour_meta{flex-wrap: wrap; row-gap: 7px;}
+    .tour_footer{flex-wrap: wrap; row-gap: 10px;}
 }
 
 
 @media screen and (max-width:576px) {
     .profile_image_wrapper{flex-direction: column; align-items: start !important;}
     .profile_image_wrapper .profile_image {margin-bottom: 15px;}
-    .saved_searches table .listing_name {font-size: 14px;}
-    .contact_agents_page .card img{ height: 280px;}
+
+    .tour_tabs .nav-tabs .nav-link{font-size: 14px;}
+}
+
+@media screen and (max-width:475px) {
+    .tour_card_v2 .tour_image img {height: 200px;}
+    .contact-card img {height: 200px !important;}
 }
 
 
 @media screen and (max-width:375px) {
-    .contact_agents_page .card img{ height: 260px;}
 }
-
-
-

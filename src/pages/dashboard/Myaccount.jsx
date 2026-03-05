@@ -10,7 +10,7 @@ const Myaccount = () => {
   return (
     <>
         <div className="my_account min_height">
-            <div className="container py-5">
+            <div className="container py-4">
                 <div className="row">
                     <div className="col-lg-4 col-xl-3 mb-4 mb-lg-0">
                         <DashSidebar />
@@ -47,7 +47,7 @@ const Myaccount = () => {
                             <div className="statistics_funfact h-100">
                             <div className="d-flex justify-content-between">
                                 <div className="details">
-                                <div className="title"><CountUp end={35} duration={2} /></div>
+                                <div className="title"><CountUp end={4} duration={2} /></div>
 
                                 </div>
                                 <div className="icon text-center">
@@ -61,29 +61,29 @@ const Myaccount = () => {
                         </div>
 
                         <div className="col-sm-6 col-xl-3 mb-4 mb-xl-0">
-                        <Link to='/alerts'>
+                        <Link to='/booked-tours'>
                             <div className="statistics_funfact h-100">
                             <div className="d-flex justify-content-between">
                                 <div className="details">
-                                <div className="title"><CountUp end={12} duration={2} /></div>
+                                <div className="title"><CountUp end={8} duration={2} /></div>
 
                                 </div>
                                 <div className="icon text-center">
-                                <i className="fa-solid fa-bell"></i>
+                                <i className="fa-regular fa-calendar"></i>
                                 </div>
                             </div>
-                            <div className="text fz25 mt-2">Alerts</div>
+                            <div className="text fz25 mt-2">Booked Tours</div>
 
                         </div>
                         </Link>
                         </div>
 
                         <div className="col-sm-6 col-xl-3 mb-4 mb-xl-0">
-                        <Link to='/saved-listings'>
+                        <Link to='/saved-searches'>
                             <div className="statistics_funfact h-100">
                             <div className="d-flex justify-content-between">
                                 <div className="details">
-                                <div className="title"><CountUp end={15} duration={2} /></div>
+                                <div className="title"><CountUp end={10} duration={2} /></div>
 
                                 </div>
                                 <div className="icon text-center">

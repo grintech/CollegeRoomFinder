@@ -1,6 +1,6 @@
 const Pricing = () => {
   return (
-    <section className="pricing-section">
+    <section id="pricing" className="pricing-section">
       <div className="container">
         <div className="text-center mb-5">
           <h2 className="heading text_theme">

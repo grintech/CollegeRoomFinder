@@ -15,6 +15,7 @@ import { useAuth } from "../context/AuthContext";
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
+  const [showModal, setShowModal] = useState(false);
   const { user, isAuthenticated, logout } = useAuth();
    const navigate = useNavigate()
   const closeMenu = () => setOpen(false);
@@ -26,6 +27,7 @@ const Navbar = () => {
 
    const handleLogout = async () => {
     await logout()
+    setShowModal(false);
     closeMenu();
     toast.success("Logged out successfully!")
     navigate("/", { replace: true })
@@ -33,8 +35,6 @@ const Navbar = () => {
 
  
   const handleDashboardRedirect = () => {
-  const token = localStorage.getItem("token")
-
 
   if(user?.role === "host"){
     window.location.replace( `${WEBSITE_URL}/host/dashboard`  )
@@ -103,7 +103,7 @@ const Navbar = () => {
                   <li>
                     <button
                       className="dropdown-item text-danger"
-                      onClick={handleLogout}
+                      onClick={() => setShowModal(true)}
                     >
                      <LogOut size={16}/> Logout
                     </button>
@@ -166,7 +166,7 @@ const Navbar = () => {
                  <User /> My Account
                 </button>
               </Link>
-              <Link onClick={handleLogout}>
+              <Link onClick={() => setShowModal(true)}>
                 <button className="blue_btn text-danger w-100">
                   <LogOut/> Logout
                 </button>
@@ -190,6 +190,54 @@ const Navbar = () => {
           )}
           
         </div>
+      )}
+
+
+       {showModal && (
+        <>
+          <div className="modal-backdrop fade show"></div>
+
+          <div
+            className="modal fade show d-block"
+            tabIndex="-1"
+            role="dialog"
+            style={{ zIndex: 1055 }}
+          >
+            <div className="modal-dialog modal-dialog-centered" role="document">
+              <div className="modal-content">
+                <div className="modal-header">
+                  <h5 className="modal-title fw-bold">Confirm Logout</h5>
+                  <button
+                    type="button"
+                    className="btn-close"
+                    onClick={() => setShowModal(false)}
+                  ></button>
+                </div>
+                <div className="modal-body text-center">
+                  <h6 className="fw-bold my-2">Are you sure you want to logout?</h6>
+                </div>
+                <div className="modal-footer d-flex justify-content-center">
+                  <button
+                    type="button"
+                    className="btn  btn-secondary rounded-pill"
+                    onClick={() => setShowModal(false)}
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    type="button"
+                    className=" theme_outline_btn"
+                    onClick={() => {
+                     handleLogout()
+                    }}
+                  >
+                    Yes, Logout
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </>
       )}
     </>
   );

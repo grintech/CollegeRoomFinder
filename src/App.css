@@ -27,6 +27,8 @@ button.navbar-toggler:focus{box-shadow: none !important;}
   border-bottom: 1px solid #eee;
 }
 
+.custom-navbar .navbar-brand{padding: 0;}
+
 .custom-navbar a {
   text-decoration: none;
   color: var(--dark) !important;
@@ -1076,7 +1078,7 @@ border-radius: 14px !important;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
   max-height: 220px;
   overflow-y: auto;
-  z-index: 20;
+  z-index: 9999;
 }
 
 .suggestion-item {

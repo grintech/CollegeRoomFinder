@@ -59,17 +59,19 @@ const ContactedHosts = () => {
                     CONTACTED_HOSTS.map((item) => (
                     <div className="col-12" key={item.id}>
                         <div className="contact-card p-3 shadow-sm rounded-3 bg-white">
-                        <div className="row align-items-center">
+                        <div className="row ">
                             <div className="col-md-3 mb-3 mb-md-0">
-                            <img
-                                src={item.image}
-                                alt={item.title}
-                                className="img-fluid rounded-3"
-                            />
+                            <Link to={`/property/${slugify(item.title)}`} >
+                                <img
+                                    src={item.image}
+                                    alt={item.title}
+                                    className="w-100 h-100 object-fit-cover rounded-3"
+                                />
+                            </Link>
                             </div>
 
                             <div className="col-md-6">
-                            <Link className="text_theme" to={`/property/${slugify(item.title)}`} >
+                            <Link className="text-dark" to={`/property/${slugify(item.title)}`} >
                             <h5 className="mb-1 text-truncate">{item.title}</h5>
                             </Link>
                             <p className="mb-1 text-muted">

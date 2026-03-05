@@ -61,7 +61,7 @@ const SavedListings = () => {
                             <ListingSkeleton count={6} />
                         ) : results.length ? (
                             results.map((item) => (
-                                <div className="col-lg-4 col-md-6" key={item.id}>
+                                <div className="col-xxl-4 col-md-6" key={item.id}>
                                 <div className="listing-card">
                                     <Link to={`/property/${slugify(item.title)}`} className="listing-image">
                                     {/* <button
