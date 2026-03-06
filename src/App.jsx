@@ -51,9 +51,9 @@ const App = () => {
         <Route path="/redirect-dashboard" element={<HostRedirect />} />
 
 
-        {/* <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
+        <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
         <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-        <Route path="/community-rules" element={<CommunityRules />} /> */}
+        <Route path="/community-rules" element={<CommunityRules />} />
 
 
         {/* Dashboard Pages  */}

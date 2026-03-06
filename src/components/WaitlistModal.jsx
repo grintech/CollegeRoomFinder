@@ -202,7 +202,7 @@ const WaitlistModal = ({ show, onClose }) => {
             <div className="modal-footer d-flex flex-column align-items-center justify-content-center">
               {message && (
                 <div
-                  className={` text-center fw-semibold ${
+                  className={` text-center fw-semibold modal_message ${
                     messageType === "success"
                       ? "text-success"
                       : "text-danger"

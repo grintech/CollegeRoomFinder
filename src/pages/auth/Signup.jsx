@@ -264,7 +264,7 @@ const Signup = () => {
               <div className="input-icon password-field">
                 <Lock size={18} />
                 <input
-                  type={showPassword ? "text" : "password"}
+                  type={showPassword1 ? "text" : "password"}
                   name="password_confirmation"
                   value={formData.password_confirmation}
                   onChange={handleChange}
@@ -293,7 +293,7 @@ const Signup = () => {
               Login
             </Link>
           </div>
-          <p className="terms text-center mt-4 small mb-0">By continuing, you agree to our <Link to="#" data-discover="true">Terms of Service</Link> and <Link to="#" data-discover="true">Privacy Policy</Link></p>
+          <p className="terms text-center mt-4 small mb-0">By continuing, you agree to our <Link to="/terms-and-conditions" >Terms of Service</Link> and <Link to="/privacy-policy" >Privacy Policy</Link></p>
         </div>
       </div>
     </div>

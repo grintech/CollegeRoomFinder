@@ -16,7 +16,7 @@ export const AuthProvider = ({ children }) => {
   const storedToken = localStorage.getItem("token")
   const storedUser = localStorage.getItem("user")
 
-  // 🔥 If coming from dashboard logout
+  // If coming from dashboard logout
   if (isLogout === "true") {
     handleExternalLogout()
     return
@@ -101,7 +101,7 @@ const handleExternalLogout = async () => {
   } catch (error) {
     console.error("External logout API error:", error?.response?.data?.message)
   } finally {
-    // ✅ Clear local storage
+    //  Clear local storage
     localStorage.removeItem("token")
     localStorage.removeItem("user")
 
@@ -110,8 +110,11 @@ const handleExternalLogout = async () => {
     setUser(null)
     setToken(null)
 
-    // ✅ Remove ?logout=true and refresh clean homepage
+    //  Remove ?logout=true and refresh clean homepage
     window.location.replace(window.location.origin)
+
+     // Remove ?logout from URL without reload
+    //  window.history.replaceState({}, document.title, window.location.pathname)
   }
 }
 

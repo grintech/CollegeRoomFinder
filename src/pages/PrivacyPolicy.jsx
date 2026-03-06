@@ -1,12 +1,10 @@
-import React from "react";
-
 const PrivacyPolicy = () => {
   return (
     <div className="privacy_page py-4">
       <div className="container">
         <div className="col-lg-10 mx-auto">
-          <div className="card border-0 rounded-3">
-            <div className="card-body">
+          <div className="card border-0 rounded-4">
+            <div className="card-body p-4">
               <h1 className="mb-4 sec-title text-center">Privacy Policy</h1>
 
               <p>
@@ -81,9 +79,9 @@ const PrivacyPolicy = () => {
                 page.
               </p>
 
-              <p className="mt-4 text-muted">
-                Last Updated: {new Date().getFullYear()}
-              </p>
+               <p className="mt-4 text-muted">
+                 Last Updated: {new Date().getFullYear()}
+               </p>
             </div>
           </div>
         </div>

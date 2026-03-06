@@ -1,12 +1,10 @@
-import React from "react";
-
 const CommunityRules = () => {
   return (
     <div className="community_rules_page py-4">
       <div className="container">
         <div className="col-lg-10 mx-auto">
-          <div className="card border-0 rounded-3">
-            <div className="card-body">
+          <div className="card border-0 rounded-4">
+            <div className="card-body p-4">
               <h1 className="sec-title text-center mb-4">Community Rules</h1>
 
               <p>
@@ -72,7 +70,7 @@ const CommunityRules = () => {
                 these Community Rules.
               </p>
 
-              <p className="mt-4 text-muted">
+               <p className="mt-4 text-muted">
                 Last Updated: {new Date().getFullYear()}
               </p>
             </div>

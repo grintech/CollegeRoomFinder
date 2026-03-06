@@ -1,3 +1,5 @@
+import { MapPin, Wifi, User, Mail, Phone, Bed, Bath, AreaChart, CheckCircle, CarIcon, DumbbellIcon, Shield, UtensilsCrossed, ShirtIcon, PawPrint, Cigarette, LogIn, Home, Building, HomeIcon, Eye, ExternalLink, Map, NavigationIcon, Calendar, Heart, Bus } from "lucide-react";
+
 import { useState, useRef, useEffect } from "react";
 
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -6,41 +8,12 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/thumbs";
 
-
-import {
-  MapPin,
-  Wifi,
-  User,
-  Mail,
-  Phone,
-  Bed,
-  Bath,
-  AreaChart,
-  CheckCircle,
-  CarIcon,
-  DumbbellIcon,
-  Shield,
-  UtensilsCrossed,
-  ShirtIcon,
-  PawPrint,
-  Cigarette,
-  LogIn,
-  Home,
-  Building,
-  HomeIcon,
-  Eye,
-  ExternalLink,
-  Map,
-  NavigationIcon,
-  Calendar,
-  Heart,
-  Bus
-} from "lucide-react";
 import CommuteCard from "../components/CommuteCard";
 import SidebarAdSlider from "../components/SidebarAdSlider";
 import BookTourModal from "../components/BookTourModal";
 import ContactHostModal from "../components/ContactHostModal";
 import SimilarListings from "../components/SimilarListings";
+import { useLocation } from "react-router-dom";
 
 const listingsData = {
     id: 1,
@@ -72,6 +45,7 @@ const PropertySinglePage = () => {
     const [expanded, setExpanded] = useState(false);
     const [showToggle, setShowToggle] = useState(false);
     const textRef = useRef(null);
+    const location = useLocation()
 
     useEffect(() => {
     if (textRef.current) {
@@ -100,12 +74,20 @@ const PropertySinglePage = () => {
     }));
   };
 
+  useEffect(() => {
+    if (location.state?.openTourModal) {
+        setShowTour(true)
+        window.history.replaceState({}, document.title)
+    }
+  }, [])
+
   return (
     <>
         <div className="property_single">
             <div className="container py-5">
                 <div className="row g-4">
-                    <div className="col-lg-8">
+                   <div className="col-lg-8">
+
                     {/* IMAGE GALLERY */}
                     <div className="card shadow-sm mb-4">
                         <div className="card-body">
@@ -247,7 +229,7 @@ const PropertySinglePage = () => {
                     </div>
 
                     {/* AMENITIES */}
-                <div className="feature_card card mb-4">
+                   <div className="feature_card card mb-4">
                     <div className="card-body">
                         <h6 className="fw-bold mb-3">Amenities & Features</h6>
 
@@ -406,7 +388,7 @@ const PropertySinglePage = () => {
                         </div>
                     </div>
 
-                </div>
+                   </div>
 
                     {/* RIGHT SIDEBAR */}
                     <div className="col-lg-4">

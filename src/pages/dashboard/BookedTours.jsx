@@ -182,9 +182,13 @@ const BookedTours = () => {
 
                       {tour.status === "upcoming" && (
                         <>
-                          <button className="btn btn-sm btn-warning rounded-2">
+                          <Link
+                            to={`/property/${tour.title}`}
+                            state={{ openTourModal: true }}
+                            className="btn btn-sm btn-warning rounded-2"
+                          >
                             Reschedule
-                          </button>
+                          </Link>
 
                           <button className="btn btn-sm btn-danger rounded-2">
                             Cancel

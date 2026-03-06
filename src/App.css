@@ -1970,7 +1970,7 @@ border-radius: 14px !important;
   .heading {font-size: 2.25rem !important;}
   .community-content h2 span { font-size: 3rem !important;}
 
-   .cta-heading {
+  .cta-heading {
     font-size: 32px;
   }
 
@@ -2047,9 +2047,10 @@ border-radius: 14px !important;
  .heading span { font-size: 1.75rem !important;}
  .community-content h2 span { font-size: 1.75rem !important; }
  .main-swiper img {height: 320px;}
-.feature_card .col-6{width: 100%;}
+ .feature_card .col-6{width: 100%;}
  .property_single h1{font-size: 23px;}
-  .property_single h2{font-size: 23px;}
+ .property_single h2{font-size: 23px;}
+ .modal_message {font-size: 14px;}
 
 }
 
@@ -2066,8 +2067,7 @@ border-radius: 14px !important;
  .community-content h2 span { font-size: 1.75rem !important; }
 .navbar-brand img{width: 180px !important;}
 .navbar-toggler svg{height: 24px; width: 24px;}
-.finding_steps {
- padding-top: 40px;padding-bottom: 50px; }
+.finding_steps { padding-top: 40px;padding-bottom: 50px; }
 .faq-section {padding: 40px 0 40px 0;}
 .why-choose-us, .featured-listings, .property_by_area, .community-section, .pricing-section, .testimonials-section, .waitlist-section, .hostcontact{padding: 40px 0;}
 
@@ -2083,7 +2083,7 @@ border-radius: 14px !important;
  .heading {font-size: 1.5rem !important;}
  .heading span { font-size: 1.5rem !important;}
  .community-content h2 span { font-size: 1.5rem !important; }
-.plan-price { font-size: 2rem;}
-.navbar-brand img{width: 150px !important;}
+ .plan-price { font-size: 2rem;}
+ .navbar-brand img{width: 150px !important;}
 
 }

@@ -134,11 +134,7 @@ const Login = () => {
           </div>
         </form>
 
-        <p className="terms text-center mt-4 small mb-0">
-          By continuing, you agree to our{' '}
-          <Link to="#">Terms of Service</Link> and{' '}
-          <Link to="#">Privacy Policy</Link>
-        </p>
+        <p className="terms text-center mt-4 small mb-0">By continuing, you agree to our <Link to="/terms-and-conditions" >Terms of Service</Link> and <Link to="/privacy-policy" >Privacy Policy</Link></p>
       </div>
     </div>
   )

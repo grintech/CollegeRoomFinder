@@ -1,13 +1,11 @@
-import React from "react";
-
 const TermsAndConditions = () => {
   return (
     <div className="terms_page py-4">
       <div className="container">
         <div className="col-lg-10 mx-auto">
-          <div className="card rounded-3 border-0">
-            <div className="card-body">
-              <h1 className="mb-4 sec-title text-center">Terms & Conditions</h1>
+          <div className="card rounded-4 border-0">
+            <div className="card-body p-4">
+              <h1 className="mb-4 sec-title text-center">Terms & Conditions </h1>
 
               <p>
                 Welcome to <strong>College Room Finder</strong>. By accessing or
