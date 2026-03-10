@@ -1,40 +1,86 @@
-import { useState } from "react";
-
-const universities = [
-  { name: "University of Alabama", city: "Tuscaloosa, AL" },
-  { name: "Texas A&M University", city: "College Station, TX" },
-  { name: "Harvard University", city: "Cambridge, MA" },
-  { name: "University of Notre Dame", city: "Notre Dame, IN" },
-  { name: "University of Michigan", city: "Ann Arbor, MI" },
-  { name: "University of Southern California (USC)", city: "Los Angeles, CA" },
-  { name: "Penn State University", city: "University Park, PA" },
-  { name: "University of Florida", city: "Gainesville, FL" },
-  { name: "Florida State University", city: "Tallahassee, FL" },
-  { name: "University of Miami", city: "Coral Gables, FL" },
-  { name: "University of Maryland, College Park", city: "College Park, MD" },
-  { name: "University of Maryland, Baltimore County (UMBC)", city: "Baltimore, MD" },
-  { name: "Towson University", city: "Towson, MD" },
-  { name: "Bowie State University", city: "Bowie, MD" },
-  { name: "Morgan State University", city: "Baltimore, MD" },
-];
-
+import { useState, useEffect } from "react";
+import api from '../services/api';
 
 const HousingSearchBar = ({ onSearch }) => {
- const [price, setPrice] = useState(5000);
+  const [price, setPrice] = useState(5000);
   const [query, setQuery] = useState("");
-  const [minBeds, setMinBeds] = useState("Any");
   const [showSuggestions, setShowSuggestions] = useState(false);
+  const [universities, setUniversities] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [leaseDuration, setLeaseDuration] = useState(""); // No default selection
+  const [selectedUniversity, setSelectedUniversity] = useState(null);
+  const [error, setError] = useState(""); // Add error state
+
+  // Fetch universities from API
+  useEffect(() => {
+    const fetchUniversities = async () => {
+      setLoading(true);
+      try {
+        const response = await api.get("/campus/list");
+        
+        if (response?.data?.status === true && response?.data?.data) {
+          const mappedUniversities = response.data.data.map((uni) => ({
+            id: uni.id,
+            name: uni.name,
+            city: uni.city || ""
+          }));
+          setUniversities(mappedUniversities);
+        }
+      } catch (error) {
+        console.error("Error fetching universities:", error);
+        setError("Failed to load universities");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchUniversities();
+  }, []);
 
   const filteredUniversities = universities.filter((u) =>
     u.name.toLowerCase().includes(query.toLowerCase())
   );
 
   const handleSearch = () => {
+    setError("");
+
+    if (!query.trim()) {
+      setError("Please select a university to see available rooms.");
+      
+      setTimeout(() => {
+        setError("");
+      }, 2000);
+
+      return;
+    }
+
+    const selected = universities.find(
+      (u) => u.name.toLowerCase() === query.toLowerCase()
+    );
+
+    if (!selected) {
+      setError("Please select a valid university from the suggestions.");
+
+      setTimeout(() => {
+        setError("");
+      }, 2000);
+
+      return;
+    }
+
     onSearch({
       university: query.trim(),
+      campus_id: selected.id,
       maxPrice: price,
-      minBeds: minBeds === "Any" ? 0 : Number(minBeds),
+      leaseDuration: leaseDuration,
     });
+  };
+
+  const handleSelectUniversity = (university) => {
+    setQuery(university.name);
+    setSelectedUniversity(university);
+    setShowSuggestions(false);
+    setError(""); // Clear error when user selects a university
   };
 
   return (
@@ -44,7 +90,7 @@ const HousingSearchBar = ({ onSearch }) => {
 
           {/* University – double width */}
           <div className="search-field university-field suggestion-wrapper">
-            <label>University</label>
+            <label>University <span className="text-danger">*</span></label>
             <input
               type="text"
               placeholder="Search for your university.."
@@ -52,30 +98,30 @@ const HousingSearchBar = ({ onSearch }) => {
               onChange={(e) => {
                 setQuery(e.target.value);
                 setShowSuggestions(true);
+                setSelectedUniversity(null);
+                setError(""); // Clear error when user types
               }}
               onFocus={() => query && setShowSuggestions(true)}
               onBlur={() => setTimeout(() => setShowSuggestions(false), 150)}
+              className={error ? "is-invalid" : ""}
             />
 
             {/* Suggestions */}
             {showSuggestions && query && (
               <div className="suggestion-box">
-                {filteredUniversities.length ? (
-                  filteredUniversities.map((u, i) => (
+                {loading ? (
+                  <div className="suggestion-item muted">
+                    Loading universities...
+                  </div>
+                ) : filteredUniversities.length ? (
+                  filteredUniversities.map((u) => (
                     <div
-                      key={i}
+                      key={u.id}
                       className="suggestion-item"
-                      // onClick={() => {
-                      //   setQuery(u.name);
-                      //   setShowSuggestions(false);
-                      // }}
-                      onMouseDown={() => {
-                        setQuery(u.name);
-                        setShowSuggestions(false);
-                      }}
+                      onMouseDown={() => handleSelectUniversity(u)}
                     >
                       <strong>{u.name}</strong>
-                      <span>{u.city}</span>
+                      {u.city && <span>{u.city}</span>}
                     </div>
                   ))
                 ) : (
@@ -85,28 +131,28 @@ const HousingSearchBar = ({ onSearch }) => {
                 )}
               </div>
             )}
-
-          
           </div>
 
-          {/* Select Seasom */}
+          {/* Select Lease Duration - No default selection */}
           <div className="search-field">
             <label>Lease Duration</label>
-          {/* <select value={minBeds} onChange={(e) => setMinBeds(e.target.value)}> */}
-          <select >
-            <option >Select</option>
-            <option value="academic-year">Academic Year</option>
-            <option value="fall-semester">Fall Semester</option>
-            <option value="spring-semester">Spring Semester</option>
-            <option value="summer-semester">Summer Semester</option>
-            <option value="winter-semester">Winter Semester</option>
-          </select>
-
+            <select 
+              value={leaseDuration}
+              onChange={(e) => setLeaseDuration(e.target.value)}
+              className={leaseDuration ? "" : "text-muted"}
+            >
+              <option value="">Select</option>
+              <option value="academic-year">Academic Year</option>
+              <option value="fall-semester">Fall Semester</option>
+              <option value="spring-semester">Spring Semester</option>
+              <option value="summer-semester">Summer Semester</option>
+              <option value="winter-semester">Winter Semester</option>
+            </select>
           </div>
 
           {/* Price Slider */}
           <div className="search-field price_wrapper">
-            <div className=" d-flex flex-column">
+            <div className="d-flex flex-column">
               <label>Monthly Budget</label>
 
               <div className="d-flex justify-content-between mb-1">
@@ -120,13 +166,12 @@ const HousingSearchBar = ({ onSearch }) => {
                 max="5000"
                 step="100"
                 value={price}
-                onChange={(e) => setPrice(e.target.value)}
+                onChange={(e) => setPrice(Number(e.target.value))}
                 className="price-slider"
                 style={{
                   "--fill-percent": `${((price - 500) / (5000 - 500)) * 100}%`,
                 }}
               />
-
             </div>
           </div>
 
@@ -134,6 +179,20 @@ const HousingSearchBar = ({ onSearch }) => {
             Search
           </button>
         </div>
+
+         {/* Display error message in red below the fields */}
+        {error && (
+          <div className="row mt-3">
+            <div className="col-12">
+              <div className="text-danger text-center fw-semibold" style={{ fontSize: "0.9rem" }}>
+                <i className="bi bi-exclamation-circle me-1"></i>
+                {error}
+              </div>
+            </div>
+          </div>
+        )}
+
+       
       </div>
     </div>
   );

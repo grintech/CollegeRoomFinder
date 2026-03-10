@@ -683,6 +683,15 @@ margin-bottom:10px;
   color: #555;
 }
 
+.pagination .page-link{
+  color: var(--blue) !important;
+}
+
+.pagination .active>.page-link, .pagination .page-link.active{
+  background-color: var(--blue) !important;
+  border-color: var(--blue) !important;
+  color: #fff !important;
+}
 
 /*---------- MEDIA QUERIES ------------------*/
 

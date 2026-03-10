@@ -1,141 +1,139 @@
 // src/components/PropertyByArea.jsx
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 import { BedDouble, Bath, MapPin } from "lucide-react";
 import { Link } from "react-router-dom";
+import api from '../services/api';
 
 import "swiper/css";
 import "swiper/css/navigation";
 
-/* ---------- UNIVERSITY TABS ---------- */
-const universityTabs = [
-  { key: "Alabama", label: "Alabama" },
-  { key: "TexasA&M", label: "Texas A&M" },
-  { key: "Harvard", label: "Harvard" },
-  { key: "NotreDame", label: "Notre Dame" },
-  { key: "Michigan", label: "Michigan" },
-  { key: "USC", label: "USC" },
-  // { key: "PennState", label: "Penn State" },
-  // { key: "Florida", label: "Florida" },
-  // { key: "FSU", label: "Florida State" },
-  // { key: "Miami", label: "Miami" },
-  { key: "UMD_CP", label: "UMD CP" },
-  { key: "UMBC", label: "UMBC" },
-  { key: "Towson", label: "Towson" },
-  { key: "Bowie", label: "Bowie State" },
-  { key: "Morgan", label: "Morgan State" },
-];
-
-/* ---------- LISTINGS DATA ---------- */
-const listingsData = [
-  {
-    id: 1,
-    title: "Private Room Near Campus",
-    uniKey: "Harvard",
-    address: "Harvard University, Cambridge, MA",
-    beds: 1,
-    baths: 1,
-    distance: "0.4 mi",
-    price: 2400,
-    image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c",
-    featured: true,
-  },
-  {
-    id: 2,
-    title: "Shared Apartment",
-    uniKey: "Alabama",
-    address: "University of Alabama, Tuscaloosa, AL",
-    beds: 2,
-    baths: 1,
-    distance: "0.6 mi",
-    price: 850,
-    image: "https://images.unsplash.com/photo-1568605114967-8130f3a36994",
-    featured: true,
-  },
-  {
-    id: 3,
-    title: "Studio Near Engineering",
-    uniKey: "TexasA&M",
-    address: "Texas A&M University, College Station, TX",
-    beds: 1,
-    baths: 1,
-    distance: "0.3 mi",
-    price: 1450,
-    image: "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688",
-    featured: true,
-  },
-  {
-    id: 4,
-    title: "2BR Walk to Campus",
-    uniKey: "Michigan",
-    address: "University of Michigan, Ann Arbor, MI",
-    beds: 2,
-    baths: 2,
-    distance: "0.5 mi",
-    price: 2100,
-    image: "https://images.unsplash.com/photo-1598928506311-c55ded91a20c",
-    featured: true,
-  },
-  {
-    id: 5,
-    title: "Furnished Apartment",
-    uniKey: "USC",
-    address: "University of Southern California, Los Angeles, CA",
-    beds: 2,
-    baths: 2,
-    distance: "0.7 mi",
-    price: 2600,
-    image: "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267",
-    featured: true,
-  },
-  {
-    id: 6,
-    title: "Private Room Near Library",
-    uniKey: "UMBC",
-    address: "University of Maryland, Baltimore County, MD",
-    beds: 1,
-    baths: 1,
-    distance: "0.4 mi",
-    price: 780,
-    image: "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2",
-    featured: true,
-  },
-  {
-    id: 7,
-    title: "Townhouse Near Campus",
-    uniKey: "Towson",
-    address: "Towson University, Towson, MD",
-    beds: 3,
-    baths: 2,
-    distance: "0.8 mi",
-    price: 1800,
-    image: "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85",
-    featured: true,
-  },
-  {
-    id: 8,
-    title: "Student Housing",
-    uniKey: "Morgan",
-    address: "Morgan State University, Baltimore, MD",
-    beds: 2,
-    baths: 1,
-    distance: "0.6 mi",
-    price: 950,
-    image: "https://images.unsplash.com/photo-1560185127-6ed189bf02f4",
-    featured: true,
-  },
-];
-
 const PropertyByArea = () => {
   const [activeTab, setActiveTab] = useState("all");
+  const [universities, setUniversities] = useState([]);
+  const [featuredListings, setFeaturedListings] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
 
-  const filteredListings =
-    activeTab === "all"
-      ? listingsData
-      : listingsData.filter(
-          (l) => l.uniKey === activeTab
-        );
+  // Fetch universities on component mount
+  useEffect(() => {
+    const fetchUniversities = async () => {
+      try {
+        const response = await api.get("/campus/list");
+        
+        if (response?.data?.status === true && response?.data?.data) {
+          setUniversities(response.data.data);
+        }
+      } catch (error) {
+        console.error("Error fetching universities:", error);
+      }
+    };
+
+    fetchUniversities();
+  }, []);
+
+  // Fetch all featured listings on component mount (default view)
+  useEffect(() => {
+    const fetchAllFeaturedListings = async () => {
+      setLoading(true);
+      setError(null);
+
+      try {
+        // Fetch listings without campus filter to get all featured listings
+        const response = await api.get('/listings?per_page=50');
+        
+        if (response?.data?.status === true) {
+          // Filter only featured listings
+          const featured = response.data.data.listings.filter(
+            listing => listing.is_featured === true
+          );
+          setFeaturedListings(featured);
+        } else {
+          setError("Failed to fetch listings");
+        }
+      } catch (error) {
+        console.error("Error fetching listings:", error);
+        setError(error?.response?.data?.message || "Failed to load listings");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchAllFeaturedListings();
+  }, []);
+
+  // Fetch featured listings when a university tab is clicked
+  const handleTabClick = async (tabValue) => {
+    setActiveTab(tabValue);
+    
+    if (tabValue === "all") {
+      // If "ALL" is clicked, fetch all featured listings again
+      setLoading(true);
+      try {
+        const response = await api.get('/listings?per_page=50');
+        
+        if (response?.data?.status === true) {
+          const featured = response.data.data.listings.filter(
+            listing => listing.is_featured === true
+          );
+          setFeaturedListings(featured);
+        }
+      } catch (error) {
+        console.error("Error fetching listings:", error);
+        setError(error?.response?.data?.message || "Failed to load listings");
+      } finally {
+        setLoading(false);
+      }
+    } else {
+      // Fetch featured listings for specific university
+      setLoading(true);
+      try {
+        const response = await api.get(`/listings?campus_id=${tabValue}&per_page=50`);
+        
+        if (response?.data?.status === true) {
+          const featured = response.data.data.listings.filter(
+            listing => listing.is_featured === true
+          );
+          setFeaturedListings(featured);
+        }
+      } catch (error) {
+        console.error("Error fetching listings:", error);
+        setError(error?.response?.data?.message || "Failed to load listings");
+      } finally {
+        setLoading(false);
+      }
+    }
+  };
+
+  // Format location from campus data
+  const formatLocation = (listing) => {
+    if (listing.campus?.name) {
+      return listing.campus.name;
+    }
+    return listing.city || 'Location available';
+  };
+
+  // Format distance display
+  const formatDistance = (listing) => {
+    if (listing.distance_from_campus) {
+      if (listing.distance_from_campus.label) {
+        return listing.distance_from_campus.label;
+      }
+      if (listing.distance_from_campus.miles) {
+        return `${listing.distance_from_campus.miles.toFixed(1)} mi`;
+      }
+      if (listing.distance_from_campus.km) {
+        return `${listing.distance_from_campus.km.toFixed(1)} km`;
+      }
+    }
+    return 'N/A';
+  };
+
+  // Get image URL
+  const getImageUrl = (listing) => {
+    return listing.primary_image || "/images/image_not_found.png";
+  };
 
   return (
     <section className="property_by_area">
@@ -153,88 +151,124 @@ const PropertyByArea = () => {
         </div>
 
         {/* Tabs */}
-        <ul className="nav nav-tabs justify-content-center flex-wrap mb-4 w-100">
-          <li className="nav-item">
-            <button
-              className={`nav-link ${activeTab === "all" ? "active" : ""}`}
-              onClick={() => setActiveTab("all")}
-            >
-              ALL
-            </button>
-          </li>
-
-          {universityTabs.map((u) => (
-            <li key={u.key} className="nav-item">
+        {universities.length > 0 ? (
+          <ul className="nav nav-tabs justify-content-center flex-wrap mb-4 w-100">
+            <li className="nav-item">
               <button
-                className={`nav-link ${
-                  activeTab === u.key ? "active" : ""
-                }`}
-                onClick={() => setActiveTab(u.key)}
+                className={`nav-link ${activeTab === "all" ? "active" : ""}`}
+                onClick={() => handleTabClick("all")}
               >
-                {u.label}
+                ALL
               </button>
             </li>
-          ))}
-        </ul>
 
-        {filteredListings.length === 0 && (
-  <div className="text-center py-5">
-    <h6 className="text-muted">
-      No listings available currently
-    </h6>
-  </div>
-)}
+            {universities.map((uni) => (
+              <li key={uni.id} className="nav-item">
+                <button
+                  className={`nav-link ${
+                    activeTab === uni.id.toString() ? "active" : ""
+                  }`}
+                  onClick={() => handleTabClick(uni.id.toString())}
+                >
+                  {uni.name} {/* Show first word of university name */}
+                </button>
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <div className="text-center py-3">
+            <div className="spinner-border spinner-border-sm text_theme" role="status">
+              <span className="visually-hidden">Loading universities...</span>
+            </div>
+              <p className="m-0 text-muted">Loading universities...</p>
+          </div>
+        )}
 
-        {/* Listings Slider */}
-        <Swiper
-          modules={[Navigation]}
-          navigation
-          spaceBetween={20}
-          breakpoints={{
-            0: { slidesPerView: 1 },
-            576: { slidesPerView: 2 },
-            768: { slidesPerView: 3 },
-            992: { slidesPerView: 4 },
-          }}
-        >
-          {filteredListings.map((listing) => (
-            <SwiperSlide key={listing.id}>
-              <div className="listing-card">
+        {/* Loading state */}
+        {loading && (
+          <div className="text-center py-5">
+            <div className="spinner-border text_theme" role="status">
+              <span className="visually-hidden">Loading...</span>
+            </div>
+            <p className="mt-2">Loading featured listings...</p>
+          </div>
+        )}
 
-                <Link to={`/property/${listing.title}`} className="listing-image">
-                  {listing.featured && (
+        {/* Error state */}
+        {error && !loading && (
+          <div className="text-center py-4">
+            <p className="text-danger">{error}</p>
+          </div>
+        )}
+
+        {/* No featured listings state */}
+        {!loading && !error && featuredListings.length === 0 && (
+          <div className="text-center py-5">
+            <h6 className="text-muted">
+              No featured listings available currently
+            </h6>
+          </div>
+        )}
+
+        {/* Listings Slider - Only show featured listings */}
+        {!loading && !error && featuredListings.length > 0 && (
+          <Swiper
+            modules={[Navigation]}
+            navigation
+            spaceBetween={20}
+            breakpoints={{
+              0: { slidesPerView: 1 },
+              576: { slidesPerView: 2 },
+              768: { slidesPerView: 3 },
+              992: { slidesPerView: 4 },
+            }}
+          >
+            {featuredListings.map((listing) => (
+              <SwiperSlide key={listing.id}>
+                <div className="listing-card">
+
+                  <Link to={`/property/${listing.slug}`} className="listing-image">
+                    {/* Featured tag - always show since these are featured listings */}
                     <span className="featured_tag">
                       FEATURED
                     </span>
-                  )}
-                  <img src={listing.image} alt={listing.title} />
-                </Link>
+                    <img 
+                      src={getImageUrl(listing)} 
+                      alt={listing.title}
+                      onError={(e) => {
+                        e.target.src = "/images/image_not_found.png";
+                      }}
+                    />
+                  </Link>
 
-                <div className="listing-body">
-                  <h6 className="fw-bold text-truncate">
-                    {listing.title}
-                  </h6>
+                  <div className="listing-body">
+                    <Link to={`/property/${listing.slug}`} >
+                    <h6 className="fw-bold text-truncate text_blue text-capitalize">
+                      {listing.title}
+                    </h6>
+                    </Link>
 
-                  {/* FULL ADDRESS */}
-                  <p className="listing-location text-truncate">
-                    <MapPin size={14} /> {listing.address}
-                  </p>
+                    {/* Location - Show campus name */}
+                    <p className="listing-location text-truncate">
+                      <MapPin size={14} /> {formatLocation(listing)}
+                    </p>
 
-                  <div className="d-flex gap-3 small mb-2">
-                    <span><BedDouble size={14} /> {listing.beds}</span>
-                    <span><Bath size={14} /> {listing.baths}</span>
-                    <span>{listing.distance}</span>
+                    <div className="d-flex gap-3 small mb-2">
+                      <span><BedDouble size={14} /> {listing.bedrooms || 0}</span>
+                      <span><Bath size={14} /> {listing.bathrooms || 0}</span>
+                      <span>{formatDistance(listing)}</span>
+                    </div>
+
+                    <h5 className="fw-bold text_blue">
+                      {listing.price_formatted || `$${parseFloat(listing.price).toFixed(0)}`} <small>/ month</small>
+                    </h5>
                   </div>
 
-                  <h5 className="fw-bold text_blue">
-                    ${listing.price} <small>/ month</small>
-                  </h5>
                 </div>
-
-              </div>
-            </SwiperSlide>
-          ))}
-        </Swiper>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        )}
 
       </div>
     </section>
