@@ -620,9 +620,9 @@ html {
 
 /*--------- ListingsPage -----------*/
 
-.map-wrapper{
+/* .map-wrapper{
 height:calc(100vh - 120px);
-}
+} */
 
 .leaflet-container{
 height:100%;
@@ -692,6 +692,8 @@ margin-bottom:10px;
   border-color: var(--blue) !important;
   color: #fff !important;
 }
+
+.pagination .page-link:focus {box-shadow: none !important;}
 
 /*---------- MEDIA QUERIES ------------------*/
 

@@ -182,14 +182,9 @@ const ContactHostModal = ({ show, onClose, listing }) => {
         <div className="modal-header">
           <div>
             <h5 className="mb-1">Contact Host</h5>
-            <p className="text-muted small mb-0 text-capitalize">
-              {listing?.title} • {listing?.price_formatted || `$${listing?.price}`}/mo
+            <p className="text-muted small mb-0 ">
+              <span className="text-capitalize">{listing?.title}</span> • {listing?.price_formatted || `$${listing?.price}`}/mo
             </p>
-            {/* {listing?.host && (
-              <p className="text-muted small mb-0">
-                Host: {listing.host.name}
-              </p>
-            )} */}
           </div>
 
           <button className="close-btn" onClick={onClose} disabled={loading}>

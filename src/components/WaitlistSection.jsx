@@ -20,7 +20,7 @@ const WaitlistSection = () => {
 
             <p className="mt-3 opacity-75">
               We’re rolling out campus by campus. Join the waitlist and be the
-              first to find rooms and roommates near your college.
+              first to find rooms near your college.
             </p>
 
             <ul className="list-unstyled mt-4">
@@ -47,7 +47,16 @@ const WaitlistSection = () => {
               <form>
                 <div className="row">
                   <div className="col-12 mb-3">
-                  <label className="form-label">University Name</label>
+                  <label className="form-label">Student Full Name</label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    placeholder="e.g. John Doe"
+                  />
+                </div>
+
+                  <div className="col-12 mb-3">
+                  <label className="form-label">Student University Name</label>
                   <input
                     type="text"
                     className="form-control"
@@ -56,11 +65,11 @@ const WaitlistSection = () => {
                 </div>
 
                 <div className="col-12 mb-3">
-                  <label className="form-label">Email Address</label>
+                  <label className="form-label">Student Email Address</label>
                   <input
                     type="email"
                     className="form-control"
-                    placeholder="you@college.edu"
+                    placeholder="you@student.edu"
                   />
                 </div>
 

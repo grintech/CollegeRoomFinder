@@ -1,4 +1,4 @@
-import { BedDouble, Bath, MapPin, Calendar, MessageCircle, Heart, Home, ChevronLeft, ChevronRight } from "lucide-react";
+import { BedDouble, Bath, MapPin, Calendar, MessageCircle, Heart, Home, ChevronLeft, ChevronRight, Loader } from "lucide-react";
 import { Link, useNavigate } from 'react-router-dom'
 import { useState, useEffect } from "react";
 import ContactHostModal from "./ContactHostModal.jsx";
@@ -302,9 +302,7 @@ const ListingsGrid = ({ filters }) => {
                           disabled={savingId === item.id}
                         >
                           {savingId === item.id ? (
-                            <div className="spinner-border spinner-border-sm text_blue" role="status">
-                              <span className="visually-hidden">Saving...</span>
-                            </div>
+                           <Loader size={18} className="spinner text_theme" />
                           ) : (
                             <Heart
                               size={18}
