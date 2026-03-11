@@ -9,7 +9,7 @@ const HostContact = () => {
           {/* LEFT CONTENT */}
           <div className="col-lg-6 text-white mb-3">
             <h2 className="fw-bold ">
-              Book a <span className="text-warning"> Portfolio Demo</span>
+              Book a <span className="text_theme"> Portfolio Demo</span>
             </h2>
 
             <p className="mt-3 opacity-75">

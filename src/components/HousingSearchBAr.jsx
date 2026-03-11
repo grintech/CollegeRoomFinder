@@ -1,7 +1,13 @@
 import { useState, useEffect } from "react";
 import api from '../services/api';
+import { useAuth } from "../context/AuthContext";
+import { Link, useLocation } from "react-router-dom";
+import toast from "react-hot-toast";
+import { BookmarkPlus, BookmarkCheck } from "lucide-react";
+
 
 const HousingSearchBar = ({ onSearch }) => {
+  const { user, token } = useAuth();
   const [price, setPrice] = useState(5000);
   const [query, setQuery] = useState("");
   const [showSuggestions, setShowSuggestions] = useState(false);
@@ -10,6 +16,9 @@ const HousingSearchBar = ({ onSearch }) => {
   const [leaseDuration, setLeaseDuration] = useState(""); // No default selection
   const [selectedUniversity, setSelectedUniversity] = useState(null);
   const [error, setError] = useState(""); // Add error state
+  const [saved, setSaved] = useState(false);
+
+  const location = useLocation();
 
   // Fetch universities from API
   useEffect(() => {
@@ -37,10 +46,47 @@ const HousingSearchBar = ({ onSearch }) => {
     fetchUniversities();
   }, []);
 
+
+  useEffect(() => {
+    if (!universities.length) return;
+
+    const params = new URLSearchParams(location.search);
+
+    const campusId = params.get("campus_id");
+    const lease = params.get("lease_duration");
+    const maxPrice = params.get("max_price");
+
+    if (!campusId) return;
+
+    const university = universities.find(
+      (u) => String(u.id) === String(campusId)
+    );
+
+    if (!university) return;
+
+    // Prefill fields
+    setSelectedUniversity(university);
+    setQuery(university.name);
+
+    if (lease) setLeaseDuration(lease);
+    if (maxPrice) setPrice(Number(maxPrice));
+
+    // Run search automatically
+    onSearch({
+      university: university.name,
+      campus_id: university.id,
+      maxPrice: Number(maxPrice) || price,
+      leaseDuration: lease || "",
+    });
+
+  }, [universities, location.search]);
+
+
   const filteredUniversities = universities.filter((u) =>
     u.name.toLowerCase().includes(query.toLowerCase())
   );
-
+ 
+  // Handle Search 
   const handleSearch = () => {
     setError("");
 
@@ -76,6 +122,70 @@ const HousingSearchBar = ({ onSearch }) => {
     });
   };
 
+
+   // SAVE SEARCH FUNCTION
+ const handleSaveSearch = async () => {
+  if (!token) {
+    toast.error("Please login to save search");
+    return;
+  }
+
+  if (!selectedUniversity) {
+    toast.error("Please select a university first");
+    return;
+  }
+
+  if (!leaseDuration) {
+    toast.error("Please select lease duration");
+    return;
+  }
+
+  try {
+    const res = await api.post(
+      "/save-searches",
+      {
+        university_id: selectedUniversity.id,
+        lease_duration: leaseDuration,
+        max_budget: price,
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+
+    if (res?.data?.status === true) {
+      toast.success(res?.data?.message || "Search saved successfully");
+      setSaved(true);
+    } else {
+      toast.error(res?.data?.message || "Something went wrong");
+    }
+
+  } catch (error) {
+
+    if (error?.response?.status === 422) {
+      const message =
+        error?.response?.data?.message ||
+        Object.values(error?.response?.data?.errors || {})[0]?.[0] ||
+        "Validation error";
+
+      toast.error(message);
+
+    } else {
+
+      toast.error(
+        error?.response?.data?.message || "Failed to save search"
+      );
+
+    }
+  }
+};
+
+useEffect(() => {
+  setSaved(false);
+}, [selectedUniversity, leaseDuration, price]);
+
   const handleSelectUniversity = (university) => {
     setQuery(university.name);
     setSelectedUniversity(university);
@@ -84,7 +194,7 @@ const HousingSearchBar = ({ onSearch }) => {
   };
 
   return (
-    <div className="search-wrapper">
+    <div id="hero_search" className="search-wrapper">
       <div className="container">
         <div className="search-box">
 
@@ -175,10 +285,39 @@ const HousingSearchBar = ({ onSearch }) => {
             </div>
           </div>
 
-          <button className="search-btn" onClick={handleSearch}>
+         <div className="d-flex flex-column justify-content-end text-align-center text-align-lg-end">
+            {/*  SAVE SEARCH BUTTON (ONLY STUDENT) */}
+            {user?.role === "student" && (
+              <div className="text-center text-sm-end mb-2">
+                <button
+                  type="button"
+                  className={`text-underline border-0 bg-transparent p-0 fw-semibold ${
+                    saved ? "text-danger cursor-not-allowed" : "text_theme"
+                  }`}
+                  onClick={!saved ? handleSaveSearch : undefined}
+                  style={{ cursor: saved ? "not-allowed" : "pointer" }}
+                >
+                  {saved ? (
+                    <div className="d-flex align-items-center text-danger">
+                      Saved <BookmarkCheck className="ms-1" size={16} />
+                    </div>
+                  ) : (
+                    <div className="d-flex align-items-center">
+                      Save Search <BookmarkPlus className="ms-1" size={16} />
+                    </div>
+                  )}
+                  
+                </button>
+              </div>
+            )}
+
+           <button className="search-btn" onClick={handleSearch}>
             Search
           </button>
+
+         </div>
         </div>
+
 
          {/* Display error message in red below the fields */}
         {error && (

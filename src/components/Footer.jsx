@@ -17,7 +17,7 @@ const Footer = () => {
     }
 
     if (user?.role !== "host") {
-      toast.error("This page is only available for hosts")
+      toast.error("Login as host to list property")
       return
     }
 
@@ -32,7 +32,7 @@ const Footer = () => {
     }
 
     if (user?.role !== "host") {
-      toast.error("This page is only available for hosts")
+      toast.error("Login as host to view property")
       return
     }
 

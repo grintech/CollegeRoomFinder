@@ -76,10 +76,10 @@ const Steps = () => {
         </div>
 
         <div className="steps-cta d-flex justify-content-center gap-3 mt-5">
-          <button className="theme_outline_btn d-flex align-items-center gap-2">
+             <Link to="/?scroll=hero_search" className="theme_outline_btn d-flex align-items-center gap-2">
                 <Search size={18} />
                 Search Listings
-              </button>
+              </Link>
 
               <Link to="#" className="dark_btn d-flex align-items-center gap-2">
                 <Home size={18} />

@@ -1,6 +1,36 @@
-import { Link } from "react-router-dom";
+import toast from "react-hot-toast";
+import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
+
 
 const CTASection = () => {
+
+  const {user} = useAuth();
+  const navigate = useNavigate();
+  const WEBSITE_URL = import.meta.env.VITE_WEBSITE_URL;
+  
+  const handleListProperty = () => {
+  
+   if (!user) {
+   navigate(`/login`);
+     return;
+   }
+  
+   if (user?.role === "student") {
+     toast.error("Login as host to list property");
+     return;
+   }
+  
+   if (user?.role === "host") {
+     window.location.replace(`${WEBSITE_URL}/host/listings/create-listing`);
+   } 
+   else if (user?.role === "admin") {
+     window.location.replace(`${WEBSITE_URL}/admin/listings/create-listing`);
+   }
+  
+  };
+
+  
   return (
     <section className="cta-section">
       <div className="cta-overlay">
@@ -19,13 +49,11 @@ const CTASection = () => {
               </p>
 
               <div className="cta-buttons">
-                <button  className="theme_outline_btn ">
+                <Link to="/?scroll=hero_search"  className="theme_outline_btn ">
                   Find a Room
-                </button>
-
-                <Link to="#">
-                <button  className="light_btn"> List Your Property </button>
                 </Link>
+
+                 <button onClick={handleListProperty}  className="light_btn"> List Your Property </button>
               </div>
             </div>
           </div>

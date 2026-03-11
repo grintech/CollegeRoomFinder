@@ -1,10 +1,36 @@
 import { Users, MessageCircle, Home, Search, Building, GraduationCap } from "lucide-react";
 import { useState } from "react";
 import WaitlistModal from "./WaitlistModal";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
+import toast from "react-hot-toast";
 
 const Hero = () => {
    const [showWaitlist, setShowWaitlist] = useState(false);
+   const {user} = useAuth();
+   const navigate = useNavigate();
+   const WEBSITE_URL = import.meta.env.VITE_WEBSITE_URL;
+
+   const handleListProperty = () => {
+
+  if (!user) {
+   navigate(`/login`);
+    return;
+  }
+
+  if (user?.role === "student") {
+    toast.error("Login as host to list property");
+    return;
+  }
+
+  if (user?.role === "host") {
+    window.location.replace(`${WEBSITE_URL}/host/listings/create-listing`);
+  } 
+  else if (user?.role === "admin") {
+    window.location.replace(`${WEBSITE_URL}/admin/listings/create-listing`);
+  }
+
+};
    
   return (
     <>
@@ -12,10 +38,6 @@ const Hero = () => {
         <div className="container">
           <div className="row align-items-center px-md-3">
              <div className="col-xl-6 col-xxl-6 order-2 order-xl-1 text-center  overflow-hidden">
-              {/* <img src="/images/hero.jpg" alt="students" className="hero-img  rounded-top-4" /> */}
-              {/* <img src="/images/hero2.png" alt="students" className="hero-img  rounded-top-4" /> */}
-              {/* <img src="/images/image.png" alt="students" className="hero-img  " /> */}
-              {/* <img src="/images/about3.png" alt="students" className="hero-img  " /> */}
               <img src="/images/about4.png" alt="students" className="hero-img  " />
             </div>
             <div className="col-xl-6 col-xxl-5 offset-xxl-1 order-1 order-xl-2">
@@ -31,10 +53,14 @@ const Hero = () => {
 
               <div className="hero-buttons ">
               
-                <Link to="#" className="light_btn d-flex align-items-center gap-2">
+                <button
+                  className="light_btn d-flex align-items-center gap-2"
+                  onClick={handleListProperty}
+                >
                   <Home size={18} />
                   List Your Property
-                </Link>
+                </button>
+
                 <button
                   className="theme_outline_btn d-flex align-items-center gap-2"
                   onClick={() => setShowWaitlist(true)}

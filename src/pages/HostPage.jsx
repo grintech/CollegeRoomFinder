@@ -1,14 +1,19 @@
-import { Link, useLocation } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import React, { useEffect } from 'react'
 import { Home, Mail } from 'lucide-react'
 import StepHosts from '../components/StepHosts'
 import Pricing from '../components/Pricing'
 import HostFaq from '../components/HostFaq'
 import HostContact from '../components/HostContact'
+import { useAuth } from '../context/AuthContext'
+import toast from 'react-hot-toast'
 
 const HostPage = () => {
   
-    const location = useLocation();
+  const location = useLocation();
+  const {user} = useAuth();
+  const navigate = useNavigate();
+  const WEBSITE_URL = import.meta.env.VITE_WEBSITE_URL;
 
      useEffect(() => {
         const params = new URLSearchParams(location.search);
@@ -23,6 +28,29 @@ const HostPage = () => {
           }
         }
       }, [location]);
+
+
+  
+  const handleListProperty = () => {
+  
+   if (!user) {
+   navigate(`/login`);
+     return;
+   }
+  
+   if (user?.role === "student") {
+     toast.error("Login as host to list property");
+     return;
+   }
+  
+   if (user?.role === "host") {
+     window.location.replace(`${WEBSITE_URL}/host/listings/create-listing`);
+   } 
+   else if (user?.role === "admin") {
+     window.location.replace(`${WEBSITE_URL}/admin/listings/create-listing`);
+   }
+  
+  };
 
   return (
     <>
@@ -50,9 +78,9 @@ const HostPage = () => {
                             </p>
 
                         <div className="d-flex flex-wrap gap-3 mt-4">
-                        <Link to="#" className="d-flex align-items-center blue_btn">
+                        <button onClick={handleListProperty} className="d-flex align-items-center blue_btn">
                            <Home className='me-1' size={20} /> <span>Start Listing</span>
-                        </Link>
+                        </button>
 
                         <a href='#portfolio_demo' className="d-flex align-items-center theme_outline_btn">
                           <Mail className='me-1' size={20}  /> Book a Demo
@@ -95,11 +123,10 @@ const HostPage = () => {
                         </p>
 
                         <div className="cta-buttons d-flex justify-content-center gap-3">
-                            <Link to="/list-property">
-                            <button className="light_btn">
+                            
+                            <button onClick={handleListProperty} className="light_btn">
                                 Start Listing Today
-                            </button>
-                            </Link>
+                            </button>                 
 
                         </div>
 

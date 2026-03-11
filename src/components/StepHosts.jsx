@@ -1,5 +1,7 @@
 import {  Users, CheckCircle, Home, Mail } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
+import toast from "react-hot-toast";
 
 const stepsData = [
   {
@@ -29,6 +31,31 @@ const stepsData = [
 ];
 
 const StepHosts = () => {
+    const {user} = useAuth();
+  const navigate = useNavigate();
+  const WEBSITE_URL = import.meta.env.VITE_WEBSITE_URL;
+
+    const handleListProperty = () => {
+  
+      if (!user) {
+      navigate(`/login`);
+        return;
+      }
+      
+      if (user?.role === "student") {
+        toast.error("Login as host to list property");
+        return;
+      }
+      
+      if (user?.role === "host") {
+        window.location.replace(`${WEBSITE_URL}/host/listings/create-listing`);
+      } 
+      else if (user?.role === "admin") {
+        window.location.replace(`${WEBSITE_URL}/admin/listings/create-listing`);
+      }
+      
+    };
+      
   return (
     <section className="finding_steps host_steps">
       <div className="container">
@@ -75,10 +102,10 @@ const StepHosts = () => {
 
         {/* CTA */}
         <div className="steps-cta d-flex justify-content-center gap-3 mt-5">
-          <Link to="/list-property" className="theme_outline_btn d-flex align-items-center gap-2">
+          <button onClick={handleListProperty} className="theme_outline_btn d-flex align-items-center gap-2">
             <Home size={18} />
             List Your Property
-          </Link>
+          </button>
 
           {/* <Link to="/contact" className="dark_btn d-flex align-items-center gap-2">
             <Mail size={18} />

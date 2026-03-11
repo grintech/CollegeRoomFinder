@@ -21,18 +21,30 @@ const Homepage = () => {
    const location = useLocation();
 
   useEffect(() => {
-    const params = new URLSearchParams(location.search);
-    const scrollTo = params.get("scroll");
+  const params = new URLSearchParams(location.search);
+  const scrollTo = params.get("scroll");
 
-    if (scrollTo) {
-      const el = document.getElementById(scrollTo);
-      if (el) {
-        setTimeout(() => {
-          el.scrollIntoView({ behavior: "smooth" });
-        }, 100);
-      }
+  if (scrollTo) {
+    const el = document.getElementById(scrollTo);
+
+    if (el) {
+      setTimeout(() => {
+
+        // offset only for hero_search
+        const offset = scrollTo === "hero_search" ? 200 : 70;
+
+        const elementPosition = el.getBoundingClientRect().top + window.pageYOffset;
+        const offsetPosition = elementPosition - offset;
+
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: "smooth",
+        });
+
+      }, 100);
     }
-  }, [location]);
+  }
+}, [location]);
 
   return (
     <>

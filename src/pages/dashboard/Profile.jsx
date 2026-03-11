@@ -5,6 +5,7 @@ import { useAuth } from "../../context/AuthContext";
 import { useRef, useState, useEffect } from "react";
 import toast from "react-hot-toast";
 import api from "../../services/api";
+import ProfileSkeleton from "../../components/skeletons/ProfileSkeleton";
 
 const Profile = () => {
   const fileInputRef = useRef(null);
@@ -268,8 +269,8 @@ const Profile = () => {
       return;
     }
 
-    if (passwordData.new_password.length < 6) {
-      toast.error('Password must be at least 6 characters long');
+    if (passwordData.new_password.length < 8) {
+      toast.error('Password must be at least 8 characters long');
       return;
     }
 
@@ -337,12 +338,13 @@ const Profile = () => {
               <DashSidebar />
             </div>
             <div className="col-lg-8 col-xl-9 mb-4 mb-lg-0">
-              <div className="d-flex justify-content-center align-items-center" style={{ minHeight: '400px' }}>
+              {/* <div className="d-flex justify-content-center align-items-center" style={{ minHeight: '400px' }}>
                 <div className="text-center">
                   <i className="fas fa-spinner fa-spin fa-3x text_theme"></i>
                   <p className="mt-3">Loading profile...</p>
                 </div>
-              </div>
+              </div> */}
+              <ProfileSkeleton />
             </div>
           </div>
         </div>
@@ -616,7 +618,7 @@ const Profile = () => {
                           value={passwordData.new_password}
                           onChange={handlePasswordChange}
                           required
-                          minLength={6}
+                          minLength={8}
                         />
                         <i
                           className={`fa ${
@@ -637,6 +639,7 @@ const Profile = () => {
                           value={passwordData.new_password_confirmation}
                           onChange={handlePasswordChange}
                           required
+                          minLength={8}
                         />
                         <i
                           className={`fa ${

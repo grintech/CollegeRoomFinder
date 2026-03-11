@@ -617,7 +617,7 @@ const PropertySinglePage = () => {
                       <div className="d-flex align-items-center gap-3 small">
                         {propertyData.campus && (
                           <>
-                            <span className="badge bg-warning-subtle text_orange text-warning fw-semibold">
+                            <span className="badge bg-warning-subtle text_orange fw-semibold">
                               {propertyData.campus.name}
                             </span>
                             {propertyData.distance_from_campus?.label && (

@@ -9,13 +9,13 @@ const ProtectedRoute = ({ children, allowedRole }) => {
 
   // Not logged in
   if (!isAuthenticated) {
-    toast.error("Please login to continue")
+    // toast.error("Please login to continue")
     return <Navigate to="/login" replace />
   }
 
   // Role restriction
   if (allowedRole && user?.role !== allowedRole) {
-    toast.error("This page is only available for students")
+    // toast.error("This page is only available for students")
     return <Navigate to="/" replace />
   }
 
