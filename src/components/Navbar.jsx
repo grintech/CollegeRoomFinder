@@ -70,7 +70,7 @@ const Navbar = () => {
           <div className="collapse navbar-collapse d-none d-xl-flex">
             <ul className="navbar-nav ms-auto gap-4">
               <li> <Link to="/hosts" > For Hosts </Link></li>
-              <li><Link to="#rent">For Rent</Link></li>
+              <li><Link to="/listings">For Rent</Link></li>
               <li><Link to="/?scroll=about" > About </Link></li>
             </ul>
 
@@ -140,7 +140,7 @@ const Navbar = () => {
 
           <ul className="menu-links">
             <li><Link to="/hosts" onClick={closeMenu}><Building2 size={18} /> For Hosts</Link></li>
-            <li><Link to="#rent" onClick={closeMenu}><Home size={18} /> For Rent</Link></li>
+            <li><Link to="/listings" onClick={closeMenu}><Home size={18} /> For Rent</Link></li>
             <li>
               <Link to="/?scroll=about" onClick={closeMenu}>
                 <Home size={18} /> About

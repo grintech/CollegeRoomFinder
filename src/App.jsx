@@ -28,50 +28,56 @@ import CommunityRules from './pages/CommunityRules'
 const App = () => {
   const location = useLocation()
 
-  const hideLayoutRoutes = ["/redirect-dashboard"]
-  const shouldHideLayout = hideLayoutRoutes.includes(location.pathname);
-  
+  // Routes where Navbar should not show
+  const hideNavbarRoutes = ["/redirect-dashboard"]
+
+  // Routes where Footer should not show
+  const hideFooterRoutes = ["/redirect-dashboard", "/listings"]
+
+  const shouldHideNavbar = hideNavbarRoutes.includes(location.pathname)
+  const shouldHideFooter = hideFooterRoutes.includes(location.pathname)
+
   return (
     <>
-     {!shouldHideLayout && <Navbar />}
+      {!shouldHideNavbar && <Navbar />}
+
       <ScrollToTop />
       <ScrollTopArrow />
-      
-       <Routes>
+
+      <Routes>
         <Route path="/" element={<Homepage />} />
-        <Route path='/login' element={<PublicRoute> <Login /> </PublicRoute>} />
-        <Route path='/signup' element={<PublicRoute> <Signup /> </PublicRoute>} />
-        <Route path='/forgot-password' element={<PublicRoute> <ForgotPassword /> </PublicRoute>} />
-        <Route path='/reset-password' element={<PublicRoute> <ResetPassword /> </PublicRoute>} />
 
-        <Route path='/property/:slug' element={<PropertySinglePage /> } />
-        {/* <Route path='/listings' element={<ListingsPage /> } /> */}
+        <Route path='/login' element={<PublicRoute><Login /></PublicRoute>} />
+        <Route path='/signup' element={<PublicRoute><Signup /></PublicRoute>} />
+        <Route path='/forgot-password' element={<PublicRoute><ForgotPassword /></PublicRoute>} />
+        <Route path='/reset-password' element={<PublicRoute><ResetPassword /></PublicRoute>} />
 
-        <Route path='/hosts' element={<HostPage /> } />
+        <Route path='/property/:slug' element={<PropertySinglePage />} />
+        <Route path='/listings' element={<ListingsPage />} />
+
+        <Route path='/hosts' element={<HostPage />} />
         <Route path="/redirect-dashboard" element={<HostRedirect />} />
-
 
         <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
         <Route path="/privacy-policy" element={<PrivacyPolicy />} />
         <Route path="/community-rules" element={<CommunityRules />} />
 
+        {/* Dashboard Pages */}
 
-        {/* Dashboard Pages  */}
-
-        <Route path='/my-account' element={ <ProtectedRoute allowedRole="student" > <Myaccount /> </ProtectedRoute>} />
-        <Route path='/profile' element={ <ProtectedRoute allowedRole="student" > <Profile /> </ProtectedRoute>} />
-        <Route path='/saved-listings' element={ <ProtectedRoute allowedRole="student" > <SavedListings /> </ProtectedRoute>} />
-        <Route path='/booked-tours' element={ <ProtectedRoute allowedRole="student" > <BookedTours /> </ProtectedRoute>} />
-        <Route path='/contacted-hosts' element={ <ProtectedRoute allowedRole="student" > <ContactedHosts /> </ProtectedRoute>} />
-        <Route path='/saved-searches' element={ <ProtectedRoute allowedRole="student" > <SavedSearches /> </ProtectedRoute>} />
+        <Route path='/my-account' element={<ProtectedRoute allowedRole="student"><Myaccount /></ProtectedRoute>} />
+        <Route path='/profile' element={<ProtectedRoute allowedRole="student"><Profile /></ProtectedRoute>} />
+        <Route path='/saved-listings' element={<ProtectedRoute allowedRole="student"><SavedListings /></ProtectedRoute>} />
+        <Route path='/booked-tours' element={<ProtectedRoute allowedRole="student"><BookedTours /></ProtectedRoute>} />
+        <Route path='/contacted-hosts' element={<ProtectedRoute allowedRole="student"><ContactedHosts /></ProtectedRoute>} />
+        <Route path='/saved-searches' element={<ProtectedRoute allowedRole="student"><SavedSearches /></ProtectedRoute>} />
 
         <Route path="*" element={<NotFound />} />
-        
       </Routes>
 
-       {!shouldHideLayout && <Footer />}
+      {!shouldHideFooter && <Footer />}
     </>
   )
 }
+
 
 export default App

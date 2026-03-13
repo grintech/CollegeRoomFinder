@@ -639,12 +639,6 @@ const PropertySinglePage = () => {
                             <span className="badge bg-warning-subtle text_orange fw-semibold">
                               {propertyData.campus.name}
                             </span>
-                            {propertyData.distance_from_campus?.label && (
-                              <span className="badge bg-success-subtle text-success fw-semibold d-flex align-items-center gap-1">
-                                <Bus size={14} />
-                                {propertyData.distance_from_campus.label}
-                              </span>
-                            )}
                           </>
                         )}
                       </div>

@@ -59,6 +59,7 @@ const HostContact = () => {
     setLoading(true);
 
     const data = new FormData();
+    data.append("host_id", user?.id);
     data.append("name", formData.name);
     data.append("email", formData.email);
     data.append("host_type", formData.host_type);
@@ -67,11 +68,6 @@ const HostContact = () => {
     const response = await api.post(
       "/book-portfolio-demo",
       data,
-      {
-        headers: {
-          'Authorization': `Bearer ${token}`
-        }
-      }
     );
 
     const result = response.data;

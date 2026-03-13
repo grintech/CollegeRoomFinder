@@ -1,13 +1,56 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import toast from "react-hot-toast";
+import { useState } from "react";
+import api from "../services/api";
 
 const Footer = () => {
 
   const { user, isAuthenticated } = useAuth();
   const navigate = useNavigate();
   const WEBSITE_URL = import.meta.env.VITE_WEBSITE_URL;
-  // console.log(WEBSITE_URL);
+
+  const [email, setEmail] = useState("");
+  const [successMsg, setSuccessMsg] = useState("");
+  const [errorMsg, setErrorMsg] = useState("");
+  const [loading, setLoading] = useState(false);
+
+
+  const handleSubscribe = async () => {
+
+  if (!email.trim()) {
+    setErrorMsg("Email is required");
+    setTimeout(() => setErrorMsg(""), 2000);
+    return;
+  }
+
+  try {
+    setLoading(true);
+    setErrorMsg("");
+    setSuccessMsg("");
+
+    const res = await api.post("/newsletter", { email });
+
+    if (res.data?.status) {
+      setSuccessMsg(res.data.message || "Successfully subscribed.");
+      setEmail("");
+    } else {
+      setErrorMsg(res.data.message || "Something went wrong");
+    }
+
+  } catch (error) {
+    setErrorMsg("Subscription failed");
+  } finally {
+    setLoading(false);
+
+    setTimeout(() => {
+      setSuccessMsg("");
+      setErrorMsg("");
+    }, 2000);
+  }
+};
+
+
 
   const goToListProperty = () => {
 
@@ -111,11 +154,30 @@ const Footer = () => {
             <p className="small footer-text">
               Get new listings & updates.
             </p>
+
             <div className="newsletter-box">
-              <input type="email" placeholder="Email address" />
-              <button>Subscribe</button>
+              <input
+                type="email"
+                placeholder="Email address"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+
+              <button onClick={handleSubscribe} disabled={loading}>
+                {loading ? "Subscribing..." : "Subscribe"}
+              </button>
             </div>
+
+            {/* Messages */}
+            {successMsg && (
+              <p className="text-success small mt-2 mb-0 fw-semibold small">{successMsg}</p>
+            )}
+
+            {errorMsg && (
+              <p className="text-danger small mt-2 mb-0 fw-semibold small">{errorMsg}</p>
+            )}
           </div>
+
         </div>
 
         <hr className="footer-divider my-4" />
