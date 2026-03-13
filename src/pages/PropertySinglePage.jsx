@@ -33,6 +33,10 @@ const PropertySinglePage = () => {
   const { slug } = useParams();
   const location = useLocation();
   const { user, token, logout } = useAuth();
+
+  useEffect(() => {
+      window.scrollTo(0, 0);
+    }, [slug]);
   
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -193,10 +197,10 @@ const PropertySinglePage = () => {
   // Loading state
   if (loading) {
     return (
-      <div className="container py-5 text-center">
-        <div className="d-flex flex-column justify-content-center align-items-center" style={{ minHeight: '400px' }}>
+      <div className="container py-5 text-center ">
+        <div className="d-flex flex-column justify-content-center align-items-center min_height" >
           <Home className="text_theme" size={40} />
-          <span className="mt-3 text_theme">Loading property details...</span>
+          <span className="mt-3 text_theme fs-6">Loading property details...</span>
         </div>
       </div>
     );
@@ -219,10 +223,13 @@ const PropertySinglePage = () => {
   const encodedAddress = encodeURIComponent(address);
   const amenities = propertyData.amenities || [];
 
+
+
+
   return (
     <>
       <div className="property_single">
-        <div className="container py-5">
+        <div className="container py-4">
           <div className="row g-4">
             <div className="col-lg-8">
               {/* IMAGE GALLERY */}
@@ -241,9 +248,10 @@ const PropertySinglePage = () => {
                       </span>
 
                       <Swiper
+                        key={slug}
                         modules={[Navigation, Thumbs]}
                         navigation
-                        thumbs={{ swiper: thumbsSwiper }}
+                        thumbs={{ swiper: thumbsSwiper && !thumbsSwiper.destroyed ? thumbsSwiper : null }}
                         onSlideChange={(swiper) => setActiveIndex(swiper.activeIndex)}
                         className="main-swiper"
                       >
@@ -262,6 +270,7 @@ const PropertySinglePage = () => {
                     </div>
 
                     <Swiper
+                      key={`thumb-${slug}`}
                       onSwiper={setThumbsSwiper}
                       spaceBetween={10}
                       slidesPerView="auto"
@@ -295,10 +304,10 @@ const PropertySinglePage = () => {
                         <p className="text-muted d-flex align-items-center gap-1 m-0">
                           <MapPin size={16} /> {address}
                         </p>
-                        {propertyData.campus && (
+                        {propertyData.shuttle_route == 1 && (
                           <span className="badge bg-success-subtle small text-success fw-semibold d-flex align-items-center gap-1 ms-2">
                             <Bus size={14} />
-                            {propertyData.campus.name}
+                            On Shuttle Route
                           </span>
                         )}
                       </div>
@@ -534,34 +543,44 @@ const PropertySinglePage = () => {
               )}
 
               {/* CTA */}
-              <div className="card mb-4">
-                <div className="card-body">
-                  <h6 className="fw-bold mb-4">Get in Touch</h6>
-                  <div className="d-flex flex-column text-center gap-3">
-                    <button
-                      className="blue_btn w-100 d-flex justify-content-center align-items-center"
-                      onClick={() => {
-                        setActiveListing(propertyData);
-                        setShowContact(true);
-                      }}
-                    >
-                      <Home className="me-2" size={20} /> Submit Interest
-                    </button>
+              {(!user || (user && user.role === 'student')) && (
+                <div className="card mb-4">
+                  <div className="card-body">
+                    <h6 className="fw-bold mb-4">Get in Touch</h6>
+                    <div className="d-flex flex-column text-center gap-3">
+                      <button
+                        className="blue_btn w-100 d-flex justify-content-center align-items-center"
+                        onClick={() => {
+                           if (!user) {
+                              toast.error('Please login to contact host');
+                              return;
+                            }
+                          setActiveListing(propertyData);
+                          setShowContact(true);
+                        }}
+                      >
+                        <Home className="me-2" size={20} /> Submit Interest
+                      </button>
 
-                    <button
-                      className="theme_outline_btn w-100 d-flex justify-content-center align-items-center"
-                      onClick={() => {
-                        setActiveListing(propertyData);
-                        setShowTour(true);
-                      }}
-                    >
-                      <Calendar className="me-2" size={20} /> Book Tour
-                    </button>
+                      <button
+                        className="theme_outline_btn w-100 d-flex justify-content-center align-items-center"
+                        onClick={() => {
+                           if (!user) {
+                            toast.error('Please login to book a tour');
+                            return;
+                          }
+                          setActiveListing(propertyData);
+                          setShowTour(true);
+                        }}
+                      >
+                        <Calendar className="me-2" size={20} /> Book Tour
+                      </button>
 
-                    <p className="small m-0">Have questions? Message the landlord directly.</p>
+                      <p className="small m-0">Have questions? Message the landlord directly.</p>
+                    </div>
                   </div>
                 </div>
-              </div>
+              )}
 
               {/* AD SLIDER */}
               <SidebarAdSlider />
@@ -682,7 +701,7 @@ const PropertySinglePage = () => {
             </div>
           </div>
 
-          <SimilarListings />
+          <SimilarListings propertySlug={slug } />
         </div>
       </div>
 

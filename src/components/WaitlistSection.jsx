@@ -2,6 +2,7 @@ import { Bell, GraduationCap, MapPin } from "lucide-react";
 import { LoadScript, Autocomplete } from "@react-google-maps/api";
 import { useRef, useState } from "react";
 import axios from "axios";
+import api from "../services/api";
 
 const libraries = ["places"];
 
@@ -96,10 +97,7 @@ const WaitlistSection = () => {
         form.append(key, formData[key]);
       });
 
-      const res = await axios.post(
-        "https://roomfinder.grincloudhost.com/api/student/wait/list",
-        form
-      );
+      const res = await api.post("/student/wait/list", form);
 
       if (res.data.success) {
         setResponseStatus("success");
@@ -132,7 +130,7 @@ const WaitlistSection = () => {
       setTimeout(() => {
         setResponseMsg("");
         setResponseStatus("");
-      }, 1000);
+      }, 2000);
     }
   };
 
@@ -144,7 +142,6 @@ const WaitlistSection = () => {
       <section className="waitlist-section">
         <div className="container">
           <div className="row align-items-center g-md-5">
-
             {/* LEFT CONTENT */}
             <div className="col-lg-6 text-white">
               <span className="coming_soon text-white mb-3">
@@ -153,25 +150,41 @@ const WaitlistSection = () => {
 
               <h2 className="fw-bold display-6 mt-3">
                 Get Notified When <br />
-                <span className="text_theme">College Room Finder</span> Launches Near You
+                <span className="text_theme">College Room Finder</span> Launches
+                Near You
               </h2>
 
-              <p className="mt-3 opacity-75">
-                We’re rolling out campus by campus. Join the waitlist and be the
-                first to find rooms near your college.
+              <p className="mt-3 ">
+                College Room Finder is expanding campus by campus to make it
+                easier for students to discover safe, affordable, and convenient
+                housing near their universities. By joining our waitlist, you’ll
+                be among the first students to know when we launch in your area.
+                Our goal is to simplify the room-hunting experience by
+                connecting students with trusted listings close to their campus,
+                helping them save time and avoid the stress of searching through
+                unreliable options. <br />
+                Sign up today to get early access, receive
+                launch updates, and help us bring College Room Finder to your
+                university faster.
               </p>
 
               <ul className="list-unstyled mt-4">
                 <li className="d-flex align-items-start mb-3">
-                  <span className="icon-box me-3"><Bell size={20} /></span>
+                  <span className="icon-box me-3">
+                    <Bell size={20} />
+                  </span>
                   <span>Early access before other students</span>
                 </li>
                 <li className="d-flex align-items-start mb-3">
-                  <span className="icon-box me-3"><GraduationCap size={20} /></span>
+                  <span className="icon-box me-3">
+                    <GraduationCap size={20} />
+                  </span>
                   <span>Help us launch faster at your university</span>
                 </li>
                 <li className="d-flex align-items-start">
-                  <span className="icon-box me-3"><MapPin size={20} /></span>
+                  <span className="icon-box me-3">
+                    <MapPin size={20} />
+                  </span>
                   <span>Currently expanding across major campuses</span>
                 </li>
               </ul>
@@ -183,7 +196,6 @@ const WaitlistSection = () => {
                 <h5 className="fw-bold mb-4">Join the Waitlist</h5>
 
                 <div className="row">
-
                   <div className="col-12 mb-3">
                     <label className="form-label">Student Full Name</label>
                     <input
@@ -197,7 +209,9 @@ const WaitlistSection = () => {
                   </div>
 
                   <div className="col-12 mb-3">
-                    <label className="form-label">Student University Name</label>
+                    <label className="form-label">
+                      Student's University Name
+                    </label>
                     <input
                       type="text"
                       name="student_university_name"
@@ -271,13 +285,16 @@ const WaitlistSection = () => {
                       rows="3"
                       name="additional_information"
                       value={formData.additional_information}
+                      placeholder="Write your message..."
                       onChange={handleChange}
                       className="form-control"
                     />
                   </div>
 
                   {responseMsg && (
-                    <div className={`col-12 mb-2 text-${responseStatus}`}>
+                    <div
+                      className={`col-12 mb-2 text-center fw-semibold text-${responseStatus}`}
+                    >
                       {responseMsg}
                     </div>
                   )}
@@ -295,14 +312,13 @@ const WaitlistSection = () => {
 
                   <div className="col-12 mt-3">
                     <p className="small text-muted mb-0">
-                      No spam. We’ll only notify you when we launch near your campus.
+                      No spam. We’ll only notify you when we launch near your
+                      campus.
                     </p>
                   </div>
-
                 </div>
               </div>
             </div>
-
           </div>
         </div>
       </section>

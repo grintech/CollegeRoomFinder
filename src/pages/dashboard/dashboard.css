@@ -270,6 +270,11 @@
   border-radius:6px;
 }
 
+.status.info{
+  background: var(--light_blue);
+  color: var(--blue);
+  text-transform: capitalize;
+}
 .status.confirmed{
   background:#e6f7ed;
   color:#1a7f37;
@@ -302,7 +307,10 @@
 
 .tour_tabs .nav-tabs .nav-link:focus, .tour_tabs .nav-tabs .nav-link:hover{border: 0 !important; border-bottom: 1px solid #ccc !important;}
 
-
+.reschedule_modal .modal-body{
+  max-height: 420px !important;
+  overflow-y: scroll;
+}
 
 /*------- Saved Searches --------*/
 

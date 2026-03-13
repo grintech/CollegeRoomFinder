@@ -1,4 +1,34 @@
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
+import toast from "react-hot-toast";
+
 const Pricing = () => {
+
+  const {user} = useAuth();
+  const navigate = useNavigate();
+  const WEBSITE_URL = import.meta.env.VITE_WEBSITE_URL;
+  
+  const handleListProperty = () => {
+  
+   if (!user) {
+   navigate(`/login`);
+     return;
+   }
+  
+   if (user?.role === "student") {
+     toast.error("Login as host to buy a plan.");
+     return;
+   }
+  
+   if (user?.role === "host") {
+     window.location.replace(`${WEBSITE_URL}/host/manage-subscription`);
+   } 
+   else if (user?.role === "admin") {
+    //  window.location.replace(`${WEBSITE_URL}/admin/listings/create-listing`);
+     toast.error("Login as host to buy a plan.");
+   }
+  
+  };
   return (
     <section id="pricing" className="pricing-section">
       <div className="container">
@@ -28,7 +58,7 @@ const Pricing = () => {
                 <li>Full dashboard access</li>
               </ul>
 
-              <button className="theme_outline_btn w-100">
+              <button onClick={handleListProperty} className="theme_outline_btn w-100">
                 Start Free Trial
               </button>
             </div>
@@ -51,7 +81,7 @@ const Pricing = () => {
                 <li>Priority email support</li>
               </ul>
 
-              <button className="light_btn w-100">
+              <button onClick={handleListProperty} className="light_btn w-100">
                 Subscribe Now
               </button>
             </div>
@@ -72,7 +102,7 @@ const Pricing = () => {
                 <li>Dedicated support</li>
               </ul>
 
-              <button className="theme_outline_btn w-100">
+              <button onClick={handleListProperty} className="theme_outline_btn w-100">
                 Upgrade to Pro
               </button>
             </div>
@@ -92,7 +122,7 @@ const Pricing = () => {
                 <li>Account manager support</li>
               </ul>
 
-              <button className="theme_outline_btn w-100">
+              <button onClick={handleListProperty} className="theme_outline_btn w-100">
                 Contact Us
               </button>
             </div>

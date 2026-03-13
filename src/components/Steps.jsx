@@ -1,6 +1,8 @@
 import React from "react";
 import { UserCheck, Users, CheckCircle, Search, Home } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
+import toast from "react-hot-toast";
 
 const stepsData = [
   {
@@ -31,6 +33,32 @@ const stepsData = [
 
 
 const Steps = () => {
+
+  const {user} = useAuth();
+  const navigate = useNavigate();
+  const WEBSITE_URL = import.meta.env.VITE_WEBSITE_URL;
+  
+  const handleListProperty = () => {
+  
+   if (!user) {
+   navigate(`/login`);
+     return;
+   }
+  
+   if (user?.role === "student") {
+     toast.error("Login as host to list property");
+     return;
+   }
+  
+   if (user?.role === "host") {
+     window.location.replace(`${WEBSITE_URL}/host/listings/create-listing`);
+   } 
+   else if (user?.role === "admin") {
+     window.location.replace(`${WEBSITE_URL}/admin/listings/create-listing`);
+   }
+  
+  };
+
   return (
     <section className="finding_steps">
       <div className="container">
@@ -81,10 +109,10 @@ const Steps = () => {
                 Search Listings
               </Link>
 
-              <Link to="#" className="dark_btn d-flex align-items-center gap-2">
+              <button onClick={handleListProperty} className="dark_btn d-flex align-items-center gap-2">
                 <Home size={18} />
                 List Your Property
-              </Link>
+              </button>
         </div>
       </div>
     </section>

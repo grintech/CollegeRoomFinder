@@ -281,7 +281,7 @@ const ContactedHosts = () => {
                     ))}
                     
                     {/* Showing X to Y of Z results */}
-                    {pagination.total > 0 && (
+                    {pagination.total > 1 && (
                       <div className="col-12 text-center text-muted small mt-2">
                         Showing {pagination.from} to {pagination.to} of {pagination.total} inquiries
                       </div>
