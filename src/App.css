@@ -673,6 +673,8 @@ border-radius: 14px !important;
   color: var(--light);
 }
 
+.footer-bottom a{color: var(--blue) ;}
+.footer-bottom a:hover{color: var(--primary) ;}
 
 .newsletter-box {
   display: flex;
@@ -1567,6 +1569,8 @@ border-radius: 14px !important;
 .property_single h2{font-size: 30px; color: var(--blue
   ); font-weight: 800;}
 
+  .owner_detail_card a {font-weight: 400; color: #000;}
+  .owner_detail_card a:hover {color: var(--primary) !important;}
   .owner_img{height: 60px; width: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; background-color: #e9e8e8;}
   .owner_img img{border-radius: 50%; object-fit: cover;}
   .owner_name{font-size: 22px; font-weight: 700;}
@@ -1594,7 +1598,7 @@ border-radius: 14px !important;
   position: absolute;
   top: 14px;
   left: 14px;
-  background: var(--blue);
+  background: var(--primary);
   color: #fff;
   font-size: 13px;
   padding: 4px 10px;
@@ -1694,7 +1698,7 @@ border-radius: 14px !important;
 .amenity-item {
   border: 1px solid #e5e7eb;
   border-radius: 10px;
-  padding: 20px 16px;
+  padding: 10px 12px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -1820,7 +1824,7 @@ border-radius: 14px !important;
 }
 
 .ad-content {
-  padding: 12px 0;
+  padding: 12px 0 0 0;
 }
 
 .ad-content h6 {
@@ -2048,7 +2052,7 @@ border-radius: 14px !important;
  .heading span { font-size: 1.75rem !important;}
  .community-content h2 span { font-size: 1.75rem !important; }
  .main-swiper img {height: 320px;}
- .feature_card .col-6{width: 100%;}
+ 
  .property_single h1{font-size: 23px;}
  .property_single h2{font-size: 23px;}
  .modal_message {font-size: 14px;}
@@ -2056,6 +2060,7 @@ border-radius: 14px !important;
 }
 
 @media (max-width: 425px) {
+  .feature_card .col-4{width: 50%;}
 .hero-section{padding: 50px 0 0 0;}
 .hero_left{padding: 0 0 50px 0;}
 .hero-section h1 { font-size: 2.5rem;}

@@ -139,11 +139,7 @@ const BookTourModal = ({ show, onClose, listing }) => {
         payload.tour_time = convertTo24Hour(selectedTime);
       }
 
-      const response = await api.post("/inquiries", payload, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const response = await api.post("/inquiries", payload );
 
       const result = response.data;
 

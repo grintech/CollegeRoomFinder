@@ -25,11 +25,8 @@ const Myaccount = () => {
 
   const fetchCounts = async () => {
     try {
-      const res = await api.get("/dashboard/counts", {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const res = await api.get("/dashboard/counts", 
+    );
 
       if (res.data?.status) {
         setCounts(res.data.data);

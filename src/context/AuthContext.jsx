@@ -1,6 +1,7 @@
 import { createContext, useContext, useState, useEffect } from "react"
 import api from "../services/api"
 import toast from "react-hot-toast"
+import { useNavigate } from "react-router-dom"
 
 const AuthContext = createContext()
 
@@ -8,6 +9,8 @@ export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null)
   const [token, setToken] = useState(null)
   const [loading, setLoading] = useState(true)
+
+  const navigate = useNavigate()
 
  useEffect(() => {
   const urlParams = new URLSearchParams(window.location.search)
@@ -24,7 +27,7 @@ export const AuthProvider = ({ children }) => {
 
   if (storedToken) {
     setToken(storedToken)
-    api.defaults.headers.common["Authorization"] = `Bearer ${storedToken}`
+    // api.defaults.headers.common["Authorization"] = `Bearer ${storedToken}`
   }
 
   if (storedUser) {
@@ -38,7 +41,7 @@ export const AuthProvider = ({ children }) => {
     localStorage.setItem("token", token)
     localStorage.setItem("user", JSON.stringify(userData))
 
-    api.defaults.headers.common["Authorization"] = `Bearer ${token}`
+    // api.defaults.headers.common["Authorization"] = `Bearer ${token}`
 
     setToken(token)
     setUser(userData)
@@ -50,13 +53,7 @@ export const AuthProvider = ({ children }) => {
 
   try {
     if (storedToken) {
-      const response = await api.post( "/logout", {},
-        {
-          headers: {
-            Authorization: `Bearer ${storedToken}`
-          }
-        }
-      )
+      const response = await api.post( "/logout" )
 
       if (response?.data?.status === true) {
         toast.success(response.data.message || "Logged out successfully")
@@ -79,6 +76,9 @@ export const AuthProvider = ({ children }) => {
 
     setUser(null)
     setToken(null)
+    
+    // redirect always
+      navigate("/login", { replace: true })
   }
 }
 
@@ -88,15 +88,7 @@ const handleExternalLogout = async () => {
 
   try {
     if (storedToken) {
-      await api.post(
-        "/logout",
-        {},
-        {
-          headers: {
-            Authorization: `Bearer ${storedToken}`
-          }
-        }
-      )
+      await api.post( "/logout" )
     }
   } catch (error) {
     console.error("External logout API error:", error?.response?.data?.message)

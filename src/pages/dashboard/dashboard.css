@@ -79,6 +79,7 @@
     line-height: 55px;
     position: relative;
     width: 55px;
+    color: var(--blue);
 }
 
 .modal input{height: 47px; border-radius: 8px; font-size: 14px;}
@@ -95,10 +96,10 @@
     border: 1px solid var(--blue);
     color: var(--blue);
 }
+
 .btn-outline-green:hover{
   background: var(--blue);
     color: #fff;
-
 }
 
 .watchlist_cards .border{transition: all .3s;}

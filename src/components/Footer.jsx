@@ -82,6 +82,35 @@ const Footer = () => {
     window.location.href = `${WEBSITE_URL}/host/listings`
   }
 
+  const goToMyEnquiries = () => {
+
+    if (!isAuthenticated) {
+      navigate("/login")
+      return
+    }
+
+    if (user?.role !== "student") {
+      toast.error("Login as student to view enquiries.")
+      return
+    }
+
+    navigate("/contacted-hosts")
+  }
+
+  const goToSavedListings = () => {
+
+    if (!isAuthenticated) {
+      navigate("/login")
+      return
+    }
+
+    if (user?.role !== "student") {
+      toast.error("Login as student to view listings.")
+      return
+    }
+
+    navigate("/saved-listings")
+  }
 
 
   return (
@@ -110,9 +139,9 @@ const Footer = () => {
           <div className="col-xxl-2 col-xl-4 col-lg-4 col-md-6 col-sm-6 col-6 text-start">
             <h6 className="footer-title">For Students</h6>
             <ul className="list-unstyled">
-              <li><a href="#" className="footer-link">Find Rooms</a></li>
-              <li><Link to="/contacted-hosts" className="footer-link">My Enquiries</Link></li>
-              <li><Link to="/saved-listings" className="footer-link">Saved Properties</Link></li>
+              <li><Link to="/?scroll=hero_search" className="footer-link">Find Rooms</Link></li>
+              <li><a href="#" onClick={(e) => { e.preventDefault(); goToMyEnquiries(); }} className="footer-link">My Enquiries</a></li>
+              <li><a href="#" onClick={(e) => { e.preventDefault(); goToSavedListings(); }} className="footer-link">Saved Properties</a></li>
             </ul>
           </div>
 
@@ -184,7 +213,7 @@ const Footer = () => {
 
         {/* BOTTOM */}
         <div className="d-flex flex-column flex-md-row justify-content-center align-items-center small footer-bottom mb-3 mb-md-4">
-          <span className="text-center">© 2026 CollegeRoomFinder. All Rights Reserved.</span>
+          <span className="text-center">© 2026 <Link to="/">College Room Finder</Link>. All Rights Reserved.</span>
          
         </div>
 

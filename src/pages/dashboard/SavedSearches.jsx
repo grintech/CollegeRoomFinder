@@ -23,11 +23,7 @@ const SavedSearches = () => {
     try {
       setLoading(true);
 
-      const res = await api.get("/saved-search-list", {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const res = await api.get("/saved-search-list" );
 
       if (res?.data?.status) {
         const mapped = res.data.data.map((item) => ({
@@ -61,11 +57,7 @@ const SavedSearches = () => {
   // Delete Search
   const deleteSearch = async (id) => {
     try {
-      const res = await api.delete(`/save-search-delete/${id}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const res = await api.delete(`/save-search-delete/${id}` );
 
       if (res?.data?.status) {
         toast.success(res.data.message || "Search removed");

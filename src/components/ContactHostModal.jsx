@@ -106,13 +106,8 @@ const ContactHostModal = ({ show, onClose, listing }) => {
           name: formData.name,
           email: formData.email,
           phone_no: formData.phone_no,
-          message: formData.message
-        },
-        {
-          headers: {
-            'Authorization': `Bearer ${token}`,
-            'Content-Type': 'application/json'
-          }
+          message: formData.message,
+          type: "contact",
         }
       );
 
@@ -144,18 +139,21 @@ const ContactHostModal = ({ show, onClose, listing }) => {
       
       // Handle validation errors
       if (error?.response?.status === 422) {
-        const errors = error?.response?.data?.errors;
-        if (errors) {
-          // Show first validation error
-          const firstError = Object.values(errors)[0]?.[0];
-          setMessage({ 
-            text: firstError || "Validation error", 
-            type: "error" 
-          });
-        } else {
-          setMessage({ text: "Please check your input and try again", type: "error" });
-        }
+      const errors = error?.response?.data?.errors;
+
+      if (errors && Object.keys(errors).length > 0) {
+        const firstError = Object.values(errors)[0]?.[0];
+        setMessage({
+          text: firstError || "Validation error",
+          type: "error"
+        });
       } else {
+        setMessage({
+          text: error?.response?.data?.message || "Validation error",
+          type: "error"
+        });
+      }
+    } else {
         setMessage({ 
           text: error?.response?.data?.message || "Failed to send inquiry. Please try again.", 
           type: "error" 

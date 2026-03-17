@@ -136,7 +136,7 @@ const Signup = () => {
           <form onSubmit={handleSubmit}>
             {/* Full Name */}
             <div className="mb-3">
-              <label>Full Name *</label>
+              <label>Full Name <span className="text-danger">*</span></label>
               <div className="input-icon">
                 <User size={18} />
                 <input
@@ -163,7 +163,7 @@ const Signup = () => {
                 </div>
 
                 <div className="mb-3">
-                  <label>Graduation Year *</label>
+                  <label>Graduation Year <span className="text-danger">*</span></label>
                   <div className="input-icon">
                     <Calendar size={18} />
                     <input
@@ -187,7 +187,7 @@ const Signup = () => {
             {/* Host Fields */}
             {role === "host" && (
               <div className="mb-3">
-                <label>Company / Business Name *</label>
+                <label>Company / Business Name <span className="text-danger">*</span></label>
                 <div className="input-icon">
                   <Building2 size={18} />
                   <input
@@ -204,7 +204,7 @@ const Signup = () => {
 
             {/* Phone */}
             <div className="mb-3">
-              <label>Phone</label>
+              <label>Phone (optional)</label>
               <div className="input-icon">
                 <Phone size={18} />
                 <input
@@ -220,11 +220,14 @@ const Signup = () => {
                   placeholder="9876543210"
                 />
               </div>
+               <small className="text-muted ">
+              Only numbers and + (at the beginning) allowed
+            </small>
             </div>
 
             {/* Email */}
             <div className="mb-3">
-              <label>Email *</label>
+              <label>Email <span className="text-danger">*</span></label>
               <div className="input-icon">
                 <Mail size={18} />
                 <input
@@ -240,7 +243,7 @@ const Signup = () => {
 
             {/* Password */}
             <div className="mb-3">
-              <label>Password *</label>
+              <label>Password <span className="text-danger">*</span></label>
               <div className="input-icon password-field">
                 <Lock size={18} />
                 <input
@@ -260,7 +263,7 @@ const Signup = () => {
 
             {/* Confirm Password */}
             <div className="mb-3">
-              <label>Confirm Password *</label>
+              <label>Confirm Password <span className="text-danger">*</span></label>
               <div className="input-icon password-field">
                 <Lock size={18} />
                 <input

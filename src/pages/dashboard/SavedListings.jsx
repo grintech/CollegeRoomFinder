@@ -39,16 +39,16 @@ const SavedListings = () => {
 
   } catch (err) {
 
-    if (err.response?.status === 422) {
-      toast.error("Session expired. Please login again.");
+    // if (err.response?.status === 422) {
+    //   toast.error("Session expired. Please login again.");
 
-      setTimeout(() => {
-        logout();
-        navigate("/login");
-      }, 1000);
+    //   setTimeout(() => {
+    //     logout();
+    //     navigate("/login");
+    //   }, 1000);
 
-      return;
-    }
+    //   return;
+    // }
 
     toast.error(
       err.response?.data?.message ||
@@ -106,16 +106,16 @@ const SavedListings = () => {
 
     } catch (err) {
 
-        if (err.response?.status === 422) {
-        toast.error("Session expired. Please login again.");
+        // if (err.response?.status === 422) {
+        // toast.error("Session expired. Please login again.");
 
-        setTimeout(() => {
-            logout();
-            navigate("/login");
-        }, 1000);
+        // setTimeout(() => {
+        //     logout();
+        //     navigate("/login");
+        // }, 1000);
 
-        return;
-        }
+        // return;
+        // }
 
         toast.error(
         err.response?.data?.message ||
@@ -169,7 +169,7 @@ const SavedListings = () => {
                             disabled={savingId === item.id}
                             >
                             {savingId === item.id ? (
-                                <Loader size={18} className="spinner text_theme" />
+                                <Loader size={18} className=" text_theme" />
                             ) : (
                                 <Heart
                                 size={18}
@@ -204,13 +204,13 @@ const SavedListings = () => {
                               <Bath size={16} /> {item.bathrooms} Bath
                             </span>
 
-                            <span>
+                            <span className="text-capitalize">
                               <MapPin size={16} /> {item.distance_from_campus?.miles} mi
                             </span>
                           </div>
 
                           <div className="listing-price mb-0">
-                            {item.price_formatted} <small>/ month</small>
+                            {item.price_formatted} <small>/ Month</small>
                           </div>
 
                         </div>

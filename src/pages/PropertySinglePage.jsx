@@ -5,7 +5,7 @@ import { Navigation, Thumbs } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/thumbs";
-import { useParams, useLocation } from "react-router-dom";
+import { useParams, useLocation, useNavigate, Link } from "react-router-dom";
 import toast from 'react-hot-toast';
 
 import CommuteCard from "../components/CommuteCard";
@@ -15,6 +15,7 @@ import ContactHostModal from "../components/ContactHostModal";
 import SimilarListings from "../components/SimilarListings";
 import api from "../services/api";
 import { useAuth } from "../context/AuthContext";
+import FeaturedAdSlider from "../components/FeaturedAdSlider";
 
 // Helper function to format Font Awesome icon classes
 const formatIconClass = (iconName) => {
@@ -57,6 +58,7 @@ const PropertySinglePage = () => {
 
   // Check if user can save (only students can save)
   const canSave = user && user.role === 'student';
+  const navigate = useNavigate();
 
   // Fetch property data based on slug
   useEffect(() => {
@@ -65,11 +67,7 @@ const PropertySinglePage = () => {
         setLoading(true);
         
         // Make API call with auth token if user is logged in
-        const response = await api.get(`/single/listing/${slug}`, {
-          headers: token ? {
-            'Authorization': `Bearer ${token}`
-          } : {}
-        });
+        const response = await api.get(`/single/listing/${slug}` );
         
         const result = response.data;
         
@@ -123,6 +121,9 @@ const PropertySinglePage = () => {
     // Check if user is logged in first
     if (!user) {
       toast.error('Please login to save listings');
+      setTimeout(() => {
+       navigate('/login');
+      }, 2000);
       return;
     }
 
@@ -327,7 +328,7 @@ const PropertySinglePage = () => {
                           title={isSaved ? "Remove from saved" : "Save property"}
                         >
                           {saving ? (
-                            <Loader size={18} className="spinner text_theme" />
+                            <Loader size={18} className=" text_theme" />
                           ) : (
                             <Heart
                               size={18}
@@ -340,7 +341,14 @@ const PropertySinglePage = () => {
                     ) : (
                       <button
                         className="save-btn"
-                        onClick={() => toast.error('Please login to save listings')}
+                        onClick={() => {
+                          toast.error('Please login to save listings');  
+                          setTimeout(() => {
+                            navigate('/login');
+                            }, 2000);
+                            return;
+                          }
+                         }
                         title="Login to save this property"
                       >
                         <Heart
@@ -397,7 +405,7 @@ const PropertySinglePage = () => {
 
                     <div className="row g-3">
                       {amenities.map((amenity, i) => (
-                        <div className="col-md-4 col-6" key={amenity.id || i}>
+                        <div className="col-xxl-2 col-md-3 col-sm-4 col-4" key={amenity.id || i}>
                           <div className="amenity-item active">
                             <div className="d-flex align-items-center gap-2">
                               <i className={formatIconClass(amenity.icon)}></i>
@@ -505,7 +513,7 @@ const PropertySinglePage = () => {
             <div className="col-lg-4">
               {/* OWNER CARD */}
               {propertyData.host && (
-                <div className="card mb-4">
+                <div className="card owner_detail_card mb-4">
                   <div className="card-body">
                     <h6 className="fw-bold mb-4">Property Owner</h6>
                     <div className="d-flex align-items-center gap-3 mb-3">
@@ -525,18 +533,18 @@ const PropertySinglePage = () => {
                         Member since {new Date(propertyData.host.member_since).getFullYear()}
                       </p>
                     )}
-                    <p className="mb-1 d-flex align-items-center gap-1">
+                    {/* <p className="mb-1 d-flex align-items-center gap-1">
                       <HomeIcon size={16} className="me-1" /> 1 property listed
-                    </p>
+                    </p> */}
                     {propertyData.host.email && (
-                      <p className="mb-1 d-flex align-items-center gap-1">
+                      <a href={`mailto:${propertyData.host.email}`} className="mb-1 d-flex align-items-center gap-1">
                         <Mail size={16} className="me-1" /> {propertyData.host.email}
-                      </p>
+                      </a>
                     )}
                     {propertyData.host.phone && (
-                      <p className="mb-0 d-flex align-items-center gap-1">
+                      <a href={`tel:${propertyData.host.phone}`} className="mb-0 d-flex align-items-center gap-1">
                         <Phone size={16} className="me-1" /> {propertyData.host.phone}
-                      </p>
+                      </a>
                     )}
                   </div>
                 </div>
@@ -553,6 +561,9 @@ const PropertySinglePage = () => {
                         onClick={() => {
                            if (!user) {
                               toast.error('Please login to contact host');
+                              setTimeout(() => {
+                                navigate('/login');
+                              }, 2000);
                               return;
                             }
                           setActiveListing(propertyData);
@@ -567,6 +578,9 @@ const PropertySinglePage = () => {
                         onClick={() => {
                            if (!user) {
                             toast.error('Please login to book a tour');
+                            setTimeout(() => {
+                                navigate('/login');
+                              }, 2000);
                             return;
                           }
                           setActiveListing(propertyData);
@@ -583,7 +597,8 @@ const PropertySinglePage = () => {
               )}
 
               {/* AD SLIDER */}
-              <SidebarAdSlider />
+              {/* <SidebarAdSlider /> */}
+              <FeaturedAdSlider />
 
               {/* QUICK FACTS */}
               <div className="card mb-4">
@@ -627,7 +642,7 @@ const PropertySinglePage = () => {
                 <div className="card mb-4 location-card">
                   <div className="card-body">
                     {/* Header */}
-                    <div className="d-flex align-items-center justify-content-between mb-2">
+                    <div className="d-flex align-items-center gap-2 justify-content-between flex-wrap mb-2">
                       <div className="d-flex align-items-center gap-2">
                         <MapPin size={18} />
                         <h6 className="fw-bold mb-0">Location</h6>

@@ -11,7 +11,10 @@ const Pricing = () => {
   const handleListProperty = () => {
   
    if (!user) {
-   navigate(`/login`);
+    toast.error("Login as host to buy a plan.");
+    setTimeout(() => {
+      navigate(`/login`);
+    }, 2000);
      return;
    }
   
@@ -24,7 +27,6 @@ const Pricing = () => {
      window.location.replace(`${WEBSITE_URL}/host/manage-subscription`);
    } 
    else if (user?.role === "admin") {
-    //  window.location.replace(`${WEBSITE_URL}/admin/listings/create-listing`);
      toast.error("Login as host to buy a plan.");
    }
   

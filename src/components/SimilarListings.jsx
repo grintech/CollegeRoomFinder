@@ -107,11 +107,11 @@ const SimilarListings = ({ propertySlug }) => {
                   {/* Features */}
                   <div className="listing-features">
                     <span>
-                      <BedDouble size={16} /> {listing.bedrooms} Bed
+                      <BedDouble size={16} /> {listing.bedrooms || 0} {listing.bedrooms === 1 ? "Bed" : "Beds"}
                     </span>
 
                     <span>
-                      <Bath size={16} /> {listing.bathrooms} Bath
+                      <Bath size={16} /> {listing.bathrooms || 0} {listing.bathrooms === 1 ? "Bath" : "Baths"}
                     </span>
 
                     <span>
@@ -122,7 +122,7 @@ const SimilarListings = ({ propertySlug }) => {
                   {/* Price */}
                   <div className="listing-price">
                     ${listing.price}
-                    <small> / month</small>
+                    <small> / Month</small>
                   </div>
 
                 </div>

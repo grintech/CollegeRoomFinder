@@ -36,11 +36,7 @@ const ContactedHosts = () => {
   const fetchInquiries = async (page = 1) => {
     try {
       setLoading(true);
-      const response = await api.get(`/my-inquiries?page=${page}`, {
-        headers: {
-          'Authorization': `Bearer ${token}`
-        }
-      });
+      const response = await api.get(`/my-inquiries?page=${page}` );
 
       if (response.data.status === true) {
         setInquiries(response.data.data.inquiries);

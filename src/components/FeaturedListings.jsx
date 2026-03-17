@@ -183,7 +183,7 @@ const FeaturedListings = () => {
                     {/* Price */}
                     <div className="listing-price">
                       ${listing.price}{" "}
-                      <small>/ month</small>
+                      <small>/ Month</small>
                     </div>
 
                     {/* Actions */}

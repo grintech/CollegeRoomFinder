@@ -120,12 +120,7 @@ const ListingsGrid = ({ filters }) => {
     try {
       const response = await api.post(
         `/listings/${listing.slug}/save-unsave`,
-        {},
-        {
-          headers: {
-            'Authorization': `Bearer ${token}`
-          }
-        }
+        {}
       );
 
       if (response?.data?.success) {
@@ -190,10 +185,10 @@ const ListingsGrid = ({ filters }) => {
         return listing.distance_from_campus.label;
       }
       if (listing.distance_from_campus.miles) {
-        return `${listing.distance_from_campus.miles.toFixed(1)} mi away`;
+        return `${listing.distance_from_campus.miles.toFixed(1)} Mi Away`;
       }
       if (listing.distance_from_campus.km) {
-        return `${listing.distance_from_campus.km.toFixed(1)} km away`;
+        return `${listing.distance_from_campus.km.toFixed(1)} Km Away`;
       }
     }
     return 'N/A';
@@ -302,7 +297,7 @@ const ListingsGrid = ({ filters }) => {
                           disabled={savingId === item.id}
                         >
                           {savingId === item.id ? (
-                           <Loader size={18} className="spinner text_theme" />
+                           <Loader size={18} className=" text_theme" />
                           ) : (
                             <Heart
                               size={18}
@@ -337,18 +332,19 @@ const ListingsGrid = ({ filters }) => {
 
                       <div className="listing-features">
                         <span>
-                          <BedDouble size={16} /> {item.bedrooms || 0} Bed
+                          <BedDouble size={16} /> {item.bedrooms || 0} {item.bedrooms === 1 ? "Bed" : "Beds"}
                         </span>
+
                         <span>
-                          <Bath size={16} /> {item.bathrooms || 0} Bath
+                          <Bath size={16} /> {item.bathrooms || 0} {item.bathrooms === 1 ? "Bath" : "Baths"}
                         </span>
-                        <span className="distance-badge">
+                        <span className="distance-badge text-capitalize">
                           <MapPin size={16} /> {formatDistance(item)}
                         </span>
                       </div>
 
                       <div className="listing-price">
-                        {item.price_formatted || `$${parseFloat(item.price).toFixed(0)}`} <small>/ month</small>
+                        {item.price_formatted || `$${parseFloat(item.price).toFixed(0)}`} <small>/ Month</small>
                       </div>
 
                       {/* Show action buttons for everyone except hosts/admins */}

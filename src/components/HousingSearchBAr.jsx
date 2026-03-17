@@ -147,11 +147,6 @@ const HousingSearchBar = ({ onSearch }) => {
         university_id: selectedUniversity.id,
         lease_duration: leaseDuration,
         max_budget: price,
-      },
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
       }
     );
 

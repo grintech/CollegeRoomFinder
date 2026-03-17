@@ -70,15 +70,11 @@ const Profile = () => {
     const fetchProfile = async () => {
       try {
         setFetchingProfile(true);
-        const response = await api.get('/get/profile', {
-          headers: {
-            'Authorization': `Bearer ${token}`
-          }
-        });
+        const response = await api.get('/get/profile');
 
         if (response.data.status === true) {
           const profileData = response.data.data.profile;
-          console.log("Profile data:", profileData);
+          // console.log("Profile data:", profileData);
           
           setFormData({
             phone: profileData.phone || "",
@@ -196,20 +192,13 @@ const Profile = () => {
       // Case 3: Editing other fields → send nothing
 
       // Make API call with token
-      const response = await api.post('/student/update-profile', submitData, {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-          'Authorization': `Bearer ${token}`
-        }
-      });
+      const response = await api.post('/student/update-profile', submitData );
 
       if (response.data.success === true) {
         toast.success(response.data.message || 'Profile updated successfully!');
         
         // Refresh profile data
-        const profileResponse = await api.get('/get/profile', {
-          headers: { 'Authorization': `Bearer ${token}` }
-        });
+        const profileResponse = await api.get('/get/profile');
         
         if (profileResponse.data.status === true) {
           const profileData = profileResponse.data.data.profile;
@@ -243,16 +232,22 @@ const Profile = () => {
     } catch (err) {
       console.error('Error updating profile:', err);
       
-      if (err.response?.status === 401) {
-        toast.error('Your session has expired. Please login again.');
-      } else if (err.response?.status === 422) {
-        // Validation errors
-        const errors = err.response.data.errors;
-        Object.values(errors).forEach(error => {
-          toast.error(error[0]);
-        });
+      if (err.response?.status === 422) {
+        const data = err.response.data;
+
+        if (data.errors) {
+          Object.values(data.errors).forEach(error => {
+            toast.error(error[0]);
+          });
+        } else if (data.message) {
+          toast.error(data.message);
+        }
+
       } else {
-        toast.error(err.response?.data?.message || 'Failed to update profile. Please try again.');
+        toast.error(
+          err.response?.data?.message || 
+          'Failed to update password. Please try again.'
+        );
       }
     } finally {
       setLoading(false);
@@ -281,10 +276,6 @@ const Profile = () => {
         old_password: passwordData.old_password,
         new_password: passwordData.new_password,
         new_password_confirmation: passwordData.new_password_confirmation
-      }, {
-        headers: {
-          'Authorization': `Bearer ${token}`
-        }
       });
 
       if (response.data.status === true) {
@@ -307,9 +298,7 @@ const Profile = () => {
     } catch (err) {
       console.error('Error updating password:', err);
       
-      if (err.response?.status === 401) {
-        toast.error('Your session has expired. Please login again.');
-      } else if (err.response?.status === 422) {
+      if (err.response?.status === 422) {
         const data = err.response.data;
 
         if (data.errors) {
@@ -319,8 +308,12 @@ const Profile = () => {
         } else if (data.message) {
           toast.error(data.message);
         }
+
       } else {
-        toast.error(err.response?.data?.message || 'Failed to update password. Please try again.');
+        toast.error(
+          err.response?.data?.message || 
+          'Failed to update password. Please try again.'
+        );
       }
     } finally {
       setPasswordLoading(false);

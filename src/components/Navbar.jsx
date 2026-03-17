@@ -16,6 +16,8 @@ import { useAuth } from "../context/AuthContext";
 const Navbar = () => {
   const [open, setOpen] = useState(false);
   const [showModal, setShowModal] = useState(false);
+  const [logoutLoading, setLogoutLoading] = useState(false);
+
   const { user, isAuthenticated, logout } = useAuth();
    const navigate = useNavigate()
   const closeMenu = () => setOpen(false);
@@ -26,12 +28,17 @@ const Navbar = () => {
 
 
    const handleLogout = async () => {
-    await logout()
-    setShowModal(false);
-    closeMenu();
-    toast.success("Logged out successfully!")
-    navigate("/", { replace: true })
-  }
+    setLogoutLoading(true);
+
+    try {
+      await logout();
+      setShowModal(false);
+      closeMenu();
+      // navigate("/login", { replace: true });
+    } finally {
+      setLogoutLoading(false);
+    }
+  };
 
  
   const handleDashboardRedirect = () => {
@@ -224,14 +231,24 @@ const Navbar = () => {
                   >
                     Cancel
                   </button>
+
                   <button
                     type="button"
-                    className=" theme_outline_btn"
-                    onClick={() => {
-                     handleLogout()
-                    }}
+                    className="theme_outline_btn d-flex align-items-center justify-content-center gap-2"
+                    onClick={handleLogout}
+                    disabled={logoutLoading}
                   >
-                    Yes, Logout
+                    {logoutLoading ? (
+                      <>
+                        {/* <span
+                          className="spinner-border spinner-border-sm"
+                          role="status"
+                        ></span> */}
+                        Logging out...
+                      </>
+                    ) : (
+                      "Yes, Logout"
+                    )}
                   </button>
                 </div>
               </div>

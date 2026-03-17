@@ -118,9 +118,7 @@ const BookedTours = () => {
     try {
       setLoading(true);
 
-      const res = await api.get("/my-booked-tours", {
-        headers: { Authorization: `Bearer ${token}` },
-      });
+      const res = await api.get("/my-booked-tours" );
 
       if (res.data?.status) {
         setTours(res.data.data.inquiries || []);
@@ -140,9 +138,7 @@ const BookedTours = () => {
   try {
     setCancelLoading(true);
 
-    const res = await api.delete(`/cancel-tour/${cancelTourId}`, {
-      headers: { Authorization: `Bearer ${token}` },
-    });
+    const res = await api.delete(`/cancel-tour/${cancelTourId}` );
 
     if (res.data?.status) {
       toast.success(res.data.message || "Tour cancelled successfully");
@@ -181,9 +177,6 @@ const BookedTours = () => {
       {
         tour_date: formatDateForAPI(selectedDate),
         tour_time: convertTo24Hour(selectedTime),
-      },
-      {
-        headers: { Authorization: `Bearer ${token}` },
       }
     );
 
@@ -296,7 +289,7 @@ const BookedTours = () => {
                       </div>
 
                       <div className="tour_price">
-                        ${tour.listing?.price}/mo
+                        ${tour.listing?.price}/Month
                       </div>
                     </div>
 

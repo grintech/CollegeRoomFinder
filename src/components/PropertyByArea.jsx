@@ -127,7 +127,7 @@ const PropertyByArea = () => {
         return `${listing.distance_from_campus.km.toFixed(1)} km`;
       }
     }
-    return 'N/A';
+    return '';
   };
 
   // Get image URL
@@ -254,13 +254,13 @@ const PropertyByArea = () => {
                     </p>
 
                     <div className="d-flex gap-3 small mb-2">
-                      <span><BedDouble size={14} /> {listing.bedrooms || 0}</span>
-                      <span><Bath size={14} /> {listing.bathrooms || 0}</span>
-                      <span>{formatDistance(listing)}</span>
+                      <span><BedDouble size={14} /> {listing.bedrooms || 0} {listing.bedrooms === 1 ? "Bed" : "Beds"} </span>
+                      <span><Bath size={14} /> {listing.bathrooms || 0} {listing.bedrooms === 1 ? "Bath" : "Baths"}</span>
+                      <span className="text-capitalize">{formatDistance(listing)}</span>
                     </div>
 
                     <h5 className="fw-bold text_blue">
-                      {listing.price_formatted || `$${parseFloat(listing.price).toFixed(0)}`} <small>/ month</small>
+                      {listing.price_formatted || `$${parseFloat(listing.price).toFixed(0)}`} <small>/ Month</small>
                     </h5>
                   </div>
 

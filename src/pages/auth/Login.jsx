@@ -64,7 +64,7 @@ const Login = () => {
           <Link to="/">
             <img src="/images/logo_new.png" className="logo mb-4" />
           </Link>
-          <h1 className="mb-1">Welcome Back</h1>
+          <h1 className="mb-1">Login</h1>
           <p className="text-muted">Sign in to your account</p>
         </div>
 
